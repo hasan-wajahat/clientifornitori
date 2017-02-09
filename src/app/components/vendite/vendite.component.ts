@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {VenditeService} from "../../services/vendite/vendite.service";
-import {Fattura} from "../../model/vendite/fattura";
+import { VenditeService } from "../../services/vendite/vendite.service";
+import { Fattura } from "../../model/vendite/fattura";
 
 @Component({
   selector: 'app-vendite',
@@ -20,15 +20,21 @@ export class VenditeComponent implements OnInit {
     //   fatture => this.fatture = fatture,
     //   error => alert(error),
     //   () => console.log("_venditeService.getFattureVendite() - FINISHED!"));
-// testing
 
     this.cols = [
-      {field: 'numeroFattura',  header: 'N. FATTURA',     sortable: 'true', style: {'text-align': 'center'}},
-      {field: 'dataEmissione',  header: 'DATA EMISSIONE', sortable: 'true', style: {'text-align': 'center'}},
-      {field: 'intestatario',   header: 'INTESTATARIO',   sortable: 'true', style: {'text-align': 'center'}},
-      {field: 'stato',          header: 'STATO',          sortable: 'true', style: {'text-align': 'center'}},
-      {field: 'pagamento',      header: 'PAGAMENTO',      sortable: 'true', style: {'text-align': 'center'}},
-      {field: 'totale',         header: 'TOTALE',         sortable: 'true', style: {'text-align': 'right'}}
+      { field: 'numeroFattura', header: 'N. FATTURA', sortable: 'true', style: { 'text-align': 'center' } },
+      { field: 'dataEmissione', header: 'DATA EMISSIONE', sortable: 'true', style: { 'text-align': 'center' } },
+      { field: 'intestatario', header: 'INTESTATARIO', sortable: 'true', style: { 'text-align': 'center' } },
+      { field: 'stato', header: 'STATO', sortable: 'true', style: { 'text-align': 'center' } },
+      { field: 'pagamento', header: 'PAGAMENTO', sortable: 'true', style: { 'text-align': 'center' } },
+      { field: 'totale', header: 'TOTALE', sortable: 'true', style: { 'text-align': 'right' } }
     ];
+  }
+
+  test() {
+    this._venditeService.getAllSales().subscribe(
+      res => console.log(res),
+      error => console.log(error)
+    )
   }
 }
