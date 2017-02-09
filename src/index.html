@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title style="color:#00abff">Fiscalista Online</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!--Loading bootstrap css-->
+  <!-- Datetimepicker, Slider, Schedule -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-migrate-1.3.0.js"></script>
+  <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.2.1/bootstrap-hover-dropdown.js"></script>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:400,700,300">
+  <link type="text/css" rel="stylesheet" href="assets/styles/jquery-ui-1.10.4.custom.min.css">
+  <link type="text/css" rel="stylesheet" href="assets/styles/font-awesome.min.css">
+  <link type="text/css" rel="stylesheet" href="assets/styles/animate.css">
+  <link type="text/css" rel="stylesheet" href="assets/styles/all.css">
+  <link type="text/css" rel="stylesheet" href="assets/styles/main.css">
+  <link type="text/css" rel="stylesheet" href="assets/styles/style-responsive.css">
+  <link type="text/css" rel="stylesheet" href="assets/styles/zabuto_calendar.min.css">
+  <link type="text/css" rel="stylesheet" href="assets/styles/pace.css">
+  <link type="text/css" rel="stylesheet" href="assets/styles/jquery.news-ticker.css">
+
+
+  <script src="assets/script/html5shiv.js"></script>
+  <script src="assets/script/respond.min.js"></script>
+  <script src="assets/script/jquery.metisMenu.js"></script>
+  <script src="assets/script/jquery.slimscroll.js"></script>
+  <script src="assets/script/jquery.cookie.js"></script>
+  <script src="assets/script/icheck.min.js"></script>
+  <script src="assets/script/custom.min.js"></script>
+  <!--<script src="app/script/jquery.news-ticker.js"></script>-->
+  <script src="assets/script/jquery.menu.js"></script>
+  <script src="assets/script/pace.min.js"></script>
+  <script src="assets/script/holder.js"></script>
+  <script src="assets/script/responsive-tabs.js"></script>
+  <!--<script src="assets/script/jquery.flot.js"></script>-->
+  <!--<script src="assets/script/jquery.flot.categories.js"></script>-->
+  <!--<script src="assets/script/jquery.flot.pie.js"></script>-->
+  <!--<script src="assets/script/jquery.flot.tooltip.js"></script>-->
+  <!--<script src="assets/script/jquery.flot.resize.js"></script>-->
+  <!--<script src="assets/script/jquery.flot.fillbetween.js"></script>-->
+  <!--<script src="assets/script/jquery.flot.stack.js"></script>-->
+  <!--<script src="assets/script/jquery.flot.spline.js"></script>-->
+  <!--<script src="assets/script/zabuto_calendar.min.js"></script>-->
+
+  <!--LOADING SCRIPTS FOR CHARTS-->
+  <!--<script src="assets/script/highcharts.js"></script>-->
+  <!--<script src="assets/script/data.js"></script>-->
+  <!--<script src="assets/script/drilldown.js"></script>-->
+  <!--<script src="assets/script/exporting.js"></script>-->
+  <!--<script src="assets/script/highcharts-more.js"></script>-->
+  <!--<script src="assets/script/charts-highchart-pie.js"></script>-->
+  <!--<script src="assets/script/charts-highchart-more.js"></script>-->
+
+
+  <!-- Schedule -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+
+  <!--CORE JAVASCRIPT-->
+  <script src="assets/script/main.js"></script>
+  <script src="assets/script/index.js"></script>
+
+  <style>
+
+    .loading {
+      opacity: 0;
+      transition: opacity .8s ease-in-out;
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: #000;
+      z-index: -1;
+    }
+    app-root:empty + .loading {
+      opacity: 1;
+      z-index: 100;
+    }
+    app-root:empty + .loading h1 {
+      color: #EEE;
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      text-align: center;
+      transform: translate(0, -50%);
+    }
+
+  </style>
+
+  <!--<style>-->
+    <!--/*Ho inserito lo stile qui perchè la view encapsulation emulated per il */-->
+    <!--/*componente app-loading-indicator non funge !!!*/-->
+
+    <!--p-dialog .ui-dialog {-->
+      <!--background-color: transparent !important;-->
+      <!--border: none !important;-->
+      <!--box-shadow: none !important;-->
+    <!--}-->
+
+    <!--p-dialog .ui-dialog .ui-dialog-content {-->
+      <!--padding: 0px !important;-->
+      <!--border: none !important;-->
+    <!--}-->
+
+    <!--p-dialog .ui-dialog .ui-dialog-titlebar {-->
+      <!--display: none !important;-->
+    <!--}-->
+
+    <!--p-dialog .ui-widget-content {-->
+      <!--border: none !important;-->
+      <!--width: 100px !important;-->
+      <!--height: 100px !important;-->
+      <!--overflow: hidden !important;-->
+    <!--}-->
+
+  <!--</style>-->
+</head>
+<body>
+<app-root></app-root>
+
+<div class="loading">
+  <h1>Loading...</h1>
+</div>
+
+</body>
+</html>
+
+

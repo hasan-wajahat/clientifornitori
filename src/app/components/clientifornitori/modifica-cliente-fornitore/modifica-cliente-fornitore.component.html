@@ -1,0 +1,381 @@
+<div class="page-content">
+
+  <div class="page-toolbar">
+    <button type="button" data-hover="tooltip" title="Lista Clienti" class="btn btn-orange" data-toggle="modal" (click)="backToListaClientiFornitori()">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      <i>Lista Clienti/Fornitori</i>
+    </button>
+    <button type="button" data-hover="tooltip" title="Salva" class="btn btn-orange" data-toggle="modal" (click)="saveConfirm()">
+      <i class="fa fa-save" aria-hidden="true"></i>
+      <i>Salva</i>
+    </button>
+    <button type="button" data-hover="tooltip" title="Elimina" class="btn btn-orange" data-toggle="modal" (click)="eliminaConfirm()" [style.display]="cliForDTO.id != undefined ? 'inline' : 'none'">
+      <i class="fa fa-trash-o" aria-hidden="true"></i>
+      <i>Elimina</i>
+    </button>
+    <button type="button" data-hover="tooltip" title="Attiva/Disattiva" class="btn btn-orange" data-toggle="modal" (click)="changeStatusConfirm()" [style.display]="cliForDTO.id != undefined ? 'inline' : 'none'">
+      <i class="fa fa-lock" aria-hidden="true"></i>
+      <i>{{cliForDTO.stato == 'ATTIVO' ? 'Disattiva' : 'Attiva'}}</i>
+    </button>
+    <!--<button type="button" data-hover="tooltip" title="Banca Dati" class="btn btn-orange" data-toggle="modal" (click)="cercaInBancaDati()" [style.display]="cliForDTO.tipo == 'PERSONA_GIURIDICA' ? 'inline' : 'none'">-->
+      <!--<i class="fa fa-search" aria-hidden="true"></i>-->
+      <!--<i>Banca Dati</i>-->
+    <!--</button>-->
+    <button type="button" data-hover="tooltip" title="IPA" class="btn btn-orange" data-toggle="modal" (click)="cercaInIndicePa()" [style.display]="cliForDTO.tipo == 'PUBBLICA_AMMINISTRAZIONE' ? 'inline' : 'none'">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <i> IPA</i>
+    </button>
+  </div>
+
+  <br>
+
+  <form [formGroup]="formDatiClienteFornitore">
+
+  <div class="panel">
+    <div class="panel-heading">Dati Anagrafici</div>
+    <div class="panel-body pan">
+
+        <div class="form-body pal">
+          <div class="row">
+            <div class="col-md-6">
+              <div>
+                <label><input class="big-radio" id="optionsPF" type="radio" name="tipo" [checked]="cliForDTO.tipo=='PERSONA_FISICA'"           value="PERSONA_FISICA"           (click)="changeFormaGiuridica($event)"/>&nbsp;Persona Fisica&nbsp;&nbsp;</label>
+                <label><input class="big-radio" id="optionsPG" type="radio" name="tipo" [checked]="cliForDTO.tipo=='PERSONA_GIURIDICA'"        value="PERSONA_GIURIDICA"        (click)="changeFormaGiuridica($event)"/>&nbsp;Persona Giuridica&nbsp;&nbsp;</label>
+                <label><input class="big-radio" id="optionsPA" type="radio" name="tipo" [checked]="cliForDTO.tipo=='PUBBLICA_AMMINISTRAZIONE'" value="PUBBLICA_AMMINISTRAZIONE" (click)="changeFormaGiuridica($event)"/>&nbsp;Pubblica Amministrazione&nbsp;</label>
+              </div>
+              <br>
+            </div>
+
+            <div class="col-md-6">
+
+            </div>
+          </div>
+
+          <!--DATI ANAGRAFICI PERSONA GIURIDICA-->
+          <div [hidden]="cliForDTO.tipo != 'PERSONA_GIURIDICA'">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputCodiceFiscale" class="control-label">Codice Fiscale*</label>
+                  <small *ngIf="formErrors.codiceFiscale" class="text-danger">
+                    {{ formErrors.codiceFiscale }}
+                  </small>
+                  <input id="inputCodiceFiscale" type="text" class="form-control" formControlName="codiceFiscale" [class.input-not-valid]="formErrors.codiceFiscale"/>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputPartitaIva" class="control-label">Partita Iva*</label>
+                  <small *ngIf="formErrors.partitaIVA" class="text-danger">
+                    {{ formErrors.partitaIVA }}
+                  </small>
+                  <input id="inputPartitaIva" type="text" class="form-control" formControlName="partitaIVA" [class.input-not-valid]="formErrors.partitaIVA"/>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputRagSociale" class="control-label">Ragione Sociale*</label>
+                  <small *ngIf="formErrors.ragioneSociale" class="text-danger">
+                    {{ formErrors.ragioneSociale }}
+                  </small>
+                  <input id="inputRagSociale" type="text" class="form-control" formControlName="ragioneSociale" [class.input-not-valid]="formErrors.ragioneSociale"/>
+                </div>
+              </div>
+              <div class="col-md-6">
+
+              </div>
+            </div>
+          </div>
+          <!--DATI ANAGRAFICI PERSONA GIUR *** FINE ***-->
+
+          <!--DATI ANAGRAFICI PERSONA FISICA-->
+          <div [hidden]="cliForDTO.tipo != 'PERSONA_FISICA'">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputNome" class="control-label">Nome*</label>
+                  <small *ngIf="formErrors.nome" class="text-danger">
+                    {{ formErrors.nome }}
+                  </small>
+                  <input id="inputNome" type="text" class="form-control" formControlName="nome" [class.input-not-valid]="formErrors.nome"/>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputCognome" class="control-label">Cognome*</label>
+                  <small *ngIf="formErrors.cognome" class="text-danger">
+                    {{ formErrors.cognome }}
+                  </small>
+                  <input id="inputCognome" type="text" class="form-control" formControlName="cognome" [class.input-not-valid]="formErrors.cognome"/>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputLuogoNascita" class="control-label">Luogo di Nascita*</label>
+                  <small *ngIf="formErrors.luogoNascita" class="text-danger">
+                    {{ formErrors.luogoNascita }}
+                  </small>
+                  <input id="inputLuogoNascita" type="text" class="form-control" formControlName="luogoNascita" [class.input-not-valid]="formErrors.luogoNascita"/>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputDataNascita" class="control-label">Data di Nascita*</label>
+                  <small *ngIf="formErrors.dataNascita" class="text-danger">
+                    {{ formErrors.dataNascita }}
+                  </small>
+                  <div>
+                    <p-calendar [locale]="it" id="inputDataNascita" name="inputDataNascita" showAnim="slideDown" [showIcon]="true" dateFormat="dd/mm/yy" formControlName="dataNascita" [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [maxDate]="today" [class.input-not-valid]="formErrors.dataNascita"></p-calendar>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputCodiceFiscalePF" class="control-label">Codice Fiscale*</label>
+                  <small *ngIf="formErrors.codiceFiscale" class="text-danger">
+                    {{ formErrors.codiceFiscale }}
+                  </small>
+                  <input id="inputCodiceFiscalePF" type="text" class="form-control" formControlName="codiceFiscale" [class.input-not-valid]="formErrors.codiceFiscale"/>
+                </div>
+              </div>
+              <div class="col-md-6">
+
+              </div>
+            </div>
+          </div>
+          <!--DATI ANAGRAFICI PF *** FINE ***-->
+
+          <!--DATI ANAGRAFICI PUBBLICA AMM -->
+          <div [hidden]="cliForDTO.tipo != 'PUBBLICA_AMMINISTRAZIONE'">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputCodFiscFE" class="control-label">Codice Fiscale Servizio F.E.*</label>
+                  <small *ngIf="formErrors.codiceFiscale" class="text-danger">
+                    {{ formErrors.codiceFiscale }}
+                  </small>
+                  <input id="inputCodFiscFE" type="text" class="form-control" formControlName="codiceFiscale" [class.input-not-valid]="formErrors.codiceFiscale"/>
+                </div>
+              </div>
+              <div class="col-md-6">
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputDenominazioneEnte" class="control-label">Denominazione Ente*</label>
+                  <small *ngIf="formErrors.denominazione" class="text-danger">
+                    {{ formErrors.denominazione }}
+                  </small>
+                  <input id="inputDenominazioneEnte" type="text" class="form-control" formControlName="denominazione" [class.input-not-valid]="formErrors.denominazione"/>
+                </div>
+              </div>
+              <div class="col-md-6">
+
+              </div>
+            </div>
+          </div>
+          <!--DATI ANAGRAFICI PA *** FINE ***-->
+
+        </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <!-- INDIRIZZO DI FATTURAZIONE-->
+  <div class="panel">
+    <div class="panel-heading">Indirizzo di Fatturazione</div>
+    <div class="panel-body pan">
+
+        <div class="form-body pal">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputIndirizzo" class="control-label">Indirizzo*</label>
+                <small *ngIf="formErrors.indirizzo" class="text-danger">
+                  {{ formErrors.indirizzo }}
+                </small>
+                <input id="inputIndirizzo" type="text" class="form-control" formControlName="indirizzo" [class.input-not-valid]="formErrors.indirizzo"/>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputCAP" class="control-label">CAP*</label>
+                <small *ngIf="formErrors.cap" class="text-danger">
+                  {{ formErrors.cap }}
+                </small>
+                <input id="inputCAP" type="text" class="form-control" formControlName="cap" [class.input-not-valid]="formErrors.cap" maxlength="5"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputLocalita" class="control-label">Località*</label>
+                <small *ngIf="formErrors.citta" class="text-danger">
+                  {{ formErrors.citta }}
+                </small>
+                <input id="inputLocalita" type="text" class="form-control" formControlName="citta" [class.input-not-valid]="formErrors.citta"/>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputProvincia" class="control-label">Provincia*</label>
+                <small *ngIf="formErrors.provincia" class="text-danger">
+                  {{ formErrors.provincia }}
+                </small>
+                <input id="inputProvincia" type="text" class="form-control" formControlName="provincia" [class.input-not-valid]="formErrors.provincia" maxlength="2"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputNazione" class="control-label">Nazione*</label>
+                <small *ngIf="formErrors.nazione" class="text-danger">
+                  {{ formErrors.nazione }}
+                </small>
+                <input id="inputNazione" type="text" class="form-control" formControlName="nazione" [class.input-not-valid]="formErrors.nazione"/>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+    </div>
+  </div>
+  <!--INDIRIZZO DI FATTURAZIONE *** FINE ***-->
+
+
+  <!-- CONTATTI -->
+  <div class="panel">
+    <div class="panel-heading">Contatti</div>
+    <div class="panel-body pan">
+
+        <div class="form-body pal">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputTelefono" class="control-label">Telefono</label>
+                <input id="inputTelefono" type="text" class="form-control" formControlName="telefono" [class.input-not-valid]="formErrors.telefono"/>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputEmail" class="control-label">Email</label>
+                <input id="inputEmail" type="text" class="form-control" formControlName="email" [class.input-not-valid]="formErrors.email"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputCellulare" class="control-label">Cellulare</label>
+                <input id="inputCellulare" type="text" class="form-control" formControlName="cellulare" [class.input-not-valid]="formErrors.cellulare"/>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputFAX" class="control-label">FAX</label>
+                <input id="inputFAX" type="text" class="form-control" formControlName="fax" [class.input-not-valid]="formErrors.fax"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputPostaCert" class="control-label">Posta Certificata</label>
+                <input id="inputPostaCert" type="text" class="form-control" formControlName="postaCertificata" [class.input-not-valid]="formErrors.postaCertificata"/>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+    </div>
+  </div>
+  <!-- CONTATTI *** FINE ***-->
+
+
+  <!-- INFORMAZIONI AGGIUNTIVE -->
+  <div class="panel">
+    <div class="panel-heading">Informazioni Aggiuntive</div>
+    <div class="panel-body pan">
+
+        <div class="form-body pal">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="inputAliqIva" class="control-label">Aliquota IVA</label>
+                <small *ngIf="formErrors.codiciIVA" class="text-danger">
+                  {{ formErrors.codiciIVA }}
+                </small>
+                <select id="inputAliqIva" class="form-control" style="max-width: 180px;" formControlName="codiciIVA" [class.input-not-valid]="formErrors.codiciIVA">
+                  <option value="-1">seleziona ...</option>
+                  <option *ngFor="let codiceIVA of listaCodiciIVA" value= {{codiceIVA.codiceId}} >
+                    {{codiceIVA.descrizione | translate}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="inputTerminPagGG" class="control-label">Termini Pagamento</label>
+                <small *ngIf="formErrors.terminiPagamento" class="text-danger">
+                  {{ formErrors.terminiPagamento }}
+                </small>
+                <input id="inputTerminPagGG" type="text" placeholder="n° giorni" class="form-control" style="max-width: 200px;" formControlName="terminiPagamento" [class.input-not-valid]="formErrors.terminiPagamento"/>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <br>
+                <small *ngIf="formErrors.tipoTerminiPagamento" class="text-danger">
+                  {{ formErrors.tipoTerminiPagamento }}
+                </small>
+                <div>
+                  <label><input class="big-radio" type="radio" formControlName="tipoTerminiPagamento" [class.input-not-valid]="formErrors.tipoTerminiPagamento" value="DATA_DALLA_FATTURA" />&nbsp;data fattura</label>
+                </div>
+                <div>
+                  <label><input class="big-radio" type="radio" formControlName="tipoTerminiPagamento" [class.input-not-valid]="formErrors.tipoTerminiPagamento" value="FATTURA_FINE_MESE" />&nbsp;fine mese</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+  <!-- INFORMAZIONI AGGIUNTIVE *** FINE ***-->
+</form>
+
+</div>

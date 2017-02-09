@@ -1,0 +1,19 @@
+{
+  "CLIENTIFORNITORI": {
+    "TITLE" : "Clienti/Fornitori"
+  },
+  "aliquota.iva.4" : "4%",
+  "aliquota.iva.10" : "10%",
+  "aliquota.iva.20" : "20%",
+  "aliquota.iva.fuoriCampo" : "ESENTE",
+  "aliquota.iva.22" : "22%",
+  "aliquota.iva.50" : "50%",
+  "aliquota.iva.28" : "28%",
+  "aliquota.iva.21" : "21%",
+  "aliquota.iva.20.25" : "20,25%",
+  "escluse.ex.art.15": "escluse 15%",
+  "non.soggette": "NON SOGGETTE",
+  "non.imponibili": "NON IMPONIBILI",
+  "esenti": "ESENTI",
+  "IVA.assolta.in.altro.stato.UE": "IVA ASSOLTA ALTRO STATO UE"
+}

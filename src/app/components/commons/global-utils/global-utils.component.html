@@ -1,0 +1,8 @@
+<div (showGrowlMessageEvent)="showGrowlMessage($event)">
+
+  <p-growl [value]="msgs" life="6000"></p-growl>
+
+  <p-confirmDialog header="Conferma operazione" icon="fa fa-question-circle" width="425" [closeOnEscape]="false" [closable]="false"> </p-confirmDialog>
+
+</div>
+

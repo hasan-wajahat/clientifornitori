@@ -1,0 +1,77 @@
+<div class="page-content">
+  <div class="panel income db mbm">
+    <div class="panel-body" >
+
+      <app-fo-collapsible-bar headerText="Filtra per:">
+
+        <div class="panel-body pan">
+
+          <form>
+            <div class="form-body pal">
+              <div class="row"></div>
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input id="inputName" [(ngModel)]="textFilter" type="text" placeholder="Denominazione, P.Iva" class="form-control" name="textFilter"/>
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <select class="form-control" [(ngModel)]="filtroCliFor" name="clifor">
+                      <option value="">Tutti</option>
+                      <option value="CLIENTE">Clienti</option>
+                      <option value="FORNITORE">Fornitori</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <select class="form-control" [(ngModel)]="filtroAttivi" name="attividisattivi">
+                      <option value="">Tutti</option>
+                      <option value="ATTIVO">Attivi</option>
+                      <option value="DISATTIVO">Disattivi</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-1">
+                  <div class="form-group">
+                    <button class="btn btn-orange form-control fa fa-search" (click)="searchClientiFornitori()"></button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+
+          </form>
+        </div>
+
+      </app-fo-collapsible-bar>
+
+      <hr>
+      <div class="page-toolbar">
+        <button type="button" data-hover="tooltip" title="Aggiungi Cliente/Fornitore" class="btn btn-orange" data-toggle="modal" (click)="addClienteFornitore('CLIENTE')">
+          <i class="fa fa-plus"></i>
+          <i>Cliente</i>
+        </button>
+        <button type="button" data-hover="tooltip" title="Aggiungi Cliente/Fornitore" class="btn btn-orange" data-toggle="modal" (click)="addClienteFornitore('FORNITORE')">
+          <i class="fa fa-plus"></i>
+          <i>Fornitore</i>
+        </button>
+      </div>
+      <hr>
+
+      <app-fo-data-table [value]="clientiFornitori" [columns]="cols" [lazy]="true" (lazyLoadEvent)="loadPageClientiFornitori($event)"
+                         [totalRecords]="totalRecords" [paginator]="true"
+                         [rows]="rows" pageLinks="5" selectionMode="single" (onRowSelectEvent)="onRowSelectEvent($event)">
+
+      </app-fo-data-table>
+
+    </div>
+  </div>
+</div>

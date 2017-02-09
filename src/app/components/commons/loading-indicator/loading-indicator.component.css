@@ -1,0 +1,21 @@
+#loadingIndicator .ui-dialog {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#loadingIndicator .ui-dialog .ui-dialog-content {
+  padding: 0px !important;
+  border: none !important;
+}
+
+#loadingIndicator .ui-dialog .ui-dialog-titlebar {
+  display: none !important;
+}
+
+#loadingIndicator .ui-widget-content {
+  border: none !important;
+  width: 100px !important;
+  height: 100px !important;
+  overflow: hidden !important;
+}

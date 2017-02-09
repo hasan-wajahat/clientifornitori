@@ -1,0 +1,15 @@
+
+<p-dataTable [value]="value" [lazy]="lazy" [responsive]="true" resizableColumns="false" [rows]="rows" [paginator]="paginator" (onRowSelect)="onRowSelect($event)"
+             [pageLinks]="pageLinks" (onLazyLoad)="lazyLoadPage($event)" [totalRecords]="totalRecords" [selectionMode]="selectionMode">
+
+  <!--<header>Elenco Fatture</header>-->
+  <!--<p-column field="numeroFattura" header="N. FATTURA"     [sortable]="true" [style]="{'text-align':'center'}"></p-column>-->
+  <!--<p-column field="dataEmissione" header="DATA EMISSIONE" [sortable]="true" [style]="{'text-align':'center'}"></p-column>-->
+  <!--<p-column field="intestatario"  header="INTESTATARIO"   [sortable]="true" [style]="{'text-align':'center'}"></p-column>-->
+  <!--<p-column field="stato"         header="STATO"          [sortable]="true" [style]="{'text-align':'center'}"></p-column>-->
+  <!--<p-column field="pagamento"     header="PAGAMENTO"      [sortable]="true" [style]="{'text-align':'center'}"></p-column>-->
+  <!--<p-column field="totale"        header="TOTALE"         [sortable]="true" [style]="{'text-align':'right'}"></p-column>-->
+
+  <p-column *ngFor="let col of columns" [field]="col.field" [header]="col.header" [sortable]="col.sortable" [style]="col.style"> </p-column>
+
+</p-dataTable>

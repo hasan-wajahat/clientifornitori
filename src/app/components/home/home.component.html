@@ -1,0 +1,46 @@
+
+<!--<p-dialog [(visible)]="display" [modal]="true" [responsive]="true" [closeOnEscape]="false">-->
+  <!--Loading ...-->
+<!--</p-dialog>-->
+
+<!--<p-growl [value]="msgs"></p-growl>-->
+
+<app-loading-indicator [displayBusy]="display"></app-loading-indicator>
+<app-global-utils [msgs]="msgs"></app-global-utils>
+
+<div (showBusyEvent)="showDialog()" (hideBusyEvent)="hideDialog()" (showGrowlMessageEvent)="showGrowlMessage($event)">
+  <!--BEGIN BACK TO TOP-->
+  <a id="totop" href=""><i class="fa fa-angle-up"></i></a>
+  <!--END BACK TO TOP-->
+
+  <!--BEGIN TOPBAR-->
+  <app-header></app-header>
+
+  <!--END TOPBAR-->
+  <div id="wrapper">
+
+    <!--BEGIN SIDEBAR MENU-->
+    <app-sidebarmenu></app-sidebarmenu>
+    <!--END SIDEBAR MENU-->
+
+    <!--BEGIN CHAT FORM-->
+    <app-chatform></app-chatform>
+    <!--END CHAT FORM-->
+
+    <!--BEGIN PAGE WRAPPER-->
+    <div id="page-wrapper">
+
+      <!--BEGIN CONTENT-->
+      <router-outlet></router-outlet>
+      <!--END CONTENT-->
+
+
+      <!--BEGIN FOOTER-->
+      <app-footer></app-footer>
+      <!--END FOOTER-->
+
+
+    </div>
+    <!--END PAGE WRAPPER-->
+  </div>
+</div>

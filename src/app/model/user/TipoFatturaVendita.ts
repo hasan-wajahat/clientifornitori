@@ -1,0 +1,13 @@
+/**
+ * Created by Rocco on 16/01/2017.
+ */
+export enum TipoFatturaVendita {
+
+  NO_FORFETTARIO_SP_DI = <any>"NO_FORFETTARIO_SP_DI",
+  NO_FORFETTARIO_AC = <any>"NO_FORFETTARIO_AC",
+  NO_FORFETTARIO_LP = <any>"NO_FORFETTARIO_LP",
+  FORFETTARIO_SP_DI = <any>"FORFETTARIO_SP_DI",
+  FORFETTARIO_AC = <any>"FORFETTARIO_AC",
+  FORFETTARIO_LP = <any>"FORFETTARIO_LP"
+
+}
