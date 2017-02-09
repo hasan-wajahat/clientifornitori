@@ -9,7 +9,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {HomeComponent} from "./components/home/home.component";
 // import {DashboardComponent} from "./components/dashboard/dashboard.component";
 // import {AcquistiComponent} from "./components/acquisti/acquisti.component";
-import {VenditeComponent} from "./components/vendite/vendite.component";
+// import {VenditeComponent} from "./components/vendite/vendite.component";
 // import {ContiComponent} from "./components/conti/conti.component";
 // import {F24Component} from "./components/f24/f24.component";
 // import {CostidipendentiComponent} from "./components/costidipendenti/costidipendenti.component";
@@ -21,6 +21,7 @@ import {ChatformComponent} from "./components/chatform/chatform.component";
 import {CommonService} from "./services/common/common.service";
 import {GlobalUtilsComponent} from "./components/commons/global-utils/global-utils.component";
 import {ClientifornitoriModule} from "./components/clientifornitori/clientifornitori.module";
+import {VenditeModule} from "./components/vendite/vendite.module";
 import {SharedModule} from "./shared/shared.module";
 // import {RegistrazioneUtenteComponent} from "./components/registrazione-utente/registrazione-utente.component";
 // import {RegistrazioneSuccessComponent} from "./components/registrazione-utente/registrazione-success/registrazione-success.component";
@@ -44,7 +45,7 @@ import {SharedModule} from "./shared/shared.module";
     FooterComponent,
     ChatformComponent,
     // AcquistiComponent,
-    VenditeComponent,
+    // VenditeComponent,
     // ContiComponent,
     // F24Component,
     // CostidipendentiComponent,
@@ -62,6 +63,7 @@ import {SharedModule} from "./shared/shared.module";
     ClientifornitoriModule,
     // CorrispettiviModule,
     // ScadenziarioModule,
+    VenditeModule,
     SharedModule
   ],
   providers: [appRoutingProviders, RestCommonUtilsService, UserService, LoggedInGuard, ConfirmationService, CommonService],

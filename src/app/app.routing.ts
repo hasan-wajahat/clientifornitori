@@ -7,7 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 // import {AcquistiComponent} from "./components/acquisti/acquisti.component";
 // import {DashboardComponent} from "./components/dashboard/dashboard.component";
 // import {ClientifornitoriComponent} from "./components/clientifornitori/clientifornitori.component";
-import {VenditeComponent} from "./components/vendite/vendite.component";
+// import {VenditeComponent} from "./components/vendite/vendite.component";
 // import {CorrispettiviComponent} from "./components/corrispettivi/corrispettivi.component";
 // import {ContiComponent} from "./components/conti/conti.component";
 // import {F24Component} from "./components/f24/f24.component";
@@ -37,10 +37,6 @@ const appRoutes: Routes = [
     path: '',
     redirectTo: '/home/clientifornitori/lista-clientifornitori',
     pathMatch: 'full'
-  },
-
-  {
-    path: 'home/vendite', component: VenditeComponent
   },
   // -----------------------------------------------------------
 
