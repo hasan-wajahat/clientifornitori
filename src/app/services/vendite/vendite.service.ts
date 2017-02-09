@@ -11,8 +11,8 @@ export class VenditeService {
     //return this.restCommonUtil.jsonGet('app/resources/data/fatture-vendite.json');
   }
 
-  getAllSales(){
-    return this.restCommonUtil.jsonGet('/api/v1/sales/')
+  getAllSales(params: URLSearchParams){
+    return this.restCommonUtil.jsonGet('/api/v1/sales/',params)
   }
 
 }
