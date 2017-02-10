@@ -33,15 +33,6 @@ export class VenditeComponent implements OnInit {
   }
 
   test() {
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('offset', '1');
-    params.set('limit', '1000');
-    params.set('statoDoc', 'BOZZA');
-    params.set('field', 'DATA_EMISSIONE');
-    params.set('type', '1');
-    this._venditeService.getAllSales(params).subscribe(
-      res => console.log(res),
-      error => console.log(error)
-    )
+  
   }
 }

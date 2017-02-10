@@ -1,3 +1,7 @@
-<p>
-  invoice-list works!
-</p>
+<div class="page-content">
+  <div class="panel income db mbm">
+    <div class="panel-body" >
+      <app-fo-data-table [value]="invoices" [columns]="cols" [paginator]="true" [rows]="20" [pageLinks]="4"></app-fo-data-table>
+    </div>
+  </div>
+</div>
