@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VenditeService } from "../../../services/vendite/vendite.service";
 import { Fattura } from "../../../model/vendite/fattura";
 import { URLSearchParams } from "@angular/http";
+import { User } from "../../../model/user/User";
 
 @Component({
   selector: 'app-invoice-list',
@@ -12,6 +13,7 @@ import { URLSearchParams } from "@angular/http";
 export class InvoiceListComponent implements OnInit {
   invoices: Fattura[];
   cols: any;
+  user: User;
 
   constructor(private _venditeService: VenditeService) { }
 
@@ -19,7 +21,7 @@ export class InvoiceListComponent implements OnInit {
     this.getInvoiceList();
     this.cols = [
       { field: 'tipoDocumento', header: 'Tipolgia', sortable: 'true', style: { 'text-align': 'center' } },
-      { field: 'numeroDocumento ', header: 'N. FATTURA', sortable: 'true', style: { 'text-align': 'center' } },
+      { field: 'numeroDocumento', header: 'N. FATTURA', sortable: 'true', style: { 'text-align': 'center' } },
       { field: 'dataEmissione', header: 'DATA EMISSIONE', sortable: 'true', style: { 'text-align': 'center' } },
       { field: 'cliFor.intestazioneCognomeNome', header: 'INTESTATARIO', sortable: 'true', style: { 'text-align': 'center' } },
       { field: 'statoDocumento', header: 'STATO', sortable: 'true', style: { 'text-align': 'center' } },
@@ -30,14 +32,17 @@ export class InvoiceListComponent implements OnInit {
   }
 
   getInvoiceList() {
+    this.user = JSON.parse(sessionStorage.getItem('UserData'));
     let params: URLSearchParams = new URLSearchParams();
-    params.set('offset', '1');
-    params.set('limit', '1000');
+    params.set('username',  this.user.username);
+    // params.set('offset', '1');
+    // params.set('limit', '1000');
     params.set('statoDoc', 'BOZZA');
     params.set('field', 'DATA_EMISSIONE');
     params.set('type', '1');
     this._venditeService.getAllSales(params).subscribe(
       res => {
+        console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         console.log(res);
         this.invoices = res.list;
       },
