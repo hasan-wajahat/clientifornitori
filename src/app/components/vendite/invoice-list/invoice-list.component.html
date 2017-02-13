@@ -1,87 +1,91 @@
 <div class="page-content">
   <div class="panel income db mbm">
     <div class="panel-body">
-      <div class="panel-body pan">
-        <h2> Filtra per:</h2>
-        <div class="form-body pal">
+      <div class="container-fluid">
+        <div class="panel-body pan">
+          <h2> Filtra per:</h2>
+          <div class="form-body pal">
 
-          <div class="row marg-bot-20">
-            <div class="col-md-6">
-              <div class="flex-div">
-                <div class="select-description">
-                  PERIODO DA:
-                </div>
-                <p-calendar [(ngModel)]="startDate"></p-calendar>
-                <div class="select-description marg-left-20">
-                  A:
-                </div>
-                <p-calendar [(ngModel)]="endDate"></p-calendar>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="flex-div">
-                <div>
-                  TOTALE FATTURA DA:
-                </div>
-                <input [(ngModel)]="invoiceStart" class="marg-left-20" type="number" />
-                <div class="marg-left-20">
-                  A:
-                </div>
-                <input [(ngModel)]="invoiceEnd" class="marg-left-20" type="number" />
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-2">
-              <div class="form-group">
+            <div class="row marg-bot-20">
+              <div class="col-sm-6">
                 <div class="flex-div">
                   <div class="select-description">
-                    TUTTI:
+                    PERIODO DA:
                   </div>
-                  <select class="form-control" [(ngModel)]="statusSelect">
+                  <p-calendar [(ngModel)]="startDate"></p-calendar>
+                  <div class="select-description marg-left-20">
+                    A:
+                  </div>
+                  <p-calendar [(ngModel)]="endDate"></p-calendar>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="flex-div">
+                  <div>
+                    TOTALE FATTURA DA:
+                  </div>
+                  <input [(ngModel)]="invoiceStart" class="marg-left-20" type="number" />
+                  <div class="marg-left-20">
+                    A:
+                  </div>
+                  <input [(ngModel)]="invoiceEnd" class="marg-left-20" type="number" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="flex-div">
+                    <div class="select-description">
+                      TUTTI:
+                    </div>
+                    <select class="form-control" [(ngModel)]="statusSelect">
                       <option disabled value="">Tutti</option>
                       <option value="BOZZA">Bozza</option>
                       <option value="CONFERMATO">Confermato</option>
                     </select>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="col-md-3">
-              <div class="form-group">
-                <div class="flex-div">
-                  <div class="select-description">
-                    PAGAMENTO:
-                  </div>
-                  <select class="form-control" [(ngModel)]="paymentSelect">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <div class="flex-div">
+                    <div class="select-description">
+                      PAGAMENTO:
+                    </div>
+                    <select class="form-control" [(ngModel)]="paymentSelect">
                       <option disabled value="">Tutti</option>
                       <option value="NON_PAGATO">NON_PAGATO</option>
                       <option value="SALDATO">SALDATO</option>
                       <option value="PAGATO_PARZIALE">PAGATO_PARZIALE</option>
                     </select>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="col-md-6">
-              <div class="form-group">
-                <div class="flex-div">
-                  <input [(ngModel)]="customerSearch" placeholder="filtra per Ragione Sociale o P.IVA" size="70" class="customer-input marg-left-20" />
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <div class="flex-div">
+                    <input [(ngModel)]="customerSearch" placeholder="filtra per Ragione Sociale o P.IVA" class="customer-input marg-left-20"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="col-md-1">
-              <div class="form-group">
-                <button class="btn btn-orange form-control fa fa-search" (click)="search()"></button>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <button class="btn btn-orange form-control fa fa-search" (click)="search()"></button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
+        <div class="row">
+          <app-fo-data-table [value]="invoices" [columns]="cols" [paginator]="false" [rows]="20" [pageLinks]="4"></app-fo-data-table>
+        </div>
       </div>
-      <app-fo-data-table [value]="invoices" [columns]="cols" [paginator]="false" [rows]="20" [pageLinks]="4"></app-fo-data-table>
     </div>
   </div>
 </div>
