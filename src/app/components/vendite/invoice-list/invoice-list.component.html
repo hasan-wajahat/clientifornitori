@@ -12,10 +12,22 @@
                   PERIODO DA:
                 </div>
                 <p-calendar [(ngModel)]="startDate"></p-calendar>
-                  <div class="select-description marg-left-20">
-                    A:
-                  </div>
-                  <p-calendar [(ngModel)]="endDate"></p-calendar>
+                <div class="select-description marg-left-20">
+                  A:
+                </div>
+                <p-calendar [(ngModel)]="endDate"></p-calendar>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="flex-div">
+                <div>
+                  TOTALE FATTURA DA:
+                </div>
+                <input [(ngModel)]="invoiceStart" class="marg-left-20" type="number" />
+                <div class="marg-left-20">
+                  A:
+                </div>
+                <input [(ngModel)]="invoiceEnd" class="marg-left-20" type="number" />
               </div>
             </div>
           </div>

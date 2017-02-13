@@ -20,6 +20,8 @@ export class InvoiceListComponent implements OnInit {
   dateTo: string = "";
   startDate: Date;
   endDate: Date;
+  invoiceStart: number;
+  invoiceEnd: number;
 
   constructor(private _venditeService: VenditeService) { }
 
@@ -42,11 +44,19 @@ export class InvoiceListComponent implements OnInit {
     let params: URLSearchParams = new URLSearchParams();
     params.set('username', this.user.username);
     params.set('statoDocumento', this.statusSelect);
-    if (this.dateFrom) {
+    if (this.startDate) {
+      this.dateFrom = `${this.startDate.getFullYear()}/${this.startDate.getMonth() + 1}/${this.startDate.getDate()}`;
       params.set('dataFrom', this.dateFrom);
     }
-    if (this.dateTo) {
+    if (this.endDate) {
+      this.dateTo = `${this.endDate.getFullYear()}/${this.endDate.getMonth() + 1}/${this.endDate.getDate()}`;
       params.set('dataTo', this.dateTo);
+    }
+    if (this.invoiceStart) {
+      params.set('totFrom', this.invoiceStart.toString());
+    }
+    if (this.invoiceEnd) {
+      params.set('totTo', this.invoiceEnd.toString());
     }
     params.set('field', 'DATA_EMISSIONE');
     params.set('type', '1');
@@ -61,9 +71,10 @@ export class InvoiceListComponent implements OnInit {
   }
 
   search() {
-    this.dateFrom = `${this.startDate.getFullYear()}/${this.startDate.getMonth() + 1}/${this.startDate.getDate()}`;
-    this.dateTo = `${this.endDate.getFullYear()}/${this.endDate.getMonth() + 1}/${this.endDate.getDate()}`;
+  
+  
     this.getInvoiceList();
+    // console.log(this.invoiceStart + " " + this.invoiceEnd);
   }
 
 
