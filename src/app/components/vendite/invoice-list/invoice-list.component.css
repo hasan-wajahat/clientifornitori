@@ -1,0 +1,9 @@
+.select-flex{
+  display: flex;
+}
+
+.select-description{
+  margin-right: 10px;
+  position: relative;
+  top: 10px
+}

@@ -1,7 +1,37 @@
 <div class="page-content">
   <div class="panel income db mbm">
-    <div class="panel-body" >
-      <app-fo-data-table [value]="invoices" [columns]="cols" [paginator]="true" [rows]="20" [pageLinks]="4"></app-fo-data-table>
+    <div class="panel-body">
+      <div class="panel-body pan">
+        <h2> Filtra per:</h2>
+        <div class="form-body pal">
+          <div class="row">
+
+
+            <div class="col-md-2">
+              <div class="form-group">
+                <div class="select-flex">
+                  <div class="select-description">
+                    TUTTI:
+                  </div>
+                  <select class="form-control" [(ngModel)]="statusSelect">
+                      <option disabled value="">Tutti</option>
+                      <option value="BOZZA">Bozza</option>
+                      <option value="CONFERMATO">Confermato</option>
+                    </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-1">
+              <div class="form-group">
+                <button class="btn btn-orange form-control fa fa-search" (click)="test()"></button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <app-fo-data-table [value]="invoices" [columns]="cols" [paginator]="false" [rows]="20" [pageLinks]="4"></app-fo-data-table>
     </div>
   </div>
 </div>

@@ -14,6 +14,7 @@ export class InvoiceListComponent implements OnInit {
   invoices: Fattura[];
   cols: any;
   user: User;
+  statusSelect: string = "";
 
   constructor(private _venditeService: VenditeService) { }
 
@@ -35,9 +36,7 @@ export class InvoiceListComponent implements OnInit {
     this.user = JSON.parse(sessionStorage.getItem('UserData'));
     let params: URLSearchParams = new URLSearchParams();
     params.set('username',  this.user.username);
-    // params.set('offset', '1');
-    // params.set('limit', '1000');
-    params.set('statoDoc', 'BOZZA');
+    params.set('statoDocumento', this.statusSelect);
     params.set('field', 'DATA_EMISSIONE');
     params.set('type', '1');
     this._venditeService.getAllSales(params).subscribe(
@@ -48,6 +47,10 @@ export class InvoiceListComponent implements OnInit {
       },
       error => console.log(error)
     )
+  }
+
+  test(){
+    this.getInvoiceList();
   }
 
 
