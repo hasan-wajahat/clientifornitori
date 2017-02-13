@@ -4,12 +4,26 @@
       <div class="panel-body pan">
         <h2> Filtra per:</h2>
         <div class="form-body pal">
+
+          <div class="row marg-bot-20">
+            <div class="col-md-6">
+              <div class="flex-div">
+                <div class="select-description">
+                  PERIODO DA:
+                </div>
+                <p-calendar [(ngModel)]="startDate"></p-calendar>
+                  <div class="select-description marg-left-20">
+                    A:
+                  </div>
+                  <p-calendar [(ngModel)]="endDate"></p-calendar>
+              </div>
+            </div>
+          </div>
+
           <div class="row">
-
-
             <div class="col-md-2">
               <div class="form-group">
-                <div class="select-flex">
+                <div class="flex-div">
                   <div class="select-description">
                     TUTTI:
                   </div>
@@ -24,12 +38,12 @@
 
             <div class="col-md-1">
               <div class="form-group">
-                <button class="btn btn-orange form-control fa fa-search" (click)="test()"></button>
+                <button class="btn btn-orange form-control fa fa-search" (click)="search()"></button>
               </div>
             </div>
           </div>
-
         </div>
+
       </div>
       <app-fo-data-table [value]="invoices" [columns]="cols" [paginator]="false" [rows]="20" [pageLinks]="4"></app-fo-data-table>
     </div>

@@ -1,9 +1,22 @@
-.select-flex{
+.flex-div{
   display: flex;
 }
 
 .select-description{
   margin-right: 10px;
   position: relative;
-  top: 10px
+  top: 10px;
+}
+
+.end-date{
+  margin-left: 20px;
+}
+
+
+.marg-bot-20{
+  margin-bottom: 20px;
+}
+
+.marg-left-20{
+  margin-left: 20px
 }
