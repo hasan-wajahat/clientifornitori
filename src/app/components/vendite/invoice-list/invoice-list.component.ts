@@ -22,6 +22,8 @@ export class InvoiceListComponent implements OnInit {
   endDate: Date;
   invoiceStart: number;
   invoiceEnd: number;
+  paymentSelect: string = "";
+  customerSearch: string;
 
   constructor(private _venditeService: VenditeService) { }
 
@@ -58,6 +60,8 @@ export class InvoiceListComponent implements OnInit {
     if (this.invoiceEnd) {
       params.set('totTo', this.invoiceEnd.toString());
     }
+    params.set('statoPagamento', this.paymentSelect);
+    params.set('pIVARagioneSociale', this.customerSearch);
     params.set('field', 'DATA_EMISSIONE');
     params.set('type', '1');
     this._venditeService.getAllSales(params).subscribe(
@@ -71,8 +75,6 @@ export class InvoiceListComponent implements OnInit {
   }
 
   search() {
-  
-  
     this.getInvoiceList();
     // console.log(this.invoiceStart + " " + this.invoiceEnd);
   }

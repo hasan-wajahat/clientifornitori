@@ -48,6 +48,30 @@
               </div>
             </div>
 
+            <div class="col-md-3">
+              <div class="form-group">
+                <div class="flex-div">
+                  <div class="select-description">
+                    PAGAMENTO:
+                  </div>
+                  <select class="form-control" [(ngModel)]="paymentSelect">
+                      <option disabled value="">Tutti</option>
+                      <option value="NON_PAGATO">NON_PAGATO</option>
+                      <option value="SALDATO">SALDATO</option>
+                      <option value="PAGATO_PARZIALE">PAGATO_PARZIALE</option>
+                    </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="flex-div">
+                  <input [(ngModel)]="customerSearch" placeholder="filtra per Ragione Sociale o P.IVA" size="70" class="customer-input marg-left-20" />
+                </div>
+              </div>
+            </div>
+
             <div class="col-md-1">
               <div class="form-group">
                 <button class="btn btn-orange form-control fa fa-search" (click)="search()"></button>

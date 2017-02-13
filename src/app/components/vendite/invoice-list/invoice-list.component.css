@@ -12,6 +12,10 @@
   margin-left: 20px;
 }
 
+.customer-input{
+  position: relative;
+  top: 5px;
+}
 
 .marg-bot-20{
   margin-bottom: 20px;
