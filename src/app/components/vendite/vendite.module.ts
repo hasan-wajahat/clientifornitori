@@ -5,6 +5,7 @@ import { TranslateModule, TranslateLoader, TranslateStaticLoader } from "ng2-tra
 import { Http } from "@angular/http";
 import { VenditeComponent } from "./vendite.component";
 import { InvoiceListComponent } from "./invoice-list/invoice-list.component";
+import { InvoiceItemComponent } from "./invoice-item/invoice-item.component";
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { InvoiceListComponent } from "./invoice-list/invoice-list.component";
   declarations: [
     VenditeComponent,
     InvoiceListComponent,
+    InvoiceItemComponent
   ]
 
 })

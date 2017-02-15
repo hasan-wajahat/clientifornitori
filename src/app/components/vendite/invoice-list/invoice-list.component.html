@@ -83,7 +83,9 @@
           </div>
         </div>
         <div class="row">
-          <app-fo-data-table [value]="invoices" [columns]="cols" [paginator]="false" [rows]="20" [pageLinks]="4"></app-fo-data-table>
+          <app-fo-data-table [value]="invoices" [columns]="cols" [paginator]="false" [rows]="20"
+            (onRowSelectEvent)="onRowSelectEvent($event)" [pageLinks]="4"
+            selectionMode="single"></app-fo-data-table>
         </div>
       </div>
     </div>

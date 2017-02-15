@@ -4,6 +4,7 @@ import { Fattura } from "../../../model/vendite/fattura";
 import { URLSearchParams } from "@angular/http";
 import { User } from "../../../model/user/User";
 import { Calendar } from "primeng/primeng";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-invoice-list',
@@ -25,7 +26,7 @@ export class InvoiceListComponent implements OnInit {
   paymentSelect: string = "";
   customerSearch: string;
 
-  constructor(private _venditeService: VenditeService) { }
+  constructor(private _venditeService: VenditeService, private router: Router) { }
 
   ngOnInit() {
     this.getInvoiceList();
@@ -67,7 +68,6 @@ export class InvoiceListComponent implements OnInit {
     this._venditeService.getAllSales(params).subscribe(
       res => {
         console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        console.log(res);
         this.invoices = res.list;
       },
       error => console.log(error)
@@ -76,7 +76,10 @@ export class InvoiceListComponent implements OnInit {
 
   search() {
     this.getInvoiceList();
-    // console.log(this.invoiceStart + " " + this.invoiceEnd);
+  }
+
+  onRowSelectEvent(selectedRow: any){
+    this.router.navigate(['/home/vendite', selectedRow.data.id]);
   }
 
 
