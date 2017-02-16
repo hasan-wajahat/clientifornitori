@@ -1,4 +1,8 @@
-/*.flex-div{
+.flex-div{
+  display: flex;
+}
+
+.flex-div-lg{
   display: flex;
 }
 
@@ -24,4 +28,27 @@
 
 .marg-left-20{
   margin-left: 20px
-}*/
+}
+
+@media screen and (max-width: 1200px){
+  .date-div{
+    width: 100%
+  }
+  .flex-div-lg{
+  display: block;
+  text-align: center;
+}
+.marg-bot-10{
+  margin-bottom: 10px;
+}
+
+.marg-bot-5{
+  margin-bottom: 5px;
+}
+
+.mob-width{
+  width: 100%;
+  height: 50px;
+  margin-left: 0px
+}
+}
