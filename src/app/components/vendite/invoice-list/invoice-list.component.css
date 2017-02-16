@@ -17,9 +17,17 @@
 }
 
 .customer-input{
-  position: relative;
-  top: 5px;
-  width: 100%
+  width: 100%;
+  height: 35px;
+}
+
+.text-label{
+  padding-right: 5px;
+  padding-top: 5px;
+}
+
+.desktop-input{
+  height: 35px;
 }
 
 .marg-bot-20{
@@ -29,6 +37,15 @@
 .marg-left-20{
   margin-left: 20px
 }
+
+.desktop-marg-left-100{
+  margin-left: 100px;
+}
+
+.desktop-marg-left-20{
+  margin-left: 20px;
+}
+
 
 @media screen and (max-width: 1200px){
   .date-div{
@@ -51,4 +68,12 @@
   height: 50px;
   margin-left: 0px
 }
+.desktop-marg-left-100{
+  margin-left: 0px;
+}
+
+.desktop-marg-left-20{
+  margin-left: 0px;
+}
+
 }
