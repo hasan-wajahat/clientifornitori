@@ -15,4 +15,8 @@ export class VenditeService {
     return this.restCommonUtil.jsonGet('/api/v1/sales/',params)
   }
 
+  getSale(id: string){
+    return this.restCommonUtil.jsonGet(`/api/v1/sales/${id}`)
+  }
+
 }
