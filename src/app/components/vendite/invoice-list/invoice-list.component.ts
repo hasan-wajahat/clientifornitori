@@ -31,14 +31,14 @@ export class InvoiceListComponent implements OnInit {
   ngOnInit() {
     this.getInvoiceList();
     this.cols = [
-      { field: 'tipoDocumento', header: 'Tipolgia', sortable: 'true', style: { 'text-align': 'center' } },
+      { field: 'tipoDocumento', header: 'TIPOLGIA', sortable: 'true', style: { 'text-align': 'center' } },
       { field: 'numeroDocumento', header: 'N. FATTURA', sortable: 'true', style: { 'text-align': 'center' } },
       { field: 'dataEmissione', header: 'DATA EMISSIONE', sortable: 'true', style: { 'text-align': 'center' } },
       { field: 'cliFor.intestazioneCognomeNome', header: 'INTESTATARIO', sortable: 'true', style: { 'text-align': 'center' } },
       { field: 'statoDocumento', header: 'STATO', sortable: 'true', style: { 'text-align': 'center' } },
       { field: 'statoPagamento', header: 'PAGAMENTO', sortable: 'true', style: { 'text-align': 'center' } },
-      { field: 'totConVariazioni', header: 'Totale con variazioni', sortable: 'true', style: { 'text-align': 'right' } },
-      { field: 'totDocumento', header: 'Totale fattura', sortable: 'true', style: { 'text-align': 'right' } }
+      { field: 'totConVariazioni', header: 'TOTALE CON VARIAZIONI', sortable: 'true', style: { 'text-align': 'right' } },
+      { field: 'totDocumento', header: 'TOTALE FATTURA', sortable: 'true', style: { 'text-align': 'right' } }
     ];
   }
 
