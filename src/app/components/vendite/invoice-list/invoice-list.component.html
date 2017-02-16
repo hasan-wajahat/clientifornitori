@@ -1,93 +1,93 @@
 <div class="page-content">
   <div class="panel income db mbm">
     <div class="panel-body">
-      <div class="container-fluid">
+
+      <app-fo-collapsible-bar headerText="Filtra per:">
         <div class="panel-body pan">
-          <h2> Filtra per:</h2>
-          <div class="form-body pal">
 
-            <div class="row marg-bot-20">
-              <div class="col-sm-6">
-                <div class="flex-div">
-                  <div class="select-description">
-                    PERIODO DA:
-                  </div>
-                  <p-calendar [(ngModel)]="startDate"></p-calendar>
-                  <div class="select-description marg-left-20">
-                    A:
-                  </div>
-                  <p-calendar [(ngModel)]="endDate"></p-calendar>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="flex-div">
-                  <div>
-                    TOTALE FATTURA DA:
-                  </div>
-                  <input [(ngModel)]="invoiceStart" class="marg-left-20" type="number" />
-                  <div class="marg-left-20">
-                    A:
-                  </div>
-                  <input [(ngModel)]="invoiceEnd" class="marg-left-20" type="number" />
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-2">
-                <div class="form-group">
+          <form>
+            <div class="form-body pal">
+              <div class="row marg-bot-20">
+                <div class="col-sm-6">
                   <div class="flex-div">
                     <div class="select-description">
-                      STATO:
+                      PERIODO DA:
                     </div>
-                    <select class="form-control" [(ngModel)]="statusSelect">
+                    <p-calendar name="startDate" [(ngModel)]="startDate"></p-calendar>
+                    <div class="select-description marg-left-20">
+                      A:
+                    </div>
+                    <p-calendar name="endDate" [(ngModel)]="endDate"></p-calendar>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="flex-div">
+                    <div>
+                      TOTALE FATTURA DA:
+                    </div>
+                    <input name="invoiceStart" [(ngModel)]="invoiceStart" class="marg-left-20" type="number" />
+                    <div class="marg-left-20">
+                      A:
+                    </div>
+                    <input name="invoiceEnd" [(ngModel)]="invoiceEnd" class="marg-left-20" type="number" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <div class="flex-div">
+                      <div class="select-description">
+                        STATO:
+                      </div>
+                      <select class="form-control" name="statusSelect" [(ngModel)]="statusSelect">
                       <option value="">Tutti</option>
                       <option value="BOZZA">Bozza</option>
                       <option value="CONFERMATO">Confermato</option>
                     </select>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="col-md-3">
-                <div class="form-group">
-                  <div class="flex-div">
-                    <div class="select-description">
-                      PAGAMENTO:
-                    </div>
-                    <select class="form-control" [(ngModel)]="paymentSelect">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <div class="flex-div">
+                      <div class="select-description">
+                        PAGAMENTO:
+                      </div>
+                      <select class="form-control" name="paymentSelect" [(ngModel)]="paymentSelect">
                       <option value="">Tutti</option>
                       <option value="NON_PAGATO">NON_PAGATO</option>
                       <option value="SALDATO">SALDATO</option>
                       <option value="PAGATO_PARZIALE">PAGATO_PARZIALE</option>
                     </select>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <div class="flex-div">
-                    <input [(ngModel)]="customerSearch" placeholder="filtra per Ragione Sociale o P.IVA" class="customer-input marg-left-20"
-                    />
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <div class="flex-div">
+                      <input name="customerSearch" [(ngModel)]="customerSearch" placeholder="filtra per Ragione Sociale o P.IVA" class="customer-input marg-left-20"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="col-md-1">
-                <div class="form-group">
-                  <button class="btn btn-orange form-control fa fa-search" (click)="search()"></button>
+                <div class="col-md-1">
+                  <div class="form-group">
+                    <button class="btn btn-orange form-control fa fa-search" (click)="search()"></button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
-        <div class="row">
-          <app-fo-data-table [value]="invoices" [columns]="cols" [paginator]="false" [rows]="20"
-            (onRowSelectEvent)="onRowSelectEvent($event)" [pageLinks]="4"
-            selectionMode="single"></app-fo-data-table>
-        </div>
-      </div>
+      </app-fo-collapsible-bar>
+      <app-fo-data-table [value]="invoices" [columns]="cols" [paginator]="false" [rows]="20" (onRowSelectEvent)="onRowSelectEvent($event)"
+        [pageLinks]="4" selectionMode="single"></app-fo-data-table>
+
     </div>
   </div>
 </div>
