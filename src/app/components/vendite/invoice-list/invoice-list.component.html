@@ -7,71 +7,64 @@
 
           <form>
             <div class="form-body pal">
-              <div class="row marg-bot-20">
-                <div class="col-sm-6">
-                  <div class="flex-div">
-                    <div class="select-description">
-                      PERIODO DA:
-                    </div>
+              <div class="row"></div>
+
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    PERIODO DA:
                     <p-calendar name="startDate" [(ngModel)]="startDate"></p-calendar>
-                    <div class="select-description marg-left-20">
-                      A:
-                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    A:
                     <p-calendar name="endDate" [(ngModel)]="endDate"></p-calendar>
                   </div>
                 </div>
-                <div class="col-sm-6">
-                  <div class="flex-div">
-                    <div>
-                      TOTALE FATTURA DA:
-                    </div>
-                    <input name="invoiceStart" [(ngModel)]="invoiceStart" class="marg-left-20" type="number" />
-                    <div class="marg-left-20">
-                      A:
-                    </div>
-                    <input name="invoiceEnd" [(ngModel)]="invoiceEnd" class="marg-left-20" type="number" />
+                <div class="col-md-3">
+                  <div class="form-group">
+                    TOTALE FATTURA DA:
+                    <input name="invoiceStart" [(ngModel)]="invoiceStart" class="form-control" type="number" />
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    A:
+                    <input name="invoiceEnd" [(ngModel)]="invoiceEnd" class="form-control" type="number" />
                   </div>
                 </div>
               </div>
 
+
               <div class="row">
                 <div class="col-md-2">
                   <div class="form-group">
-                    <div class="flex-div">
-                      <div class="select-description">
-                        STATO:
-                      </div>
-                      <select class="form-control" name="statusSelect" [(ngModel)]="statusSelect">
+                    STATO:
+                    <select class="form-control" name="statusSelect" [(ngModel)]="statusSelect">
                       <option value="">Tutti</option>
                       <option value="BOZZA">Bozza</option>
                       <option value="CONFERMATO">Confermato</option>
                     </select>
-                    </div>
                   </div>
                 </div>
 
                 <div class="col-md-3">
                   <div class="form-group">
-                    <div class="flex-div">
-                      <div class="select-description">
-                        PAGAMENTO:
-                      </div>
-                      <select class="form-control" name="paymentSelect" [(ngModel)]="paymentSelect">
+                    PAGAMENTO:
+                    <select class="form-control" name="paymentSelect" [(ngModel)]="paymentSelect">
                       <option value="">Tutti</option>
                       <option value="NON_PAGATO">NON_PAGATO</option>
                       <option value="SALDATO">SALDATO</option>
                       <option value="PAGATO_PARZIALE">PAGATO_PARZIALE</option>
                     </select>
-                    </div>
                   </div>
                 </div>
 
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <div class="flex-div">
-                      <input name="customerSearch" [(ngModel)]="customerSearch" placeholder="filtra per Ragione Sociale o P.IVA" class="customer-input marg-left-20"
-                      />
-                    </div>
+                    <input name="customerSearch" [(ngModel)]="customerSearch" placeholder="filtra per Ragione Sociale o P.IVA" class="form-control"
+                    />
                   </div>
                 </div>
 
