@@ -7,44 +7,29 @@
 
           <form>
             <div class="form-body pal">
-              <div class="row"></div>
-              <div class="flex-div-lg">
-
-                <div class="flex-div-lg">
-                  <div class="flex-div-lg">
-                    <div class="marg-bot-5">
+              <div class="row marg-bot-20">
+                <div class="col-sm-6">
+                  <div class="flex-div">
+                    <div class="select-description">
                       PERIODO DA:
                     </div>
-                    <div class="marg-bot-10">
-                      <p-calendar name="startDate" [(ngModel)]="startDate"></p-calendar>
-                    </div>
-                  </div>
-                  <div class="flex-div-lg">
-                    <div class="marg-bot-5">
+                    <p-calendar name="startDate" [(ngModel)]="startDate"></p-calendar>
+                    <div class="select-description marg-left-20">
                       A:
                     </div>
-                    <div class="marg-bot-10">
-                      <p-calendar name="endDate" [(ngModel)]="endDate"></p-calendar>
-                    </div>
+                    <p-calendar name="endDate" [(ngModel)]="endDate"></p-calendar>
                   </div>
                 </div>
-
-                <div class="flex-div-lg">
-                  <div class="flex-div-lg">
-                    <div class="marg-bot-10">
+                <div class="col-sm-6">
+                  <div class="flex-div">
+                    <div>
                       TOTALE FATTURA DA:
                     </div>
-                    <div class="marg-bot-10">
-                      <input name="invoiceStart" [(ngModel)]="invoiceStart" class="marg-left-20 mob-width" type="number" />
-                    </div>
-                  </div>
-                  <div class="flex-div-lg">
-                    <div class="marg-bot-10">
+                    <input name="invoiceStart" [(ngModel)]="invoiceStart" class="marg-left-20" type="number" />
+                    <div class="marg-left-20">
                       A:
                     </div>
-                    <div class="marg-bot-10">
-                      <input name="invoiceEnd" [(ngModel)]="invoiceEnd" class="marg-left-20 mob-width" type="number" />
-                    </div>
+                    <input name="invoiceEnd" [(ngModel)]="invoiceEnd" class="marg-left-20" type="number" />
                   </div>
                 </div>
               </div>
@@ -81,7 +66,7 @@
                   </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-sm-6">
                   <div class="form-group">
                     <div class="flex-div">
                       <input name="customerSearch" [(ngModel)]="customerSearch" placeholder="filtra per Ragione Sociale o P.IVA" class="customer-input marg-left-20"
