@@ -5,6 +5,7 @@ import { URLSearchParams } from "@angular/http";
 import { User } from "../../../model/user/User";
 import { Calendar } from "primeng/primeng";
 import {Router} from "@angular/router";
+import {CommonService} from "../../../services/common/common.service";
 
 @Component({
   selector: 'app-invoice-list',
@@ -40,6 +41,9 @@ export class InvoiceListComponent implements OnInit {
       { field: 'totConVariazioni', header: 'TOTALE CON VARIAZIONI', sortable: 'true', style: { 'text-align': 'right' } },
       { field: 'totDocumento', header: 'TOTALE FATTURA', sortable: 'true', style: { 'text-align': 'right' } }
     ];
+
+    this.inizializzaCalendar();
+
   }
 
   getInvoiceList() {
@@ -82,5 +86,17 @@ export class InvoiceListComponent implements OnInit {
     this.router.navigate(['/home/vendite', selectedRow.data.id]);
   }
 
+  /**
+   * Inizializzazione lingua calendar
+   */
+    // Calendar language
+  it: any;
+  yearRange:string;
+  today = new Date();
+
+  inizializzaCalendar(){
+    this.it = CommonService.getCalendarLanguage();
+    this.yearRange = (new Date().getFullYear() - 100) + ":" + new Date().getFullYear();
+  }
 
 }

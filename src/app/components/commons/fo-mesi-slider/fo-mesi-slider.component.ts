@@ -38,6 +38,8 @@ export class FoMesiSliderComponent implements OnInit {
   @Input() normalMoveStyle:boolean;
   @Input() disabledMoveStyleLeft:boolean;
   @Input() disabledMoveStyleRight:boolean;
+  @Input() hideConfirmedLock:string;
+
 
 
   istTempo=new Date();
@@ -51,7 +53,6 @@ export class FoMesiSliderComponent implements OnInit {
 
   annoPrima(){
     this.backClick.emit(null);
-
   }
 
   annoDopo(){
@@ -67,7 +68,9 @@ export class FoMesiSliderComponent implements OnInit {
 
 
 
+
   ngOnInit(){
+
   }
 
 }

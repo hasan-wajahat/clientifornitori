@@ -72,9 +72,10 @@ export class RestCommonUtilsService {
       return environment.localDevServer;
     }
 
-
     console.log('HOSTNAME: ' + window.location.hostname);
+
     var hostname:string = window.location.hostname;
+
     if(hostname == "localhost" || hostname == "127.0.0.1" || hostname == '192.168.7.141'){
       this.baseContext = '/fol';
       return 'http://localhost:8080';

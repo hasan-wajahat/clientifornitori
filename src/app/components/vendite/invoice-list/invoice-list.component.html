@@ -10,39 +10,43 @@
               <div class="row"></div>
 
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <div class="form-group">
                     <label for="startDate" class="control-label">PERIODO DA:</label>
                     <div>
-                      <p-calendar id="startDate" name="startDate" [(ngModel)]="startDate" [inputStyle]="{'width': '100px'}" ></p-calendar>
+                      <p-calendar id="startDate" name="startDate" [locale]="it" [(ngModel)]="startDate" showAnim="slideDown" [showIcon]="true" [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [maxDate]="today"></p-calendar>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <div class="form-group">
                     <label for="endDate" class="control-label">A:</label>
                     <div>
-                      <p-calendar id="endDate" name="endDate" [(ngModel)]="endDate" [inputStyle]="{'width': '100px'}"></p-calendar>
+                      <p-calendar id="endDate" name="endDate" [locale]="it" [(ngModel)]="endDate" showAnim="slideDown" [showIcon]="true" [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [maxDate]="today"></p-calendar>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <div class="form-group">
                     <label for="invoiceStart" class="control-label">TOTALE FATTURA DA:</label>
                     <input id="invoiceStart" name="invoiceStart" [(ngModel)]="invoiceStart" class="form-control" type="number" />
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <div class="form-group">
                     <label for="invoiceEnd" class="control-label">A:</label>
                     <input id="invoiceEnd" name="invoiceEnd" [(ngModel)]="invoiceEnd" class="form-control" type="number" />
                   </div>
                 </div>
+                <div class="col-md-4">
+
+                </div>
+
               </div>
 
 
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <div class="form-group">
                     STATO:
                     <select class="form-control" name="statusSelect" [(ngModel)]="statusSelect">
@@ -53,7 +57,7 @@
                   </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <div class="form-group">
                     PAGAMENTO:
                     <select class="form-control" name="paymentSelect" [(ngModel)]="paymentSelect">
@@ -65,7 +69,7 @@
                   </div>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-7">
                   <div class="form-group">
                     <label for="customerSearch" class="control-label"></label>
                     <input id="customerSearch" name="customerSearch" [(ngModel)]="customerSearch" placeholder="filtra per Ragione Sociale o P.IVA" class="form-control" />
