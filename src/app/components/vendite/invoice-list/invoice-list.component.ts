@@ -71,7 +71,6 @@ export class InvoiceListComponent implements OnInit {
     params.set('type', '1');
     this._venditeService.getAllSales(params).subscribe(
       res => {
-        console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         this.invoices = res.list;
       },
       error => console.log(error)

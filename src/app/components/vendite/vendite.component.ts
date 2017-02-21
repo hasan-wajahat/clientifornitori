@@ -17,10 +17,6 @@ export class VenditeComponent implements OnInit {
   constructor(private _venditeService: VenditeService) { }
 
   ngOnInit() {
-    // this._venditeService.getFattureVendite().subscribe(
-    //   fatture => this.fatture = fatture,
-    //   error => alert(error),
-    //   () => console.log("_venditeService.getFattureVendite() - FINISHED!"));
 
     this.cols = [
       { field: 'numeroFattura', header: 'N. FATTURA', sortable: 'true', style: { 'text-align': 'center' } },
@@ -30,9 +26,5 @@ export class VenditeComponent implements OnInit {
       { field: 'pagamento', header: 'PAGAMENTO', sortable: 'true', style: { 'text-align': 'center' } },
       { field: 'totale', header: 'TOTALE', sortable: 'true', style: { 'text-align': 'right' } }
     ];
-  }
-
-  test() {
-  
   }
 }
