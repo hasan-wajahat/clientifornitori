@@ -1,3 +1,19 @@
-<p>
-  invoice-item works!
-</p>
+<div *ngIf="salesDocumentForm" class="page-content">
+  <form [formGroup]="salesDocumentForm">
+    <div class="panel">
+      <div class="panel-heading">INTESTAZIONE FATTURA</div>
+      <div class="panel-body pan">
+         <div class="form-body pal">
+           <div class="row">
+             <div class="col-md-6">
+               <div class="form-group">
+                <label for="inputIndirizzo" class="control-label">N. FATTURA*</label>
+                <input class="form-control" formControlName="fatturaRiferimentoId">
+               </div>
+             </div>
+           </div>
+         </div>
+      </div>
+    </div>
+  </form>
+</div>

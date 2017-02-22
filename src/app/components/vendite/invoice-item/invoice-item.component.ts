@@ -14,7 +14,7 @@ import {SalesFormCreator} from "./invoice-item-form";
 export class InvoiceItemComponent implements OnInit {
 
   salesDocument: SalesDocument;
-  SalesDocumentForm: FormGroup;
+  salesDocumentForm: FormGroup;
 
   constructor(private venditeService: VenditeService, private route: ActivatedRoute,
    private salesFormCreator: SalesFormCreator) { }
@@ -25,8 +25,7 @@ export class InvoiceItemComponent implements OnInit {
         this.venditeService.getSale(params['id']).subscribe(
           res => {
             console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-            // this.salesDocument = res;
-            this.SalesDocumentForm = this.salesFormCreator.buildSalesForm(res);
+            this.salesDocumentForm = this.salesFormCreator.buildSalesForm(res);
           },
           error => console.log(error)
         )
