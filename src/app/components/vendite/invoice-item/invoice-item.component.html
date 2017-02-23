@@ -23,8 +23,38 @@
             <div class="col-md-6">
               <label for="inputIndirizzo" class="control-label">DATA EMISSIONE*</label>
               <div>
-                <p-calendar id="endDate" name="endDate" [locale]="it" [(ngModel)]="endDate" [ngModelOptions]="{standalone: true}" showAnim="slideDown" [showIcon]="true" [readonlyInput]="true"
-                  [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [maxDate]="today"></p-calendar>
+                <p-calendar id="endDate" name="endDate" [locale]="it" [(ngModel)]="issueDate" [ngModelOptions]="{standalone: true}" showAnim="slideDown"
+                  [showIcon]="true" [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange"
+                  [maxDate]="today"></p-calendar>
+              </div>
+            </div>
+            <div formGroupName="cliFor" class="col-md-6">
+              <div class="form-group">
+                <label for="inputIndirizzo" class="control-label">INDRIZZO</label>
+                <input class="form-control" formControlName="indirizzo">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <h3> Codice unico to be added after confirmed by Simone </h3>
+            </div>
+            <div class="col-md-6" formGroupName="cliFor">
+              <div class="form-group">
+                <label for="inputIndirizzo" class="control-label">CITTA</label>
+                <input class="form-control" formControlName="citta">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6" formGroupName="cliFor">
+              <div class="form-group">
+                <label for="inputIndirizzo" class="control-label">PATRITA IVA*</label>
+                <input class="form-control" formControlName="partitaIVA">
               </div>
             </div>
           </div>

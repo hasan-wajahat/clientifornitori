@@ -14,7 +14,7 @@ export class SalesFormCreator {
       castelletoIVA: [salesDocument.castelletoIVA],
       cliFor: this.fb.group({
         denominazione: [salesDocument.cliFor.denominazione],
-        partitaIvaCf: [salesDocument.cliFor.partitaIvaCf],
+        partitaIVA: [salesDocument.cliFor.partitaIVA],
         mail: [salesDocument.cliFor.mail],
         indirizzo: [salesDocument.cliFor.indirizzo],
         citta: [salesDocument.cliFor.citta],

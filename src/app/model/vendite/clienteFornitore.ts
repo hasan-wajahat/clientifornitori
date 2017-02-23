@@ -1,6 +1,6 @@
 export interface ClienteFornitore {
   denominazione:string;
-  partitaIvaCf:string;
+  partitaIVA:string;
   mail:string;
   indirizzo:string;
   citta:string;
