@@ -29,25 +29,25 @@ export class InvoiceItemComponent implements OnInit {
           res => {
             console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             this.salesDocumentForm = this.salesFormCreator.buildSalesForm(res);
-            console.log(res);
             console.log(this.salesDocumentForm.value);
-            this.issueDate.setDate(+res.dataEmissione.split('-')[2]);
-            this.issueDate.setFullYear(+res.dataEmissione.split('-')[0]);
-            this.issueDate.setMonth(res.dataEmissione.split('-')[1] - 1);
+            this.initializeDate(res);
           },
           error => console.log(error)
         )
       }
-    )
-
+    );
     this.inizializzaCalendar();
   }
-
-
 
   inizializzaCalendar() {
     this.it = CommonService.getCalendarLanguage();
     this.yearRange = (new Date().getFullYear() - 100) + ":" + new Date().getFullYear();
+  }
+
+  initializeDate(response) {
+    this.issueDate.setDate(+response.dataEmissione.split('-')[2]);
+    this.issueDate.setFullYear(+response.dataEmissione.split('-')[0]);
+    this.issueDate.setMonth(response.dataEmissione.split('-')[1] - 1);
   }
 
 }

@@ -55,7 +55,13 @@ export class SalesFormCreator {
     for (let articoliItem of salesDocument.articoli) {
       control.push(this.fb.group({
         id: [articoliItem.id],
-        codiceIVA: [articoliItem.codiceIVA],
+        codiceIVA: this.fb.group({
+          codiceId: [articoliItem.codiceIVA.codiceId],
+          descrizione: [articoliItem.codiceIVA.descrizione],
+          dateFrom: [articoliItem.codiceIVA.dateFrom],
+          dateTo: [articoliItem.codiceIVA.dateTo],
+          dafaultVAT: [articoliItem.codiceIVA.dafaultVAT]
+        }),
         codiceArticolo: [articoliItem.codiceArticolo],
         tipoVendita: [articoliItem.tipoVendita],
         descrizioneArticolo: [articoliItem.descrizioneArticolo],

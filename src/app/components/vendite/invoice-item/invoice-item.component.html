@@ -1,5 +1,7 @@
 <div *ngIf="salesDocumentForm" class="page-content">
   <form [formGroup]="salesDocumentForm">
+
+    <!-- INTESTAZIONE FATTURA -->
     <div class="panel">
       <div class="panel-heading">INTESTAZIONE FATTURA</div>
       <div class="panel-body pan">
@@ -62,6 +64,7 @@
       </div>
     </div>
 
+    <!-- DETTAGLIO ARTICOLI -->
     <div class="panel">
       <div class="panel-heading">DETTAGLIO ARTICOLI</div>
       <div class="panel-body pan">
@@ -74,6 +77,49 @@
                   <input class="form-control" formControlName="tipoVendita">
                 </div>
               </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="control-label">DESCRIZIONE ART.*</label>
+                  <input class="form-control" formControlName="descrizioneArticolo">
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <label class="control-label">QUANTITA*</label>
+                  <input class="form-control" formControlName="quantita">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="control-label">UNITA MISURA*</label>
+                  <input class="form-control" formControlName="unitaMisura">
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <label class="control-label">IMPORTO UNIT*</label>
+                  <input class="form-control" formControlName="importoUnitario">
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <label class="control-label">%SCONTI</label>
+                  <input class="form-control">
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <label class="control-label">TOTALE NETTO*</label>
+                  <input class="form-control" formControlName="totNetto">
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div formGroupName="codiceIVA" class="form-group">
+                  <label class="control-label">% ALIO.IVA*</label>
+                  <input class="form-control" formControlName="codiceId">
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

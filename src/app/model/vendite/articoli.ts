@@ -1,6 +1,8 @@
+import {CodiceIVA} from "./codiceiva"
+
 export class Articoli {
   id: number;
-  codiceIVA: any;
+  codiceIVA: CodiceIVA;
   codiceArticolo: string;
   tipoVendita: string;
   descrizioneArticolo: string;
