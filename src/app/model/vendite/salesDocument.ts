@@ -1,7 +1,8 @@
 import { ClienteFornitore } from "./clienteFornitore";
+import {Articoli} from "./articoli";
 
 export class SalesDocument {
-  articoli: any;
+  articoli: Articoli[];
   castelletoIVA: any;
   cliFor: ClienteFornitore;
   dataEmissione: string;

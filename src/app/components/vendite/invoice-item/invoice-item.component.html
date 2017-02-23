@@ -21,7 +21,7 @@
 
           <div class="row">
             <div class="col-md-6">
-              <label for="inputIndirizzo" class="control-label">DATA EMISSIONE*</label>
+              <label class="control-label">DATA EMISSIONE*</label>
               <div>
                 <p-calendar id="endDate" name="endDate" [locale]="it" [(ngModel)]="issueDate" [ngModelOptions]="{standalone: true}" showAnim="slideDown"
                   [showIcon]="true" [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange"
@@ -30,7 +30,7 @@
             </div>
             <div formGroupName="cliFor" class="col-md-6">
               <div class="form-group">
-                <label for="inputIndirizzo" class="control-label">INDRIZZO</label>
+                <label class="control-label">INDRIZZO</label>
                 <input class="form-control" formControlName="indirizzo">
               </div>
             </div>
@@ -42,7 +42,7 @@
             </div>
             <div class="col-md-6" formGroupName="cliFor">
               <div class="form-group">
-                <label for="inputIndirizzo" class="control-label">CITTA</label>
+                <label class="control-label">CITTA</label>
                 <input class="form-control" formControlName="citta">
               </div>
             </div>
@@ -53,7 +53,7 @@
             </div>
             <div class="col-md-6" formGroupName="cliFor">
               <div class="form-group">
-                <label for="inputIndirizzo" class="control-label">PATRITA IVA*</label>
+                <label class="control-label">PATRITA IVA*</label>
                 <input class="form-control" formControlName="partitaIVA">
               </div>
             </div>
@@ -61,5 +61,24 @@
         </div>
       </div>
     </div>
+
+    <div class="panel">
+      <div class="panel-heading">DETTAGLIO ARTICOLI</div>
+      <div class="panel-body pan">
+        <div class="form-body pal">
+          <div class="row" *ngFor="let articoliGroup of salesDocumentForm.controls.articoli.controls">
+            <div [formGroup]=articoliGroup>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <label class="control-label">TIPO VENDITA</label>
+                  <input class="form-control" formControlName="tipoVendita">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </form>
 </div>

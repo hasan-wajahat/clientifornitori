@@ -10,7 +10,7 @@ export class SalesFormCreator {
   public buildSalesForm(salesDocument: SalesDocument): FormGroup {
 
     const salesDocumentForm: FormGroup = this.fb.group({
-      articoli: [salesDocument.articoli],
+      articoli: this.fb.array([]),
       castelletoIVA: [salesDocument.castelletoIVA],
       cliFor: this.fb.group({
         denominazione: [salesDocument.cliFor.denominazione],
@@ -50,6 +50,24 @@ export class SalesFormCreator {
       totPagato: [salesDocument.totPagato],
       valuta: [salesDocument.valuta],
     })
+    // create articoli form group
+    const control = <FormArray>salesDocumentForm.controls['articoli'];
+    for (let articoliItem of salesDocument.articoli) {
+      control.push(this.fb.group({
+        id: [articoliItem.id],
+        codiceIVA: [articoliItem.codiceIVA],
+        codiceArticolo: [articoliItem.codiceArticolo],
+        tipoVendita: [articoliItem.tipoVendita],
+        descrizioneArticolo: [articoliItem.descrizioneArticolo],
+        unitaMisura: [articoliItem.unitaMisura],
+        quantita: [articoliItem.quantita],
+        importoUnitario: [articoliItem.importoUnitario],
+        pcSconto: [articoliItem.pcSconto],
+        totNetto: [articoliItem.totNetto],
+        soggettoRitenuta: [articoliItem.soggettoRitenuta]
+      }))
+    }
+
     return salesDocumentForm;
   }
 }

@@ -13,12 +13,11 @@ import { CommonService } from "../../../services/common/common.service";
   providers: [SalesFormCreator]
 })
 export class InvoiceItemComponent implements OnInit {
-  salesDocument: SalesDocument;
   salesDocumentForm: FormGroup;
   it: any;
   yearRange: string;
   today = new Date();
-  issueDate= new Date();
+  issueDate = new Date();
 
   constructor(private venditeService: VenditeService, private route: ActivatedRoute,
     private salesFormCreator: SalesFormCreator) { }
@@ -30,10 +29,11 @@ export class InvoiceItemComponent implements OnInit {
           res => {
             console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             this.salesDocumentForm = this.salesFormCreator.buildSalesForm(res);
+            console.log(res);
             console.log(this.salesDocumentForm.value);
-             this.issueDate.setDate(+res.dataEmissione.split('-')[2]);
-             this.issueDate.setFullYear(+res.dataEmissione.split('-')[0]);
-             this.issueDate.setMonth(res.dataEmissione.split('-')[1]-1);
+            this.issueDate.setDate(+res.dataEmissione.split('-')[2]);
+            this.issueDate.setFullYear(+res.dataEmissione.split('-')[0]);
+            this.issueDate.setMonth(res.dataEmissione.split('-')[1] - 1);
           },
           error => console.log(error)
         )
