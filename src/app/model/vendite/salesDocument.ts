@@ -1,9 +1,9 @@
-import { CliFor } from "../clientifornitori/CliFor";
+import { ClienteFornitore } from "./clienteFornitore";
 
 export class SalesDocument {
   articoli: any;
   castelletoIVA: any;
-  cliFor: CliFor;
+  cliFor: ClienteFornitore;
   dataEmissione: string;
   documento: any;
   fatturaRiferimentoId: number;
@@ -11,7 +11,7 @@ export class SalesDocument {
   marcaDaBollo: number;
   modalitaPagamento: any;
   noteAggiuntive: string;
-  numeroDocument: string;
+  numeroDocumento: string;
   numeroProgressivoDocumento: number;
   pagamenti: any;
   pcImponibile: number;

@@ -3,16 +3,32 @@
     <div class="panel">
       <div class="panel-heading">INTESTAZIONE FATTURA</div>
       <div class="panel-body pan">
-         <div class="form-body pal">
-           <div class="row">
-             <div class="col-md-6">
-               <div class="form-group">
+        <div class="form-body pal">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
                 <label for="inputIndirizzo" class="control-label">N. FATTURA*</label>
-                <input class="form-control" formControlName="fatturaRiferimentoId">
-               </div>
-             </div>
-           </div>
-         </div>
+                <input class="form-control" formControlName="numeroDocumento">
+              </div>
+            </div>
+            <div formGroupName="cliFor" class="col-md-6">
+              <div class="form-group">
+                <label for="inputIndirizzo" class="control-label">RAGINOE SOCIALE*</label>
+                <input class="form-control" formControlName="denominazione">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label for="inputIndirizzo" class="control-label">DATA EMISSIONE*</label>
+              <div>
+                <p-calendar id="endDate" name="endDate" [locale]="it" [(ngModel)]="endDate" [ngModelOptions]="{standalone: true}" showAnim="slideDown" [showIcon]="true" [readonlyInput]="true"
+                  [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [maxDate]="today"></p-calendar>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </form>

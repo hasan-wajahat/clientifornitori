@@ -1,5 +1,5 @@
 import { SalesDocument } from "../../../model/vendite/salesDocument";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormArray, FormBuilder, Validators } from "@angular/forms";
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -12,7 +12,14 @@ export class SalesFormCreator {
     const salesDocumentForm: FormGroup = this.fb.group({
       articoli: [salesDocument.articoli],
       castelletoIVA: [salesDocument.castelletoIVA],
-      cliFor: [salesDocument.cliFor],
+      cliFor: this.fb.group({
+        denominazione: [salesDocument.cliFor.denominazione],
+        partitaIvaCf: [salesDocument.cliFor.partitaIvaCf],
+        mail: [salesDocument.cliFor.mail],
+        indirizzo: [salesDocument.cliFor.indirizzo],
+        citta: [salesDocument.cliFor.citta],
+        tipo: [salesDocument.cliFor.tipo]
+      }),
       dataEmissione: [salesDocument.dataEmissione],
       documento: [salesDocument.documento],
       fatturaRiferimentoId: [salesDocument.fatturaRiferimentoId],
@@ -20,7 +27,7 @@ export class SalesFormCreator {
       marcaDaBollo: [salesDocument.marcaDaBollo],
       modalitaPagamento: [salesDocument.modalitaPagamento],
       noteAggiuntive: [salesDocument.noteAggiuntive],
-      numeroDocument: [salesDocument.numeroDocument],
+      numeroDocumento: [salesDocument.numeroDocumento],
       numeroProgressivoDocumento: [salesDocument.numeroProgressivoDocumento],
       pagamenti: [salesDocument.pagamenti],
       pcImponibile: [salesDocument.pcImponibile],
