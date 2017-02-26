@@ -87,20 +87,22 @@ export class InvoiceItemComponent implements OnInit {
           let startVatDate = this.convertToDate(val.dateFrom);
           let endVatDate = this.convertToDate(val.dateTo);
           if (startVatDate < this.issueDate && endVatDate > this.issueDate) {
-            if (!this.hasVat(this.codesVATDropDown, val.pcAliquota)) {
+            if (!hasVat(this.codesVATDropDown, val.pcAliquota)) {
               this.codesVATDropDown.push({ value: val.pcAliquota });
             }
           }
         })
-      }
-    )
+      })
+    function hasVat(arr, val) {
+      return arr.some(arrVal => val === arrVal.value);
+    }
   }
 
-  hasVat(arr, val) {
-    return arr.some(arrVal => val === arrVal.value);
+  issueDateSet() {
+    this.createVATDropDown();
   }
+
   test() {
     console.log('changing');
-    this.createVATDropDown();
   }
 }

@@ -25,7 +25,7 @@
             <div class="col-md-6">
               <label class="control-label">DATA EMISSIONE*</label>
               <div>
-                <p-calendar id="endDate" name="endDate" (ngModelChange)="test()" [locale]="it" [(ngModel)]="issueDate" [ngModelOptions]="{standalone: true}" showAnim="slideDown"
+                <p-calendar id="endDate" name="endDate" (ngModelChange)="issueDateSet()" [locale]="it" [(ngModel)]="issueDate" [ngModelOptions]="{standalone: true}" showAnim="slideDown"
                   [showIcon]="true" [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange"
                   [maxDate]="today"></p-calendar>
               </div>
