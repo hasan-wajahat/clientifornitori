@@ -18,6 +18,8 @@ export class InvoiceItemComponent implements OnInit {
   yearRange: string;
   today = new Date();
   issueDate = new Date();
+  tipoVenditaDropDown: any;
+  unitaMisuraDropDown: any;
 
   constructor(private venditeService: VenditeService, private route: ActivatedRoute,
     private salesFormCreator: SalesFormCreator) { }
@@ -29,7 +31,6 @@ export class InvoiceItemComponent implements OnInit {
           res => {
             console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             this.salesDocumentForm = this.salesFormCreator.buildSalesForm(res);
-            console.log(this.salesDocumentForm.value);
             this.initializeDate(res);
           },
           error => console.log(error)
@@ -37,6 +38,23 @@ export class InvoiceItemComponent implements OnInit {
       }
     );
     this.inizializzaCalendar();
+    this.initializeArray();
+  }
+
+  initializeArray() {
+    this.tipoVenditaDropDown = [
+      { value: 'Merce' },
+      { value: 'Beni' },
+      { value: 'Servizi' },
+      { value: 'Marca Da Bollo' }
+    ];
+    this.unitaMisuraDropDown = [
+      { value: 'LT' },
+      { value: 'MT' },
+      { value: 'PZ' },
+      { value: 'NR' },
+      { value: 'MQ' },
+    ]
   }
 
   inizializzaCalendar() {

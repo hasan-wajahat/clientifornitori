@@ -65,7 +65,7 @@
     </div>
 
     <!-- DETTAGLIO ARTICOLI -->
-    <div class="panel">
+    <div class="panel articoli-panel">
       <div class="panel-heading">DETTAGLIO ARTICOLI</div>
       <div class="panel-body pan">
         <div class="form-body pal">
@@ -74,7 +74,10 @@
               <div class="col-md-1">
                 <div class="form-group">
                   <label class="control-label">TIPO VENDITA</label>
-                  <input class="form-control" formControlName="tipoVendita">
+                  <select formControlName="tipoVendita">
+                    <option *ngFor="let opt of tipoVenditaDropDown"
+                     [value]="opt.value">{{opt.value}}</option>
+                  </select>
                 </div>
               </div>
               <div class="col-md-2">
@@ -89,13 +92,16 @@
                   <input class="form-control" formControlName="quantita">
                 </div>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-1">
                 <div class="form-group">
                   <label class="control-label">UNITA MISURA*</label>
-                  <input class="form-control" formControlName="unitaMisura">
+                  <select formControlName="unitaMisura">
+                    <option *ngFor="let opt of unitaMisuraDropDown"
+                     [value]="opt.value">{{opt.value}}</option>
+                  </select>
                 </div>
               </div>
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <div class="form-group">
                   <label class="control-label">IMPORTO UNIT*</label>
                   <input class="form-control" formControlName="importoUnitario">
@@ -104,7 +110,7 @@
               <div class="col-md-1">
                 <div class="form-group">
                   <label class="control-label">%SCONTI</label>
-                  <input class="form-control">
+                  <input class="form-control" formControlName="pcSconto">
                 </div>
               </div>
               <div class="col-md-1">
@@ -117,6 +123,12 @@
                 <div formGroupName="codiceIVA" class="form-group">
                   <label class="control-label">% ALIO.IVA*</label>
                   <input class="form-control" formControlName="codiceId">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="control-label">SOGGETTO A TIRENUTA*</label>
+                  <input type="checkbox" class="form-control" formControlName="soggettoRitenuta">
                 </div>
               </div>
 
