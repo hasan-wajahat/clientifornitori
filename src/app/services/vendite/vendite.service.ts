@@ -19,4 +19,8 @@ export class VenditeService {
     return this.restCommonUtil.jsonGet(`/api/v1/sales/${id}`)
   }
 
+  getcodesVAT(){
+    return this.restCommonUtil.jsonGet(`/api/public/v1/codesVAT`)
+  }
+
 }

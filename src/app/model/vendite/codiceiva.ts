@@ -3,5 +3,6 @@ export class CodiceIVA {
   descrizione: string;
   dateFrom: string;
   dateTo: string;
-  dafaultVAT: boolean
+  dafaultVAT: boolean;
+  pcAliquota: number;
 }

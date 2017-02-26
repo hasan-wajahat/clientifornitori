@@ -25,7 +25,7 @@
             <div class="col-md-6">
               <label class="control-label">DATA EMISSIONE*</label>
               <div>
-                <p-calendar id="endDate" name="endDate" [locale]="it" [(ngModel)]="issueDate" [ngModelOptions]="{standalone: true}" showAnim="slideDown"
+                <p-calendar id="endDate" name="endDate" (ngModelChange)="test()" [locale]="it" [(ngModel)]="issueDate" [ngModelOptions]="{standalone: true}" showAnim="slideDown"
                   [showIcon]="true" [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange"
                   [maxDate]="today"></p-calendar>
               </div>
@@ -69,7 +69,7 @@
       <div class="panel-heading">DETTAGLIO ARTICOLI</div>
       <div class="panel-body pan">
         <div class="form-body pal">
-          <div class="row" *ngFor="let articoliGroup of salesDocumentForm.controls.articoli.controls">
+          <div class="row" *ngFor="let articoliGroup of salesDocumentForm.controls.articoli.controls; let i = index">
             <div [formGroup]=articoliGroup>
               <div class="col-md-1">
                 <div class="form-group">
@@ -116,13 +116,17 @@
               <div class="col-md-1">
                 <div class="form-group">
                   <label class="control-label">TOTALE NETTO*</label>
-                  <input class="form-control" formControlName="totNetto">
+                  <input class="form-control" formControlName="totNetto" disabled
+                    [value]="articoliGroup.value.quantita*articoliGroup.value.importoUnitario">
                 </div>
               </div>
               <div class="col-md-1">
                 <div formGroupName="codiceIVA" class="form-group">
                   <label class="control-label">% ALIO.IVA*</label>
-                  <input class="form-control" formControlName="codiceId">
+                  <select formControlName="pcAliquota">
+                    <option *ngFor="let opt of codesVATDropDown"
+                     [value]="opt.value">{{opt.value}}</option>
+                  </select>
                 </div>
               </div>
               <div class="col-md-2">
@@ -137,6 +141,8 @@
         </div>
       </div>
     </div>
+
+    <button (click)="test()" class="btn btn-default"> Test </button>
 
   </form>
 </div>

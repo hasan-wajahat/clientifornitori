@@ -20,6 +20,7 @@ export class InvoiceItemComponent implements OnInit {
   issueDate = new Date();
   tipoVenditaDropDown: any;
   unitaMisuraDropDown: any;
+  codesVATDropDown: any = [];
 
   constructor(private venditeService: VenditeService, private route: ActivatedRoute,
     private salesFormCreator: SalesFormCreator) { }
@@ -32,6 +33,7 @@ export class InvoiceItemComponent implements OnInit {
             console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             this.salesDocumentForm = this.salesFormCreator.buildSalesForm(res);
             this.initializeDate(res);
+            this.createVATDropDown();
           },
           error => console.log(error)
         )
@@ -39,6 +41,7 @@ export class InvoiceItemComponent implements OnInit {
     );
     this.inizializzaCalendar();
     this.initializeArray();
+
   }
 
   initializeArray() {
@@ -55,6 +58,7 @@ export class InvoiceItemComponent implements OnInit {
       { value: 'NR' },
       { value: 'MQ' },
     ]
+
   }
 
   inizializzaCalendar() {
@@ -68,4 +72,35 @@ export class InvoiceItemComponent implements OnInit {
     this.issueDate.setMonth(response.dataEmissione.split('-')[1] - 1);
   }
 
+  convertToDate(dateString) {
+    let date = new Date();
+    date.setDate(+dateString.split('-')[2]);
+    date.setFullYear(+dateString.split('-')[0]);
+    date.setMonth(dateString.split('-')[1] - 1);
+    return date;
+  }
+
+  createVATDropDown() {
+    this.venditeService.getcodesVAT().subscribe(
+      res => {
+        res.map(val => {
+          let startVatDate = this.convertToDate(val.dateFrom);
+          let endVatDate = this.convertToDate(val.dateTo);
+          if (startVatDate < this.issueDate && endVatDate > this.issueDate) {
+            if (!this.hasVat(this.codesVATDropDown, val.pcAliquota)) {
+              this.codesVATDropDown.push({ value: val.pcAliquota });
+            }
+          }
+        })
+      }
+    )
+  }
+
+  hasVat(arr, val) {
+    return arr.some(arrVal => val === arrVal.value);
+  }
+  test() {
+    console.log('changing');
+    this.createVATDropDown();
+  }
 }

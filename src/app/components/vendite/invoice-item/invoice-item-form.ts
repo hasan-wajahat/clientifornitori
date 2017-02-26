@@ -60,7 +60,8 @@ export class SalesFormCreator {
           descrizione: [articoliItem.codiceIVA.descrizione],
           dateFrom: [articoliItem.codiceIVA.dateFrom],
           dateTo: [articoliItem.codiceIVA.dateTo],
-          dafaultVAT: [articoliItem.codiceIVA.dafaultVAT]
+          dafaultVAT: [articoliItem.codiceIVA.dafaultVAT],
+          pcAliquota: [articoliItem.codiceIVA.pcAliquota]
         }),
         codiceArticolo: [articoliItem.codiceArticolo],
         tipoVendita: [articoliItem.tipoVendita],
