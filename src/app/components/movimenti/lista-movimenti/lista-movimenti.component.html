@@ -1,0 +1,129 @@
+<app-titlepage pageTitle="{{ 'MOVIMENTI.TITLE' | translate }}" navPageName="Movimenti"></app-titlepage>
+<div class="page-content">
+
+  <div class="page-toolbar">
+    <button type="button" data-hover="tooltip" title="Indietro" class="btn btn-orange" data-toggle="modal" (click)="backToComingFrom()">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      <i>Indietro</i>
+    </button>
+  </div>
+
+   <br>
+
+  <div class="panel income db mbm">
+    <div class="panel-body" >
+
+      <app-fo-collapsible-bar headerText="Filtra per:">
+
+        <div class="panel-body pan">
+
+          <form>
+            <div class="form-body pal">
+              <div class="row"></div>
+              <div class="row">
+
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label">TIPO</label>
+                    <select class="form-control" [(ngModel)]="filtroTipo" name="filtroTipo">
+                      <option value="">Tutti</option>
+                      <option value="ENTRATA">Entrata</option>
+                      <option value="USCITA">Uscita</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label">STATO</label>
+                    <select class="form-control" [(ngModel)]="filtroStato" name="filtroStato">
+                      <option value="">Tutti</option>
+                      <option value="INTERNO">Interno</option>
+                      <option value="BANCA">Banca</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label class="control-label">CAUSALE</label>
+                    <input type="text" class="form-control" [(ngModel)]="filtroCausale" name="filtroCausale">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+
+
+
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label">IMPORTO DA:</label>
+                    <input type="text" class="form-control" [(ngModel)]="filtroImportoDal" name="filtroImportoDal">
+                    <label class="control-label">A:</label>
+                    <input type="text" class="form-control" [(ngModel)]="filtroImportoAl" name="filtroImportoAl">
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label">PERIODO DA</label>
+                    <div>
+                      <p-calendar [locale]="it" [(ngModel)]="filtroDal" name="filtroDal" showAnim="slideDown" [showIcon]="true" dateFormat="yy-mm-dd" readonlyInput="readonlyInput" monthNavigator="true" yearNavigator="true" yearRange="{{yearRange}}" [maxDate]="today"></p-calendar>
+                    </div>
+                    <label class="control-label">A</label>
+                    <div>
+                      <p-calendar [locale]="it" [(ngModel)]="filtroAl" name="filtroAl" showAnim="slideDown" [showIcon]="true" dateFormat="yy-mm-dd" readonlyInput="readonlyInput" monthNavigator="true" yearNavigator="true" yearRange="{{yearRange}}" [maxDate]="today"></p-calendar>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-7">
+                  <div class="form-group">
+
+                  </div>
+                </div>
+
+                <div class="col-md-1">
+                  <div class="form-group">
+                    <label class="control-label"></label>
+                    <input type="text" class="form-control" style="visibility: hidden">
+                    <input type="text" class="form-control" style="visibility: hidden">
+                    <button class="btn btn-orange form-control fa fa-search" (click)="searchMovimenti()"></button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+
+          </form>
+        </div>
+
+      </app-fo-collapsible-bar>
+
+      <hr>
+      <div class="page-toolbar">
+        <button type="button" data-hover="tooltip" title="Aggiungi Movimento" class="btn btn-orange" data-toggle="modal" (click)="addMovimento()">
+          <i class="fa fa-plus"></i>
+          <i>Movimento</i>
+        </button>
+      </div>
+      <hr>
+
+      <p-dataTable [value]="movimenti"
+                   [responsive]="true"
+                   selectionMode="single"
+                   (onRowSelect)="onRowSelect($event)" >
+        <p-column field="data" header="DATA" sortable="true" [style]="{'text-align':'center'}"></p-column>
+        <p-column field="causale" header="CAUSALE" sortable="true" [style]="{'text-align':'center'}"></p-column>
+        <p-column field="importo" header="IMPORTO" sortable="true" [style]="{'text-align':'center'}"></p-column>
+        <p-column field="tipo" header="TIPO" sortable="true" [style]="{'text-align':'center'}"></p-column>
+        <p-column field="stato" header="STATO" sortable="true" [style]="{'text-align':'center'}"></p-column>
+    </p-dataTable>
+
+
+
+    </div>
+  </div>
+</div>

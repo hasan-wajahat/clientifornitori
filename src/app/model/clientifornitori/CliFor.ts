@@ -37,7 +37,7 @@ export class CliFor {
   insUser:string;
   modUser:string;
   ragioneSociale:string;
-
+  saldoDC:number;
 
   // public get dataNascita():string{
   //   console.log("CHIAMO GETTER DATA NASCITA: " + DateFormatter.format(this._dataNascita, 'it', 'dd/MM/yyyy'));

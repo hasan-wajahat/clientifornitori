@@ -2,7 +2,10 @@
  * Created by Rocco on 17/10/2016.
  */
 
-  import {Document} from "../commons/Document";
+import {Document} from "../commons/Document";
+import {TipoCassa} from "../fatturazione-elettronica/TipoCassa";
+import {RegimeFiscale} from "../fatturazione-elettronica/RegimeFiscale";
+import {CausaliModelli} from "../fatturazione-elettronica/CausaliModelli";
 
 export class User {
 
@@ -31,7 +34,6 @@ export class User {
   fax:string;
   tipoGestioneIVA:string;
   percentualeRivalsa:number;
-  tipoRivalsa:string;
   percentualeRitenuta:number;
   codiceAteco:string;
   codiciAliquote:number[];
@@ -46,11 +48,14 @@ export class User {
   accettazioneVerificaDD:boolean;
   autorizzazioneFirmaFatture:boolean;
   delegaConservazioneSostituitiva:boolean;
-  regimeForfettario:boolean;
   regimeIVAPerCassa:boolean;
   agenteCommercio:string;
   roles:string[];
-
   nomeReport:string;
+  regimeForfettario:boolean;
+  fatturazioneElettronica:boolean;
+  tipoCassa:TipoCassa;
+  regimeFiscale:RegimeFiscale;
+  causaliModelli:CausaliModelli;
 }
 

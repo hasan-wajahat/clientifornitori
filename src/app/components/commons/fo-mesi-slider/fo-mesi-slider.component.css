@@ -76,13 +76,13 @@
 #bs-mesi .mese .nCorr{
   position:absolute;
   z-index:30;
-  width:25px;
-  height:25px;
-  top:-10px;
-  left:-10px;
-  font-size:12px;
+  width:20px;
+  height:20px;
+  top:0px;
+  left:0px;
+  font-size:10px;
   text-align:center;
-  padding:5px;
+  padding:2.0px;
   border-radius:50%;
   background-color:#F57C00;
   animation:notification-effect 1.2s;
@@ -138,6 +138,12 @@
 .disabledMove{
   cursor:not-allowed;
   color:#6D87B7;
+}
+
+.meseSel{
+  background-color:#0a819c !important;
+  border:2px solid #0a819c !important;
+  color:#FFFFFF !important;
 }
 
 

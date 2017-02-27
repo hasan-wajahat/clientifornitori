@@ -2,6 +2,9 @@
   "CLIENTIFORNITORI": {
     "TITLE" : "Clienti/Fornitori"
   },
+
+
+
   "aliquota.iva.4" : "4%",
   "aliquota.iva.10" : "10%",
   "aliquota.iva.20" : "20%",
@@ -15,5 +18,31 @@
   "non.soggette": "NON SOGGETTE",
   "non.imponibili": "NON IMPONIBILI",
   "esenti": "ESENTI",
-  "IVA.assolta.in.altro.stato.UE": "IVA ASSOLTA ALTRO STATO UE"
+  "IVA.assolta.in.altro.stato.UE": "IVA ASSOLTA ALTRO STATO UE",
+
+
+
+  "SCADENZIARIO": {
+    "FATTURA_ACQUISTO" : "Fattura di Acquisto",
+    "FATTURA_VENDITA" : "Fattura di Vendita",
+    "RICEVUTA_SCONTRINO" : "Ricevuta Scontrino",
+    "RICEVUTA" : "Ricevuta",
+    "SCONTRINO" : "Scontrino",
+    "NOTA_CREDITO_ACQUISTO" : "Nota di credito Acquisto",
+    "NOTA_DEBITO_ACQUISTO" : "Nota di debito Acquisto",
+    "NOTA_CREDITO_VENDITA" : "Nota di credito Vendita",
+    "NOTA_DEBITO_VENDITA" : "Nota di debito Vendita",
+    "FATTURA_VENDITA_PRO_FORMA" : "Fattura Vendita pro forma",
+    "CLIENTE" : "Cliente",
+    "FORNITORE" : "Fornitore"
+  },
+
+  "CONTI":{
+    "TITLE" : "Conti",
+    "ADD" : "Aggiungi Conto"
+  },
+
+  "MOVIMENTI":{
+    "TITLE" : "Movimenti"
+  }
 }

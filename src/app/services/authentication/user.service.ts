@@ -78,6 +78,16 @@ export class UserService {
     return this.restCommonUtil.jsonGet(operationPath);
   }
 
+  getListaCassePrevidenza(){
+    let operationPath = ServicesEndpoint.operationListaCassePrevidenza;
+    return this.restCommonUtil.jsonGet(operationPath);
+  }
+
+  getListaRegimiFiscali(){
+    let operationPath = ServicesEndpoint.operationListaRegimiFiscali;
+    return this.restCommonUtil.jsonGet(operationPath);
+  }
+
   downloadFile(docId:number, contentDisposition:ContentDisposition){
     let operationPath = ServicesEndpoint.operationDownloadFile;
     let params:URLSearchParams = new URLSearchParams();

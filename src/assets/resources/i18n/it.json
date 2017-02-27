@@ -2,6 +2,9 @@
   "CLIENTIFORNITORI": {
     "TITLE" : "Clienti/Fornitori"
   },
+
+
+
   "aliquota.iva.4" : "4%",
   "aliquota.iva.10" : "10%",
   "aliquota.iva.20" : "20%",
@@ -17,6 +20,8 @@
   "esenti": "ESENTI",
   "IVA.assolta.in.altro.stato.UE": "IVA ASSOLTA ALTRO STATO UE",
 
+
+
   "SCADENZIARIO": {
     "FATTURA_ACQUISTO" : "Fattura di Acquisto",
     "FATTURA_VENDITA" : "Fattura di Vendita",
@@ -30,5 +35,14 @@
     "FATTURA_VENDITA_PRO_FORMA" : "Fattura Vendita pro forma",
     "CLIENTE" : "Cliente",
     "FORNITORE" : "Fornitore"
+  },
+
+  "CONTI":{
+    "TITLE" : "Conti",
+    "ADD" : "Aggiungi Conto"
+  },
+
+  "MOVIMENTI":{
+    "TITLE" : "Movimenti"
   }
 }

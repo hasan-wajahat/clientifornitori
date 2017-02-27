@@ -1,0 +1,131 @@
+<app-titlepage pageTitle="{{ movimentoDTO.id != undefined ? 'Modifica movimento' : 'Aggiungi movimento' }}"></app-titlepage>
+<div class="page-content">
+
+  <div class="page-toolbar">
+    <button type="button" data-hover="tooltip" title="Lista Movimenti" class="btn btn-orange" data-toggle="modal" (click)="backToListaMovimenti()">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      <i>Lista Movimenti</i>
+    </button>
+    <button type="button" data-hover="tooltip" title="Salva" class="btn btn-orange" data-toggle="modal" (click)="saveConfirm()">
+      <i class="fa fa-save" aria-hidden="true"></i>
+      <i>Salva</i>
+    </button>
+    <button type="button" data-hover="tooltip" title="Elimina" class="btn btn-orange" data-toggle="modal" (click)="eliminaConfirm()"
+      [style.display]="movimentoDTO.id != undefined ? 'inline' : 'none'">
+      <i class="fa fa-trash-o" aria-hidden="true"></i>
+      <i>Elimina</i>
+      </button>
+  </div>
+
+  <br>
+
+  <form [formGroup]="formDatiMovimento">
+
+    <div class="panel">
+      <div class="panel-heading">Movimento</div>
+      <div class="panel-body pan">
+
+        <div class="form-body pal">
+
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="inputData" class="movimento-label">Data</label>
+                <small *ngIf="formErrors.data" class="text-danger">
+                    {{ formErrors.data }}
+                  </small>
+                <div>
+                  <p-calendar [locale]="it" id="inputData" name="inputData" showAnim="slideDown" [showIcon]="true" dateFormat="yy-mm-dd" formControlName="data"
+                    readonlyInput="readonlyInput" monthNavigator="true" yearNavigator="true" yearRange="{{yearRange}}" [maxDate]="today"
+                    [class.input-not-valid]="formErrors.data"></p-calendar>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="inputTipo" class="control-label">TIPO</label>
+                <small *ngIf="formErrors.tipo" class="text-danger">
+                  {{ formErrors.tipo }}
+                </small>
+                <select class="form-control" id="inputTipo" formControlName="tipo" [class.input-not-valid]="formErrors.tipo">
+                  <option value="ENTRATA">Entrata</option>
+                  <option value="USCITA">Uscita</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="inputStato" class="control-label">STATO</label>
+                <small *ngIf="formErrors.stato" class="text-danger">
+                  {{ formErrors.stato }}
+                </small>
+                <select class="form-control" id="inputStato" formControlName="stato" [class.input-not-valid]="formErrors.stato">
+                  <option value="INTERNO">Interno</option>
+                  <option value="BANCA">Banca</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="inputImporto" class="movimento-label">Importo*</label>
+                <small *ngIf="formErrors.importo" class="text-danger">
+                  {{ formErrors.importo }}
+                </small>
+                <input id="inputImporto" type="text" class="form-control" formControlName="importo" [class.input-not-valid]="formErrors.importo"
+                />
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+
+            <div class="col-md-8">
+              <div class="form-group">
+                <label for="inputCausale" class="movimento-label">Causale*</label>
+                <small *ngIf="formErrors.causale" class="text-danger">
+                    {{ formErrors.causale }}
+                  </small>
+                <input id="inputCausale" type="text" class="form-control" formControlName="causale" [class.input-not-valid]="formErrors.causale"
+                />
+              </div>
+            </div>
+
+          </div>
+          <div class="row" [style.display]="movimentoDTO.id != undefined ? 'inline' : 'none'">
+            PARTITE ASSOCIATE<br/><br/>
+            <p-dataTable [value]="[movimentoDTO]" [responsive]="true" [style.display]="movimentoDTO.hasCorrispettivo() == true ? 'inline' : 'none'">
+              <p-column field="corrispettivo.tipoDocumento" header="TIPO" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="corrispettivo.dateEmissione" header="DATA EMISSIONE" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="corrispettivo.totale" header="TOTALE" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="corrispettivo.stato" header="STATO" [style]="{'text-align':'center'}"></p-column>
+            </p-dataTable>
+
+            <p-dataTable [value]="[movimentoDTO]" [responsive]="true" [style.display]="movimentoDTO.hasPurchase() == true ? 'inline' : 'none'">
+              <p-column field="purchase.tipoDocumento" header="TIPO" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="purchase.cliFor.intestazioneCognomeNome" header="INTESTAZIONE" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="purchase.numeroDocumento" header="NUMERO" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="purchase.dataEmissione" header="DATA EMISSIONE" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="purchase.totale" header="TOTALE" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="purchase.statoFattura" header="STATO FATTURA" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="purchase.statoPagamento" header="STATO PAGAMENTO" [style]="{'text-align':'center'}"></p-column>
+            </p-dataTable>
+
+            <p-dataTable [value]="[movimentoDTO]" [responsive]="true" [style.display]="movimentoDTO.hasSale() == true ? 'inline' : 'none'">
+              <p-column field="sale.tipoDocumento" header="TIPO" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="sale.cliFor.intestazioneCognomeNome" header="INTESTAZIONE" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="sale.numeroDocumento" header="NUMERO" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="sale.dataEmissione" header="DATA EMISSIONE" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="sale.totDocumento" header="TOTALE" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="sale.statoDocumento" header="STATO DOCUMENTO" [style]="{'text-align':'center'}"></p-column>
+              <p-column field="sale.statoPagamento" header="STATO PAGAMENTO" [style]="{'text-align':'center'}"></p-column>
+            </p-dataTable>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>

@@ -25,6 +25,7 @@ export class ServicesEndpoint {
   public static operationDeleteCorrispettivi = '/api/v1/corrispettivo/{id}';
   public static operationUpdateStatusCorrispettivi = '/api/v1/corrispettivo/status';
   public static operationGetBills = '/api/v1/bills/listOfValues/';
+  public static operationGetUltimoConfermato = '/api/v1/corrispettivo/lastConfirmed';
 
   /**
    * path servizi login/gestione utente
@@ -34,6 +35,8 @@ export class ServicesEndpoint {
   public static operationListaCodiciVAT:string = '/api/public/v1/codesVAT';
   public static operationUpdateUser:string = '/api/v1/users';
   public static operationDownloadFile:string = '/api/v1/download/{docId}';
+  public static operationListaCassePrevidenza:string = '/api/public/v1/FE/tipoCassa';
+  public static operationListaRegimiFiscali:string = '/api/public/v1/FE/regimeFiscale';
 
   /**
    * Scadenziario
@@ -51,5 +54,21 @@ export class ServicesEndpoint {
   public static operationTotaliClienteFornitoreAnno = '/api/v1/dashboard/totalCliForYear';
 
 
+  /**
+   * path servizi rest Conti
+   */
+  public static operationContiList = '/api/v1/bills/';
+  public static operationContoInsert = '/api/v1/bills/';
+  public static operationGetConto = '/api/v1/bills/{id}';
+  public static operationUpdateAndCheckConto = '/api/v1/bills/';
+  public static operationDeleteConto = '/api/v1/bills/{id}';
+  /**static
+   * path servizi rest Movimenti
+   */
+  public static operationMovimentiList = '/api/v1/movements/';
+  public static operationMovimentoInsert = '/api/v1/movements/';
+  public static operationGetMovimento = '/api/v1/movements/{id}';
+  public static operationUpdateAndCheckMovimento = '/api/v1/movements/';
+  public static operationDeleteMovimento = '/api/v1/movements/{id}';
 
 }

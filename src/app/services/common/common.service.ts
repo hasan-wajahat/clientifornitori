@@ -1,6 +1,6 @@
 import {Injectable, ElementRef} from "@angular/core";
 import {Message} from "primeng/primeng";
-import {FormGroup} from "@angular/forms";
+import {FormGroup, FormArray} from "@angular/forms";
 import {ErrorDetail} from "../../model/commons/ErrorDetail";
 import {ValidationError} from "../../model/commons/ValidationError";
 import {NumberFormatter, NumberFormatStyle} from "@angular/common/src/pipes/intl";
@@ -126,6 +126,18 @@ export class CommonService {
     msgs = [];
     msgs.push({severity:'info', summary:'Operazione conclusa.', detail:mess});
     return msgs;
+  }
+
+  public static onValueChangedFormArray(data: any, formArray:FormArray, formErrors:any, validationMessages:any, submitted:boolean) {
+
+    for(let i=0;i<formArray.length;i++){
+
+      let fb:FormGroup = <FormGroup>formArray.at(i);
+      this.onValueChanged(data, fb, formErrors, validationMessages, submitted);
+
+    }
+
+
   }
 
   /**
