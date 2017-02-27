@@ -24,7 +24,7 @@ export class InvoiceItemComponent implements OnInit {
   codesVAT: number[] = [];
 
   constructor(private venditeService: VenditeService, private route: ActivatedRoute,
-    private salesFormCreator: SalesFormCreator) { }
+    private salesFormCreator: SalesFormCreator, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -125,6 +125,37 @@ export class InvoiceItemComponent implements OnInit {
 
   updateModels(val: number, index: number) {
     this.codesVAT[index] = val;
+  }
+
+  addArticle() {
+    const control = <FormArray>this.salesDocumentForm.controls['articoli'];
+    let item = control.value[0];
+    control.push(this.fb.group({
+      id: [''],
+      codiceIVA: this.fb.group({
+        codiceId: [''],
+        descrizione: [''],
+        dateFrom: [''],
+        dateTo: [''],
+        dafaultVAT: [''],
+        pcAliquota: ['']
+      }),
+      codiceArticolo: [''],
+      tipoVendita: [''],
+      descrizioneArticolo: [''],
+      unitaMisura: [''],
+      quantita: [''],
+      importoUnitario: [''],
+      pcSconto: [''],
+      totNetto: [''],
+      soggettoRitenuta: ['']
+    }))
+    this.codesVAT.push(0);
+  }
+
+  deleteArticle(index: number) {
+    const control = <FormArray>this.salesDocumentForm.controls['articoli'];
+    control.removeAt(index);
   }
 
   test() {

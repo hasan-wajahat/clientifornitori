@@ -131,17 +131,25 @@
               <div class="col-md-2">
                 <div class="form-group">
                   <label class="control-label">SOGGETTO A TIRENUTA*</label>
-                  <input type="checkbox" class="form-control" formControlName="soggettoRitenuta">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="checkbox" class="form-control" formControlName="soggettoRitenuta">
+                    </div>
+                    <div class="col-md-6">
+                      <button (click)="deleteArticle(i)" class="btn btn-default">x</button>
+                    </div>
+                  </div>
                 </div>
               </div>
 
             </div>
           </div>
+          <button (click)="addArticle()" class="btn btn-default">+</button>
         </div>
       </div>
     </div>
 
-        <!-- Tutto Coretto-->
+    <!-- Tutto Coretto-->
     <div class="panel">
       <div class="panel-heading">TUTTO CORRETTO</div>
       <div class="panel-body pan">
@@ -173,7 +181,7 @@
       </div>
     </div>
 
-    <button (click)="test()" class="btn btn-default"> Test </button>
+    <button (click)="addArticle()" class="btn btn-default"> Test </button>
 
   </form>
 </div>
