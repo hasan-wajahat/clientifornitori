@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Params, ActivatedRoute } from "@angular/router";
 import { VenditeService } from "../../../services/vendite/vendite.service";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, FormArray, Validators } from "@angular/forms";
 import { SalesDocument } from "../../../model/vendite/salesDocument";
 import { SalesFormCreator } from "./invoice-item-form";
 import { CommonService } from "../../../services/common/common.service";
@@ -21,6 +21,7 @@ export class InvoiceItemComponent implements OnInit {
   tipoVenditaDropDown: any;
   unitaMisuraDropDown: any;
   codesVATDropDown: any = [];
+  codesVAT: number[] = [];
 
   constructor(private venditeService: VenditeService, private route: ActivatedRoute,
     private salesFormCreator: SalesFormCreator) { }
@@ -34,6 +35,7 @@ export class InvoiceItemComponent implements OnInit {
             this.salesDocumentForm = this.salesFormCreator.buildSalesForm(res);
             this.initializeDate(res);
             this.createVATDropDown();
+            this.createCodiceIVAArray();
           },
           error => console.log(error)
         )
@@ -59,6 +61,13 @@ export class InvoiceItemComponent implements OnInit {
       { value: 'MQ' },
     ]
 
+  }
+
+  createCodiceIVAArray() {
+    let articles = this.salesDocumentForm.value.articoli;
+    articles.map(article => {
+      this.codesVAT.push(article.codiceIVA.pcAliquota)
+    })
   }
 
   inizializzaCalendar() {
@@ -102,7 +111,23 @@ export class InvoiceItemComponent implements OnInit {
     this.createVATDropDown();
   }
 
+  calculateTotaleNetto(event: any, index: number, type: string) {
+    let item = this.salesDocumentForm.value.articoli[index];
+    let val = 0;
+    if (type == "quantita") {
+      val = event * item.importoUnitario;
+    } else {
+      val = item.quantita * event;
+    }
+    const article = <FormArray>this.salesDocumentForm.controls['articoli']
+    article.controls[index].patchValue({ totNetto: val });
+  }
+
+  updateModels(val: number, index: number) {
+    this.codesVAT[index] = val;
+  }
+
   test() {
-    console.log('changing');
+    console.log(this.salesDocumentForm.value.articoli[0]);
   }
 }

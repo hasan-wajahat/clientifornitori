@@ -25,9 +25,9 @@
             <div class="col-md-6">
               <label class="control-label">DATA EMISSIONE*</label>
               <div>
-                <p-calendar id="endDate" name="endDate" (ngModelChange)="issueDateSet()" [locale]="it" [(ngModel)]="issueDate" [ngModelOptions]="{standalone: true}" showAnim="slideDown"
-                  [showIcon]="true" [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange"
-                  [maxDate]="today"></p-calendar>
+                <p-calendar id="endDate" name="endDate" (ngModelChange)="issueDateSet()" [locale]="it" [(ngModel)]="issueDate" [ngModelOptions]="{standalone: true}"
+                  showAnim="slideDown" [showIcon]="true" [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true"
+                  [yearRange]="yearRange" [maxDate]="today"></p-calendar>
               </div>
             </div>
             <div formGroupName="cliFor" class="col-md-6">
@@ -89,7 +89,7 @@
               <div class="col-md-1">
                 <div class="form-group">
                   <label class="control-label">QUANTITA*</label>
-                  <input class="form-control" formControlName="quantita">
+                  <input class="form-control" formControlName="quantita" (ngModelChange)="calculateTotaleNetto($event,i, 'quantita')">
                 </div>
               </div>
               <div class="col-md-1">
@@ -104,7 +104,7 @@
               <div class="col-md-2">
                 <div class="form-group">
                   <label class="control-label">IMPORTO UNIT*</label>
-                  <input class="form-control" formControlName="importoUnitario">
+                  <input class="form-control" formControlName="importoUnitario" (ngModelChange)="calculateTotaleNetto($event,i, 'unit')">
                 </div>
               </div>
               <div class="col-md-1">
@@ -116,14 +116,13 @@
               <div class="col-md-1">
                 <div class="form-group">
                   <label class="control-label">TOTALE NETTO*</label>
-                  <input class="form-control" formControlName="totNetto" disabled
-                    [value]="articoliGroup.value.quantita*articoliGroup.value.importoUnitario">
+                  <input class="form-control" formControlName="totNetto" disabled [value]="articoliGroup.value.quantita*articoliGroup.value.importoUnitario">
                 </div>
               </div>
               <div class="col-md-1">
                 <div formGroupName="codiceIVA" class="form-group">
                   <label class="control-label">% ALIO.IVA*</label>
-                  <select formControlName="pcAliquota">
+                  <select formControlName="pcAliquota" (ngModelChange)="updateModels($event, i)">
                     <option *ngFor="let opt of codesVATDropDown"
                      [value]="opt.value">{{opt.value}}</option>
                   </select>
@@ -136,6 +135,38 @@
                 </div>
               </div>
 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <!-- Tutto Coretto-->
+    <div class="panel">
+      <div class="panel-heading">TUTTO CORRETTO</div>
+      <div class="panel-body pan">
+        <div class="form-body pal">
+          <div class="row">
+            <div class="col-md-2">
+              <label class="control-label"> RIEPILOGO IVA</label>
+            </div>
+          </div>
+          <div class="row" *ngFor="let articoliGroup of salesDocumentForm.controls.articoli.controls; let i = index">
+            <div class="col-md-2">
+            </div>
+            <div [formGroup]=articoliGroup class="form-group">
+              <div class="col-md-1">
+                <label class="control-label"></label>
+                <input class="form-control" formControlName="totNetto" disabled>
+              </div>
+              <div class="col-md-1" formGroupName="codiceIVA">
+                <label class="control-label"></label>
+                <input class="form-control" disabled [value]="codesVAT[i]">
+              </div>
+              <div class="col-md-1" formGroupName="codiceIVA">
+                <label class="control-label"></label>
+                <input class="form-control" [value]="articoliGroup.value.totNetto * (codesVAT[i]/100)" disabled>
+              </div>
             </div>
           </div>
         </div>
