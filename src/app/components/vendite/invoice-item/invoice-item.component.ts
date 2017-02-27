@@ -170,10 +170,16 @@ export class InvoiceItemComponent implements OnInit {
     control.removeAt(index);
   }
 
-  calculateTotals(val?: number, index?: number) {
+  calculateTotals(val?: number, index?: number, group?: FormGroup) {
     const control = <FormArray>this.salesDocumentForm.controls['articoli'];
     if (val) {
-      this.totaleImponible = this.totaleImponible - control.value[index].totNetto + val
+      // this.totaleImponible = this.totaleImponible - control.value[index].totNetto + val
+      setTimeout(() => {
+        this.totaleImponible = 0;
+        for (let item of control.value) {
+          this.totaleImponible += item.totNetto
+        }
+      }, 200);
     } else {
       this.totaleImponible = 0;
       for (let item of control.value) {
@@ -184,7 +190,7 @@ export class InvoiceItemComponent implements OnInit {
 
   totLordoChange(val: number, index: number) {
     // TODO: replace it by observables and rxjs debounce
-    setTimeout( () => {
+    setTimeout(() => {
       const article = <FormArray>this.salesDocumentForm.controls['articoli'];
       let totalNet = val / (1 + (article.value[index].codiceIVA.pcAliquota));
       let discount = (1 - (totalNet / (article.value[index].quantita * article.value[index].importoUnitario))) * 100;
