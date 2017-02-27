@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Params, ActivatedRoute } from "@angular/router";
 import { VenditeService } from "../../../services/vendite/vendite.service";
-import { FormGroup, FormBuilder, FormArray, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from "@angular/forms";
 import { SalesDocument } from "../../../model/vendite/salesDocument";
 import { SalesFormCreator } from "./invoice-item-form";
 import { CommonService } from "../../../services/common/common.service";
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'app-invoice-item',
@@ -22,6 +23,8 @@ export class InvoiceItemComponent implements OnInit {
   unitaMisuraDropDown: any;
   codesVATDropDown: any = [];
   codesVAT: number[] = [];
+  totaleImponible: number;
+  totLordo: number[] = [];
 
   constructor(private venditeService: VenditeService, private route: ActivatedRoute,
     private salesFormCreator: SalesFormCreator, private fb: FormBuilder) { }
@@ -35,7 +38,8 @@ export class InvoiceItemComponent implements OnInit {
             this.salesDocumentForm = this.salesFormCreator.buildSalesForm(res);
             this.initializeDate(res);
             this.createVATDropDown();
-            this.createCodiceIVAArray();
+            this.createModelArray();
+            this.calculateTotals();
           },
           error => console.log(error)
         )
@@ -63,11 +67,10 @@ export class InvoiceItemComponent implements OnInit {
 
   }
 
-  createCodiceIVAArray() {
+  createModelArray() {
     let articles = this.salesDocumentForm.value.articoli;
-    articles.map(article => {
-      this.codesVAT.push(article.codiceIVA.pcAliquota)
-    })
+    this.codesVAT = articles.map(article => article.codiceIVA.pcAliquota);
+    this.totLordo = articles.map(article => article.totNetto + article.totNetto * article.codiceIVA.pcAliquota);
   }
 
   inizializzaCalendar() {
@@ -113,18 +116,27 @@ export class InvoiceItemComponent implements OnInit {
 
   calculateTotaleNetto(event: any, index: number, type: string) {
     let item = this.salesDocumentForm.value.articoli[index];
+    const article = <FormArray>this.salesDocumentForm.controls['articoli']
     let val = 0;
+    let totalNet = 0;
     if (type == "quantita") {
       val = event * item.importoUnitario;
-    } else {
+      totalNet = val - (val * (item.pcSconto / 100));
+    } else if (type == "unit") {
       val = item.quantita * event;
+      totalNet = val - (val * (item.pcSconto / 100));
+    } else if (type == "discount") {
+      val = item.quantita * item.importoUnitario;
+      totalNet = val - (val * (event / 100));
     }
-    const article = <FormArray>this.salesDocumentForm.controls['articoli']
-    article.controls[index].patchValue({ totNetto: val });
+    this.totLordo[index] = totalNet + (totalNet * (item.codiceIVA.pcAliquota / 100));
+    article.controls[index].patchValue({ totNetto: totalNet });
   }
 
   updateModels(val: number, index: number) {
+    let item = this.salesDocumentForm.value.articoli[index];
     this.codesVAT[index] = val;
+    this.totLordo[index] = item.totNetto + item.totNetto * (val / 100);
   }
 
   addArticle() {
@@ -156,6 +168,28 @@ export class InvoiceItemComponent implements OnInit {
   deleteArticle(index: number) {
     const control = <FormArray>this.salesDocumentForm.controls['articoli'];
     control.removeAt(index);
+  }
+
+  calculateTotals(val?: number, index?: number) {
+    const control = <FormArray>this.salesDocumentForm.controls['articoli'];
+    if (val) {
+      this.totaleImponible = this.totaleImponible - control.value[index].totNetto + val
+    } else {
+      this.totaleImponible = 0;
+      for (let item of control.value) {
+        this.totaleImponible += item.totNetto
+      }
+    }
+  }
+
+  totLordoChange(val: number, index: number) {
+    // TODO: replace it by observables and rxjs debounce
+    setTimeout( () => {
+      const article = <FormArray>this.salesDocumentForm.controls['articoli'];
+      let totalNet = val / (1 + (article.value[index].codiceIVA.pcAliquota));
+      let discount = (1 - (totalNet / (article.value[index].quantita * article.value[index].importoUnitario))) * 100;
+      article.controls[index].patchValue({ totNetto: totalNet, pcSconto: discount });
+    }, 2000);
   }
 
   test() {

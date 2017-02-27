@@ -101,7 +101,7 @@
                   </select>
                 </div>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-1">
                 <div class="form-group">
                   <label class="control-label">IMPORTO UNIT*</label>
                   <input class="form-control" formControlName="importoUnitario" (ngModelChange)="calculateTotaleNetto($event,i, 'unit')">
@@ -110,13 +110,13 @@
               <div class="col-md-1">
                 <div class="form-group">
                   <label class="control-label">%SCONTI</label>
-                  <input class="form-control" formControlName="pcSconto">
+                  <input class="form-control" formControlName="pcSconto" (ngModelChange)="calculateTotaleNetto($event,i, 'discount')">
                 </div>
               </div>
               <div class="col-md-1">
                 <div class="form-group">
                   <label class="control-label">TOTALE NETTO*</label>
-                  <input class="form-control" formControlName="totNetto" disabled [value]="articoliGroup.value.quantita*articoliGroup.value.importoUnitario">
+                  <input class="form-control" formControlName="totNetto" disabled>
                 </div>
               </div>
               <div class="col-md-1">
@@ -126,6 +126,12 @@
                     <option *ngFor="let opt of codesVATDropDown"
                      [value]="opt.value">{{opt.value}}</option>
                   </select>
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <label class="control-label">TOT LORDO*</label>
+                  <input class="form-control" [(ngModel)] = "totLordo[i]" (ngModelChange)="totLordoChange($event, i)" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="col-md-2">
@@ -160,12 +166,10 @@
             </div>
           </div>
           <div class="row" *ngFor="let articoliGroup of salesDocumentForm.controls.articoli.controls; let i = index">
-            <div class="col-md-2">
-            </div>
             <div [formGroup]=articoliGroup class="form-group">
               <div class="col-md-1">
                 <label class="control-label"></label>
-                <input class="form-control" formControlName="totNetto" disabled>
+                <input class="form-control" formControlName="totNetto" (ngModelChange)="calculateTotals($event, i)" disabled>
               </div>
               <div class="col-md-1" formGroupName="codiceIVA">
                 <label class="control-label"></label>
@@ -175,6 +179,25 @@
                 <label class="control-label"></label>
                 <input class="form-control" [value]="articoliGroup.value.totNetto * (codesVAT[i]/100)" disabled>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <div class="col-md-2">
+                <label class="control-label"> TOTALE IMPONIBLE:</label>
+              </div>
+              <div class="col-md-1">
+                <input class="form-control" [ngModel]="totaleImponible" [ngModelOptions]="{standalone: true}" disabled>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="conrol-label">TOTALE IMPOSTE</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label"></label>
+              <input class="form-control" [ngModel]="totaleImposte" [ngModelOptions]="{standalone: true}" disabled>
             </div>
           </div>
         </div>
