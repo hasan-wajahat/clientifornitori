@@ -1,5 +1,5 @@
 import { ClienteFornitore } from "./clienteFornitore";
-import {Articoli} from "./articoli";
+import { Articoli } from "./articoli";
 
 export class SalesDocument {
   articoli: Articoli[];
@@ -22,6 +22,7 @@ export class SalesDocument {
   pcScontoTotale: number;
   ritenutaAcconto: number;
   ritenutaEnasarco: number;
+  rivalsa: number;
   scadenze: any;
   statoDocumento: string;
   statoInviato: boolean;

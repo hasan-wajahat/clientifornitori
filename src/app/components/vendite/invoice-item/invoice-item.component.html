@@ -207,6 +207,24 @@
               <label class="control-label"></label>
               <input class="form-control" [ngModel]="totaleImposte" [ngModelOptions]="{standalone: true}" disabled>
             </div>
+            <div class="col-md-2">
+              <label class="conrol-label">TOTALE FATTURA:</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label"></label>
+              <input class="form-control" formControlName="totDocumento" [value]="totaleImponible + totaleImposte + salesDocumentForm.value.rivalsa" disabled>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="conrol-label">TOTALE DA PAGARE:</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label"></label>
+              <input class="form-control" formControlName="totDaPagare"
+               [value]="salesDocumentForm.value.totDocumento - salesDocumentForm.value.ritenutaEnasarco - salesDocumentForm.value.ritenutaAcconto + salesDocumentForm.value.marcaDaBollo"
+                disabled>
+            </div>
           </div>
         </div>
       </div>
