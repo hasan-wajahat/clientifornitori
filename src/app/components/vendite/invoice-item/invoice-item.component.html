@@ -131,7 +131,7 @@
               <div class="col-md-1">
                 <div class="form-group">
                   <label class="control-label">TOT LORDO*</label>
-                  <input class="form-control" [(ngModel)] = "totLordo[i]" (ngModelChange)="totLordoChange($event, i)" [ngModelOptions]="{standalone: true}">
+                  <input class="form-control" [(ngModel)]="totLordo[i]" (ngModelChange)="totLordoChange($event, i)" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="col-md-2">
@@ -139,7 +139,7 @@
                   <label class="control-label">SOGGETTO A TIRENUTA*</label>
                   <div class="row">
                     <div class="col-md-6">
-                      <input type="checkbox" class="form-control" formControlName="soggettoRitenuta">
+                      <input type="checkbox" class="form-control" formControlName="soggettoRitenuta" (ngModelChange)="calculateRitenutaEnasarco()">
                     </div>
                     <div class="col-md-6">
                       <button (click)="deleteArticle(i)" class="btn btn-default">x</button>
@@ -160,40 +160,48 @@
       <div class="panel-heading">TUTTO CORRETTO</div>
       <div class="panel-body pan">
         <div class="form-body pal">
-          <div class="row">
-            <div class="col-md-2">
-              <label class="control-label"> RIEPILOGO IVA</label>
-            </div>
-          </div>
-          <div class="row" *ngFor="let articoliGroup of salesDocumentForm.controls.articoli.controls; let i = index">
-            <div [formGroup]=articoliGroup class="form-group">
-              <div class="col-md-1">
-                <label class="control-label"></label>
-                <input class="form-control" formControlName="totNetto" (ngModelChange)="calculateTotals($event, i, articoliGroup)" disabled>
-              </div>
-              <div class="col-md-1" formGroupName="codiceIVA">
-                <label class="control-label"></label>
-                <input class="form-control" disabled [value]="codesVAT[i]">
-              </div>
-              <div class="col-md-1" formGroupName="codiceIVA">
-                <label class="control-label"></label>
-                <input class="form-control" [value]="articoliGroup.value.totNetto * (codesVAT[i]/100)" disabled>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group">
+          <div *ngIf="!userData.regimeForfettario">
+            <div class="row">
               <div class="col-md-2">
-                <label class="control-label"> TOTALE IMPONIBLE:</label>
+                <label class="control-label"> RIEPILOGO IVA</label>
               </div>
-              <div class="col-md-1">
-                <input class="form-control" [ngModel]="totaleImponible" [ngModelOptions]="{standalone: true}" disabled>
+            </div>
+            <div class="row" *ngFor="let articoliGroup of salesDocumentForm.controls.articoli.controls; let i = index">
+              <div [formGroup]=articoliGroup class="form-group">
+                <div class="col-md-1">
+                  <label class="control-label"></label>
+                  <input class="form-control" formControlName="totNetto" (ngModelChange)="calculateTotals($event)" disabled>
+                </div>
+                <div class="col-md-1" formGroupName="codiceIVA">
+                  <label class="control-label"></label>
+                  <input class="form-control" disabled [value]="codesVAT[i]">
+                </div>
+                <div class="col-md-1" formGroupName="codiceIVA">
+                  <label class="control-label"></label>
+                  <input class="form-control" [value]="articoliGroup.value.totNetto * (codesVAT[i]/100)" disabled>
+                </div>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-2">
-              <label class="conrol-label">TOTALE IMPOSTE</label>
+              <label class="control-label"> TOTALE IMPONIBLE:</label>
+            </div>
+            <div class="col-md-1">
+              <input class="form-control" [ngModel]="totaleImponible" [ngModelOptions]="{standalone: true}" disabled>
+            </div>
+            <div *ngIf="userData.formaGiuridica == 'LIBERO_PROFESSIONISTA' && userData.agenteCommercio== 'MONOMANDATARIO'">
+              <div class="col-md-2">
+                <label class="control-label"> RITENUTA ENASARCO:</label>
+              </div>
+              <div class="col-md-1">
+                <input class="form-control" formControlName="ritenutaEnasarco" disabled>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="conrol-label">TOTALE IMPOSTE:</label>
             </div>
             <div class="col-md-1">
               <label class="control-label"></label>
@@ -204,7 +212,7 @@
       </div>
     </div>
 
-    <button (click)="addArticle()" class="btn btn-default"> Test </button>
+    <button (click)="test()" class="btn btn-default"> Test </button>
 
   </form>
 </div>

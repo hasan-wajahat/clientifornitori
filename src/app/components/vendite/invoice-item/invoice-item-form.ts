@@ -36,6 +36,7 @@ export class SalesFormCreator {
       pcRivalsa: [salesDocument.pcRivalsa],
       pcScontoTotale: [salesDocument.pcScontoTotale],
       ritenutaAcconto: [salesDocument.ritenutaAcconto],
+      ritenutaEnasarco: [salesDocument.ritenutaEnasarco],
       scadenze: [salesDocument.scadenze],
       statoDocumento: [salesDocument.statoDocumento],
       statoInviato: [salesDocument.statoInviato],

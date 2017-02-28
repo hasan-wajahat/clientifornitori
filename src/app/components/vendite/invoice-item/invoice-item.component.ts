@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from "@ang
 import { SalesDocument } from "../../../model/vendite/salesDocument";
 import { SalesFormCreator } from "./invoice-item-form";
 import { CommonService } from "../../../services/common/common.service";
+import { User } from "../../../model/user/User";
 import 'rxjs/add/operator/debounceTime';
 
 @Component({
@@ -16,6 +17,7 @@ import 'rxjs/add/operator/debounceTime';
 export class InvoiceItemComponent implements OnInit {
   salesDocumentForm: FormGroup;
   it: any;
+  userData: User;
   yearRange: string;
   today = new Date();
   issueDate = new Date();
@@ -25,6 +27,7 @@ export class InvoiceItemComponent implements OnInit {
   codesVAT: number[] = [];
   totaleImponible: number;
   totLordo: number[] = [];
+  totaleImposte: number;
 
   constructor(private venditeService: VenditeService, private route: ActivatedRoute,
     private salesFormCreator: SalesFormCreator, private fb: FormBuilder) { }
@@ -45,6 +48,7 @@ export class InvoiceItemComponent implements OnInit {
         )
       }
     );
+    this.userData = <User>JSON.parse(sessionStorage.getItem("UserData"));
     this.inizializzaCalendar();
     this.initializeArray();
 
@@ -131,12 +135,14 @@ export class InvoiceItemComponent implements OnInit {
     }
     this.totLordo[index] = totalNet + (totalNet * (item.codiceIVA.pcAliquota / 100));
     article.controls[index].patchValue({ totNetto: totalNet });
+    this.calculateRitenutaEnasarco();
   }
 
   updateModels(val: number, index: number) {
     let item = this.salesDocumentForm.value.articoli[index];
     this.codesVAT[index] = val;
     this.totLordo[index] = item.totNetto + item.totNetto * (val / 100);
+    this.calculateTotals(1);
   }
 
   addArticle() {
@@ -170,20 +176,24 @@ export class InvoiceItemComponent implements OnInit {
     control.removeAt(index);
   }
 
-  calculateTotals(val?: number, index?: number, group?: FormGroup) {
+  calculateTotals(val?: number) {
     const control = <FormArray>this.salesDocumentForm.controls['articoli'];
     if (val) {
-      // this.totaleImponible = this.totaleImponible - control.value[index].totNetto + val
       setTimeout(() => {
         this.totaleImponible = 0;
+        this.totaleImposte = 0
         for (let item of control.value) {
           this.totaleImponible += item.totNetto
+          this.totaleImposte += (item.codiceIVA.pcAliquota / 100 * item.totNetto)
         }
       }, 200);
     } else {
       this.totaleImponible = 0;
+      this.totaleImposte = 0
       for (let item of control.value) {
-        this.totaleImponible += item.totNetto
+        this.totaleImponible += item.totNetto;
+        this.totaleImposte = 0
+        this.totaleImposte += (item.codiceIVA.pcAliquota / 100 * item.totNetto)
       }
     }
   }
@@ -192,13 +202,28 @@ export class InvoiceItemComponent implements OnInit {
     // TODO: replace it by observables and rxjs debounce
     setTimeout(() => {
       const article = <FormArray>this.salesDocumentForm.controls['articoli'];
-      let totalNet = val / (1 + (article.value[index].codiceIVA.pcAliquota));
+      let totalNet = val / (1 + (article.value[index].codiceIVA.pcAliquota / 100));
       let discount = (1 - (totalNet / (article.value[index].quantita * article.value[index].importoUnitario))) * 100;
       article.controls[index].patchValue({ totNetto: totalNet, pcSconto: discount });
     }, 2000);
   }
 
+  calculateRitenutaEnasarco() {
+    let yearlyTax = 7.55;
+    const control = <FormArray>this.salesDocumentForm.controls['articoli'];
+    let sum = 0;
+    setTimeout(() => {
+      for (let item of control.value) {
+        if (item.soggettoRitenuta) {
+          sum += (yearlyTax / 100 * item.totNetto)
+        }
+      }
+      this.salesDocumentForm.patchValue({ ritenutaEnasarco: sum })
+    }, 200);
+
+  }
+
   test() {
-    console.log(this.salesDocumentForm.value.articoli[0]);
+    console.log(this.userData);
   }
 }

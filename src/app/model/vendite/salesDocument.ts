@@ -21,6 +21,7 @@ export class SalesDocument {
   pcRivalsa: number;
   pcScontoTotale: number;
   ritenutaAcconto: number;
+  ritenutaEnasarco: number;
   scadenze: any;
   statoDocumento: string;
   statoInviato: boolean;
