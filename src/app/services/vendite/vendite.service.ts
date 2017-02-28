@@ -24,7 +24,7 @@ export class VenditeService {
   }
 
   putSale(id: string, sales:any){
-     return this.restCommonUtil.putJson(`/api/v1/sales/${id}/confirm`, sales, new URLSearchParams());
+     return this.restCommonUtil.putJson(`/api/v1/sales/`, sales, new URLSearchParams());
   }
 
 }

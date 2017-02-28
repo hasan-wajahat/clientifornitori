@@ -38,6 +38,7 @@ export class InvoiceItemComponent implements OnInit {
         this.venditeService.getSale(params['id']).subscribe(
           res => {
             console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            console.log(res);
             this.salesDocumentForm = this.salesFormCreator.buildSalesForm(res);
             this.initializeDate(res);
             this.createVATDropDown();
