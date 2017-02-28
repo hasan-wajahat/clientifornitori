@@ -11,26 +11,28 @@ export class SalesFormCreator {
 
     const salesDocumentForm: FormGroup = this.fb.group({
       articoli: this.fb.array([]),
-      castellettoIVA: this.fb.group({
-        id: salesDocument.castellettoIVA[0].id,
-        imponibile: salesDocument.castellettoIVA[0].imponibile,
-        imposta: salesDocument.castellettoIVA[0].imposta,
-        voceAcquisto: this.fb.group({
-          voceId: salesDocument.castellettoIVA[0].voceAcquisto.voceId,
-          nome: salesDocument.castellettoIVA[0].voceAcquisto.nome,
-          label: salesDocument.castellettoIVA[0].voceAcquisto.label,
-          dateFrom: salesDocument.castellettoIVA[0].voceAcquisto.dateFrom,
-          dateTo: salesDocument.castellettoIVA[0].voceAcquisto.dateTo,
-        }),
-        codiceIVA: this.fb.group({
-          codiceId: [salesDocument.castellettoIVA[0].codiceIVA.codiceId],
-          descrizione: [salesDocument.castellettoIVA[0].codiceIVA.descrizione],
-          dateFrom: [salesDocument.castellettoIVA[0].codiceIVA.dateFrom],
-          dateTo: [salesDocument.castellettoIVA[0].codiceIVA.dateTo],
-          dafaultVAT: [salesDocument.castellettoIVA[0].codiceIVA.dafaultVAT],
-          pcAliquota: [salesDocument.castellettoIVA[0].codiceIVA.pcAliquota],
-        }),
-      }),
+      castellettoIVA: this.fb.array([
+        this.fb.group({
+          id: salesDocument.castellettoIVA[0].id,
+          imponibile: salesDocument.castellettoIVA[0].imponibile,
+          imposta: salesDocument.castellettoIVA[0].imposta,
+          voceAcquisto: this.fb.group({
+            voceId: salesDocument.castellettoIVA[0].voceAcquisto.voceId,
+            nome: salesDocument.castellettoIVA[0].voceAcquisto.nome,
+            label: salesDocument.castellettoIVA[0].voceAcquisto.label,
+            dateFrom: salesDocument.castellettoIVA[0].voceAcquisto.dateFrom,
+            dateTo: salesDocument.castellettoIVA[0].voceAcquisto.dateTo,
+          }),
+          codiceIVA: this.fb.group({
+            codiceId: [salesDocument.castellettoIVA[0].codiceIVA.codiceId],
+            descrizione: [salesDocument.castellettoIVA[0].codiceIVA.descrizione],
+            dateFrom: [salesDocument.castellettoIVA[0].codiceIVA.dateFrom],
+            dateTo: [salesDocument.castellettoIVA[0].codiceIVA.dateTo],
+            dafaultVAT: [salesDocument.castellettoIVA[0].codiceIVA.dafaultVAT],
+            pcAliquota: [salesDocument.castellettoIVA[0].codiceIVA.pcAliquota],
+          }),
+        })
+      ]),
       cliFor: this.fb.group({
         id: [salesDocument.cliFor.id],
         tipo: [salesDocument.cliFor.tipo],
