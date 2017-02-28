@@ -224,6 +224,9 @@ export class InvoiceItemComponent implements OnInit {
   }
 
   test() {
-    console.log(this.userData);
+    this.venditeService.putSale(this.salesDocumentForm.value['id'].toString(), this.salesDocumentForm.value).subscribe(
+      res => console.log(res),
+      error => console.log(error)
+    )
   }
 }

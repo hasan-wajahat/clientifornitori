@@ -23,4 +23,8 @@ export class VenditeService {
     return this.restCommonUtil.jsonGet(`/api/public/v1/codesVAT`)
   }
 
+  putSale(id: string, sales:any){
+     return this.restCommonUtil.putJson(`/api/v1/sales/${id}/confirm`, sales, new URLSearchParams());
+  }
+
 }
