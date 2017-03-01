@@ -74,14 +74,14 @@ export class SalesFormCreator {
       numeroDocumento: [salesDocument.numeroDocumento],
       numeroProgressivoDocumento: [salesDocument.numeroProgressivoDocumento],
       pagamenti: [salesDocument.pagamenti],
-      pcImponibile: [salesDocument.pcImponibile],
+      pcImponibile: [null],
       pcRitenutaAcconto: [salesDocument.pcRitenutaAcconto],
       pcRitenutaEnasarco: [salesDocument.pcRitenutaEnasarco],
-      pcRivalsa: [salesDocument.pcRivalsa],
+      pcRivalsa: [null],
       pcScontoTotale: [salesDocument.pcScontoTotale],
       ritenutaAcconto: [salesDocument.ritenutaAcconto],
       ritenutaEnasarco: [salesDocument.ritenutaEnasarco],
-      rivalsa: [salesDocument.rivalsa],
+      rivalsa: [null],
       scadenze: [salesDocument.scadenze],
       statoDocumento: [salesDocument.statoDocumento],
       statoInviato: [salesDocument.statoInviato],
@@ -95,6 +95,8 @@ export class SalesFormCreator {
       totImponibile: [salesDocument.totImponibile],
       totPagato: [salesDocument.totPagato],
       valuta: [salesDocument.valuta],
+      datiArticoli: [true],
+      controlloEnasarco: [true],
     })
     // create articoli form group
     const control = <FormArray>salesDocumentForm.controls['articoli'];
