@@ -84,7 +84,16 @@ export class SalesFormCreator {
       ritenutaAcconto: [salesDocument.ritenutaAcconto],
       ritenutaEnasarco: [salesDocument.ritenutaEnasarco],
       rivalsa: [null],
-      scadenze: [salesDocument.scadenze],
+      // scadenze: [salesDocument.scadenze],
+      scadenze: this.fb.array([
+        this.fb.group({
+          id: salesDocument.scadenze[0].id,
+          vendita: salesDocument.scadenze[0].vendita,
+          importo: salesDocument.scadenze[0].importo,
+          importoDaSaldare: salesDocument.scadenze[0].importoDaSaldare,
+          dataScadenza: salesDocument.scadenze[0].dataScadenza
+        })
+      ]),
       statoDocumento: [salesDocument.statoDocumento],
       statoInviato: [salesDocument.statoInviato],
       statoInviatoSDI: [salesDocument.statoInviato],

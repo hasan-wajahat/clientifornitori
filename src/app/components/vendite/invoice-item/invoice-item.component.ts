@@ -44,14 +44,14 @@ export class InvoiceItemComponent implements OnInit {
             this.createModelArray();
             this.calculateTotals();
             this.venditeService.getConfigParameters(res.dataEmissione).subscribe(
-              response => this.salesDocumentForm.patchValue({pcRitenutaEnasarco: response[2].value})
+              response => this.salesDocumentForm.patchValue({ pcRitenutaEnasarco: response[2].value })
             );
           },
           error => console.log(error)
         )
       }
     );
-    
+
     this.userData = <User>JSON.parse(sessionStorage.getItem("UserData"));
     this.inizializzaCalendar();
     this.initializeArray();
@@ -228,9 +228,20 @@ export class InvoiceItemComponent implements OnInit {
   }
 
   test() {
+    this.setFormValues();
     this.venditeService.putSale(this.salesDocumentForm.value['id'].toString(), this.salesDocumentForm.value).subscribe(
       res => console.log(res),
       error => console.log(error)
     )
+  }
+
+  setFormValues() {
+    this.salesDocumentForm.patchValue({ totImponibile: this.totaleImponible });
+    this.salesDocumentForm.patchValue({ totDocumento: this.totaleImponible + this.totaleImposte + this.salesDocumentForm.value.rivalsa });
+    this.salesDocumentForm.patchValue({ totDaPagare: this.salesDocumentForm.value.totDocumento
+       - this.salesDocumentForm.value.ritenutaEnasarco - this.salesDocumentForm.value.ritenutaAcconto + this.salesDocumentForm.value.marcaDaBollo });
+    const scadenze = <FormArray>this.salesDocumentForm.controls['scadenze'];
+     scadenze.controls[0].patchValue({ importo: this.salesDocumentForm.value.totDaPagare -  this.salesDocumentForm.value.pagamenti[0].importo});
+     scadenze.controls[0].patchValue({ importoDaSaldare: this.salesDocumentForm.value.totDaPagare -  this.salesDocumentForm.value.pagamenti[0].importo});
   }
 }
