@@ -155,12 +155,12 @@ export class InvoiceItemComponent implements OnInit {
     control.push(this.fb.group({
       id: [''],
       codiceIVA: this.fb.group({
-        codiceId: [''],
-        descrizione: [''],
-        dateFrom: [''],
-        dateTo: [''],
-        dafaultVAT: [''],
-        pcAliquota: ['']
+        codiceId: [item.codiceIVA.codiceId],
+        descrizione: [item.codiceIVA.descrizione],
+        dateFrom: [item.codiceIVA.dateFrom],
+        dateTo: [item.codiceIVA.dateTo],
+        dafaultVAT: [false],
+        pcAliquota: [item.codiceIVA.pcAliquota]
       }),
       codiceArticolo: [''],
       tipoVendita: [''],
@@ -168,9 +168,9 @@ export class InvoiceItemComponent implements OnInit {
       unitaMisura: [''],
       quantita: [''],
       importoUnitario: [''],
-      pcSconto: [''],
+      pcSconto: [0],
       totNetto: [''],
-      soggettoRitenuta: ['']
+      soggettoRitenuta: [false]
     }))
     this.codesVAT.push(0);
   }

@@ -107,6 +107,10 @@ export class SalesFormCreator {
       totPagato: [salesDocument.totPagato],
       valuta: [salesDocument.valuta],
       datiArticoli: [true],
+      datiPagamento: true,
+      datiContabili: true,
+      // not working
+      // datiAnagrafici: true,
       controlloEnasarco: [true],
     })
     // create articoli form group
