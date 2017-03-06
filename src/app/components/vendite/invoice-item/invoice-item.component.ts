@@ -38,17 +38,20 @@ export class InvoiceItemComponent implements OnInit {
         this.venditeService.getSale(params['id']).subscribe(
           res => {
             console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-            console.log(res);
             this.salesDocumentForm = this.salesFormCreator.buildSalesForm(res);
             this.initializeDate(res);
             this.createVATDropDown();
             this.createModelArray();
             this.calculateTotals();
+            this.venditeService.getConfigParameters(res.dataEmissione).subscribe(
+              response => this.salesDocumentForm.patchValue({pcRitenutaEnasarco: response[2].value})
+            );
           },
           error => console.log(error)
         )
       }
     );
+    
     this.userData = <User>JSON.parse(sessionStorage.getItem("UserData"));
     this.inizializzaCalendar();
     this.initializeArray();

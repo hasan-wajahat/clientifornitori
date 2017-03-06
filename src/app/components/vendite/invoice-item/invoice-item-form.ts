@@ -76,7 +76,7 @@ export class SalesFormCreator {
       pagamenti: [salesDocument.pagamenti],
       // pcImponibile: [null],
       // pcRitenutaAcconto: [null],
-      pcRitenutaEnasarco: [salesDocument.pcRitenutaEnasarco],
+      pcRitenutaEnasarco: [''],
       // pcRivalsa: [null],
       pcScontoTotale: [salesDocument.pcScontoTotale],
       ritenutaAcconto: [salesDocument.ritenutaAcconto],

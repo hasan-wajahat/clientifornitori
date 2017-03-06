@@ -27,4 +27,8 @@ export class VenditeService {
      return this.restCommonUtil.putJson(`/api/v1/sales/`, sales, new URLSearchParams());
   }
 
+  getConfigParameters(date: string){
+    return this.restCommonUtil.jsonGet(`/api/v1/configParameter/?date=${date}`)
+  }
+
 }
