@@ -140,4 +140,134 @@ export class SalesFormCreator {
 
     return salesDocumentForm;
   }
+
+  createEmptyForm() {
+    const salesDocumentForm: FormGroup = this.fb.group({
+      articoli: this.fb.array([
+        this.fb.group({
+          id: [],
+          codiceIVA: this.fb.group({
+            codiceId: [],
+            descrizione: [],
+            dateFrom: [],
+            dateTo: [],
+            dafaultVAT: [],
+            pcAliquota: []
+          }),
+          codiceArticolo: [],
+          tipoVendita: [],
+          descrizioneArticolo: [],
+          unitaMisura: [],
+          quantita: [],
+          importoUnitario: [],
+          pcSconto: [],
+          totNetto: [],
+          soggettoRitenuta: []
+        })
+      ]),
+      castellettoIVA: this.fb.array([
+        this.fb.group({
+          id: '',
+          imponibile: [],
+          imposta: [],
+          voceAcquisto: this.fb.group({
+            voceId: [],
+            nome: [],
+            label: [],
+            dateFrom: [],
+            dateTo: [],
+          }),
+          codiceIVA: this.fb.group({
+            codiceId: [],
+            descrizione: [],
+            dateFrom: [],
+            dateTo: [],
+            dafaultVAT: [],
+            pcAliquota: [],
+          }),
+        })
+      ]),
+      cliFor: this.fb.group({
+        id: [],
+        tipo: [],
+        intestazione: [],
+        codiceFiscale: [],
+        partitaIVA: [],
+        pIvaCf: [],
+        cognome: [],
+        nome: [],
+        intestazioneCognomeNome: [],
+        dataNascita: [],
+        luogoNascita: [],
+        indirizzo: [],
+        cap: [],
+        citta: [],
+        provincia: [],
+        regione: [],
+        // nazione: [salesDocument.cliFor.nazione],
+        // api is returning Italia
+        nazione: [],
+        email: [],
+        postaCertificata: [],
+        cellulare: [],
+        fax: [],
+        voceAcquisto: [],
+        codiciIVA: [],
+        cellulterminiPagamentoare: [],
+        stato: [],
+        docConnessi: [],
+        saldoDC: [],
+        tipoTerminiPagamento: [],
+        tipoCF: [],
+      }),
+      dataEmissione: [],
+      documento: [],
+      fatturaRiferimentoId: [],
+      id: [],
+      marcaDaBollo: [],
+      modalitaPagamento: [],
+      noteAggiuntive: [],
+      numeroDocumento: [],
+      numeroProgressivoDocumento: [],
+      pagamenti: [],
+      pcImponibile: [null],
+      pcRitenutaAcconto: [null],
+      pcRitenutaEnasarco: [''],
+      pcRivalsa: [null],
+      pcScontoTotale: [],
+      ritenutaAcconto: [],
+      ritenutaEnasarco: [],
+      rivalsa: [null],
+      // scadenze: [salesDocument.scadenze],
+      scadenze: this.fb.array([
+        this.fb.group({
+          id: [],
+          vendita: [],
+          importo: [],
+          importoDaSaldare: [],
+          dataScadenza: []
+        })
+      ]),
+      statoDocumento: [],
+      statoInviato: [],
+      statoInviatoSDI: [],
+      statoPagamento: [],
+      template: [],
+      tipoDocumento: [],
+      totConVariazioni: [],
+      totDaPagare: [],
+      totDocumento: [],
+      totImponibile: [],
+      totPagato: [],
+      valuta: [],
+      datiArticoli: [true],
+      datiPagamento: true,
+      datiContabili: true,
+      // not working
+      // datiAnagrafici: true,
+      controlloEnasarco: [true],
+    })
+
+    return salesDocumentForm;
+  }
 }

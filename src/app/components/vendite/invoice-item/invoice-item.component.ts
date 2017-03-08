@@ -35,20 +35,25 @@ export class InvoiceItemComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       params => {
-        this.venditeService.getSale(params['id']).subscribe(
-          res => {
-            console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-            this.salesDocumentForm = this.salesFormCreator.buildSalesForm(res);
-            this.initializeDate(res);
-            this.createVATDropDown();
-            this.createModelArray();
-            this.calculateTotals();
-            this.venditeService.getConfigParameters(res.dataEmissione).subscribe(
-              response => this.salesDocumentForm.patchValue({ pcRitenutaEnasarco: response[2].value })
-            );
-          },
-          error => console.log(error)
-        )
+        if (params['id']=='new') {
+          this.createVATDropDown();
+          this.salesDocumentForm = this.salesFormCreator.createEmptyForm();
+        } else {
+          this.venditeService.getSale(params['id']).subscribe(
+            res => {
+              console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+              this.salesDocumentForm = this.salesFormCreator.buildSalesForm(res);
+              this.initializeDate(res);
+              this.createVATDropDown();
+              this.createModelArray();
+              this.calculateTotals();
+              this.venditeService.getConfigParameters(res.dataEmissione).subscribe(
+                response => this.salesDocumentForm.patchValue({ pcRitenutaEnasarco: response[2].value })
+              );
+            },
+            error => console.log(error)
+          )
+        }
       }
     );
 

@@ -87,6 +87,14 @@
           </form>
         </div>
       </app-fo-collapsible-bar>
+
+       <div class="page-toolbar">
+        <button type="button" data-hover="tooltip" class="btn btn-orange" data-toggle="modal" [routerLink]="['/home/vendite/new']">
+          <i class="fa fa-plus"></i>
+          <i>New</i>
+        </button>
+       </div>
+
       <app-fo-data-table [value]="invoices" [columns]="cols" [paginator]="false" [rows]="20" (onRowSelectEvent)="onRowSelectEvent($event)"
         [pageLinks]="4" selectionMode="single"></app-fo-data-table>
 
