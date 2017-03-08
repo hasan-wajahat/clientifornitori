@@ -228,6 +228,10 @@ export class InvoiceItemComponent implements OnInit {
   }
 
   test() {
+
+  }
+
+  editForm() {
     this.setFormValues();
     this.venditeService.putSale(this.salesDocumentForm.value['id'].toString(), this.salesDocumentForm.value).subscribe(
       res => console.log(res),
@@ -238,10 +242,12 @@ export class InvoiceItemComponent implements OnInit {
   setFormValues() {
     this.salesDocumentForm.patchValue({ totImponibile: this.totaleImponible });
     this.salesDocumentForm.patchValue({ totDocumento: this.totaleImponible + this.totaleImposte + this.salesDocumentForm.value.rivalsa });
-    this.salesDocumentForm.patchValue({ totDaPagare: this.salesDocumentForm.value.totDocumento
-       - this.salesDocumentForm.value.ritenutaEnasarco - this.salesDocumentForm.value.ritenutaAcconto + this.salesDocumentForm.value.marcaDaBollo });
+    this.salesDocumentForm.patchValue({
+      totDaPagare: this.salesDocumentForm.value.totDocumento
+      - this.salesDocumentForm.value.ritenutaEnasarco - this.salesDocumentForm.value.ritenutaAcconto + this.salesDocumentForm.value.marcaDaBollo
+    });
     const scadenze = <FormArray>this.salesDocumentForm.controls['scadenze'];
-     scadenze.controls[0].patchValue({ importo: this.salesDocumentForm.value.totDaPagare -  this.salesDocumentForm.value.pagamenti[0].importo});
-     scadenze.controls[0].patchValue({ importoDaSaldare: this.salesDocumentForm.value.totDaPagare -  this.salesDocumentForm.value.pagamenti[0].importo});
+    scadenze.controls[0].patchValue({ importo: this.salesDocumentForm.value.totDaPagare - this.salesDocumentForm.value.pagamenti[0].importo });
+    scadenze.controls[0].patchValue({ importoDaSaldare: this.salesDocumentForm.value.totDaPagare - this.salesDocumentForm.value.pagamenti[0].importo });
   }
 }
