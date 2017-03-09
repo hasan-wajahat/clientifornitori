@@ -31,4 +31,8 @@ export class VenditeService {
     return this.restCommonUtil.jsonGet(`/api/v1/configParameter/?date=${date}`)
   }
 
+  getCli(ragioneSociale: string, patritaIva: string){
+     return this.restCommonUtil.jsonGet(`/api/v1/sales/cliFor/find?ragioneSociale=${ragioneSociale}`)
+  }
+
 }

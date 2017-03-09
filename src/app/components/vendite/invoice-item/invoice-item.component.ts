@@ -28,6 +28,7 @@ export class InvoiceItemComponent implements OnInit {
   totaleImponible: number;
   totLordo: number[] = [];
   totaleImposte: number;
+  raginoe: string;
 
   constructor(private venditeService: VenditeService, private route: ActivatedRoute,
     private salesFormCreator: SalesFormCreator, private fb: FormBuilder) { }
@@ -35,9 +36,10 @@ export class InvoiceItemComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       params => {
-        if (params['id']=='new') {
+        if (params['id'] == 'new') {
           this.createVATDropDown();
           this.salesDocumentForm = this.salesFormCreator.createEmptyForm();
+          this.createNewList();
         } else {
           this.venditeService.getSale(params['id']).subscribe(
             res => {
@@ -147,6 +149,25 @@ export class InvoiceItemComponent implements OnInit {
     this.calculateRitenutaEnasarco();
   }
 
+  createNewList() {
+    this.salesDocumentForm.controls['cliFor']
+    ['controls']['cognome'].valueChanges.debounceTime(400).subscribe(
+      r => {
+        if (this.raginoe != r) {
+          this.venditeService.getCli(r, '').subscribe(
+            res => {
+              if (res.pop()) {
+                this.salesDocumentForm.patchValue({ cliFor: res.pop() });
+              } else {
+                this.salesDocumentForm.controls['cliFor'].reset();
+              }
+            }
+          );
+        }
+        this.raginoe = r;
+      });
+  }
+
   updateModels(val: number, index: number) {
     let item = this.salesDocumentForm.value.articoli[index];
     this.codesVAT[index] = val;
@@ -233,7 +254,6 @@ export class InvoiceItemComponent implements OnInit {
   }
 
   test() {
-
   }
 
   editForm() {
