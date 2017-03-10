@@ -145,7 +145,7 @@ export class SalesFormCreator {
     const salesDocumentForm: FormGroup = this.fb.group({
       articoli: this.fb.array([
         this.fb.group({
-          id: [],
+          id: [null],
           codiceIVA: this.fb.group({
             codiceId: [],
             descrizione: [],
@@ -167,15 +167,11 @@ export class SalesFormCreator {
       ]),
       castellettoIVA: this.fb.array([
         this.fb.group({
-          id: '',
+          id: [null],
           imponibile: [],
           imposta: [],
           voceAcquisto: this.fb.group({
             voceId: [],
-            nome: [],
-            label: [],
-            dateFrom: [],
-            dateTo: [],
           }),
           codiceIVA: this.fb.group({
             codiceId: [],
@@ -221,23 +217,13 @@ export class SalesFormCreator {
         tipoCF: [],
       }),
       dataEmissione: [],
-      documento: [],
-      fatturaRiferimentoId: [],
-      id: [],
       marcaDaBollo: [],
       modalitaPagamento: [],
-      noteAggiuntive: [],
-      numeroDocumento: [],
-      numeroProgressivoDocumento: [],
+      noteAggiuntive: ['note aggiuntive'],
       pagamenti: [],
-      pcImponibile: [null],
-      pcRitenutaAcconto: [null],
       pcRitenutaEnasarco: [''],
-      pcRivalsa: [null],
-      pcScontoTotale: [],
       ritenutaAcconto: [],
       ritenutaEnasarco: [],
-      rivalsa: [null],
       // scadenze: [salesDocument.scadenze],
       scadenze: this.fb.array([
         this.fb.group({
@@ -248,23 +234,13 @@ export class SalesFormCreator {
           dataScadenza: []
         })
       ]),
-      statoDocumento: [],
-      statoInviato: [],
-      statoInviatoSDI: [],
-      statoPagamento: [],
-      template: [],
-      tipoDocumento: [],
+      template: ['FORFETTARIO_LP'],
+      tipoDocumento: ['FATTURA_VENDITA'],
       totConVariazioni: [],
       totDaPagare: [],
       totDocumento: [],
       totImponibile: [],
       totPagato: [],
-      valuta: [],
-      datiArticoli: [true],
-      datiPagamento: true,
-      datiContabili: true,
-      // not working
-      // datiAnagrafici: true,
       controlloEnasarco: [true],
     })
 
