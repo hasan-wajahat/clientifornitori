@@ -1,6 +1,7 @@
 import { ClienteFornitore } from "./clienteFornitore";
 import { Articoli } from "./articoli";
 import { CastellettoIVA } from "./castellettoIVA"
+import { Pagamenti } from "./pagamenti";
 
 export class SalesDocument {
   articoli: Articoli[];
@@ -15,7 +16,7 @@ export class SalesDocument {
   noteAggiuntive: string;
   numeroDocumento: string;
   numeroProgressivoDocumento: number;
-  pagamenti: any;
+  pagamenti: Pagamenti[];
   pcImponibile: number;
   pcRitenutaAcconto: number;
   pcRitenutaEnasarco: number;

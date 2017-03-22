@@ -75,7 +75,7 @@ export class SalesFormCreator {
       noteAggiuntive: [salesDocument.noteAggiuntive],
       numeroDocumento: [salesDocument.numeroDocumento],
       numeroProgressivoDocumento: [salesDocument.numeroProgressivoDocumento],
-      pagamenti: [salesDocument.pagamenti],
+      pagamenti: this.fb.array([]),
       pcImponibile: [null],
       pcRitenutaAcconto: [null],
       pcRitenutaEnasarco: [''],
@@ -135,6 +135,21 @@ export class SalesFormCreator {
         pcSconto: [articoliItem.pcSconto],
         totNetto: [articoliItem.totNetto],
         soggettoRitenuta: [articoliItem.soggettoRitenuta]
+      }))
+    }
+
+    const pagamentiControl = <FormArray>salesDocumentForm.controls['pagamenti'];
+    for (let pagamentiItem of salesDocument.pagamenti) {
+      pagamentiControl.push(this.fb.group({
+        id: [pagamentiItem.id],
+        venId: [pagamentiItem.venId],
+        contrId: [pagamentiItem.contoId],
+        data: [pagamentiItem.data],
+        causale: [pagamentiItem.causale],
+        importo: [pagamentiItem.importo],
+        stato: [pagamentiItem.stato],
+        tipo: [pagamentiItem.tipo],
+        tipoOperazaione: [pagamentiItem.tipoOperazaione],
       }))
     }
 
