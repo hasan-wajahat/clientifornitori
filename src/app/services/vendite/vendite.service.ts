@@ -39,4 +39,8 @@ export class VenditeService {
     return this.restCommonUtil.jsonGet(`/api/v1/bills/listOfValues/${id}`)
   }
 
+  deletePagamenti(id: number){
+    return this.restCommonUtil.deleteJson(`/api/v1/bills/listOfValues/${id}`,new URLSearchParams())
+  }
+
 }

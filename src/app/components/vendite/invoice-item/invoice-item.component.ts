@@ -268,6 +268,13 @@ export class InvoiceItemComponent implements OnInit {
     return bill.tipoConto != "CONTO_CASSA"
   }
 
+  deletePagementi(pagamentiGroup: FormGroup){
+    this.venditeService.deletePagamenti(pagamentiGroup.value['id']).subscribe(
+      results => console.log,
+      error => console.log(error)
+    )
+  }
+
   test() {
     console.log(this.billDetails);
   }
