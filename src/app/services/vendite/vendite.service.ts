@@ -35,4 +35,8 @@ export class VenditeService {
      return this.restCommonUtil.jsonGet(`/api/v1/sales/cliFor/find?ragioneSociale=${ragioneSociale}`)
   }
 
+  getBills(id:string){
+    return this.restCommonUtil.jsonGet(`/api/v1/bills/listOfValues/${id}`)
+  }
+
 }

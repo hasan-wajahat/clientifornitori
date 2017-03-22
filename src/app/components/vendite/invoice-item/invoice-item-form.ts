@@ -143,7 +143,7 @@ export class SalesFormCreator {
       pagamentiControl.push(this.fb.group({
         id: [pagamentiItem.id],
         venId: [pagamentiItem.venId],
-        contrId: [pagamentiItem.contoId],
+        contoId: [pagamentiItem.contoId],
         data: [pagamentiItem.data],
         causale: [pagamentiItem.causale],
         importo: [pagamentiItem.importo],

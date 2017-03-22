@@ -29,6 +29,7 @@ export class InvoiceItemComponent implements OnInit {
   totLordo: number[] = [];
   totaleImposte: number;
   raginoe: string;
+  billDetails;
 
   constructor(private venditeService: VenditeService, private route: ActivatedRoute,
     private salesFormCreator: SalesFormCreator, private fb: FormBuilder) { }
@@ -53,6 +54,9 @@ export class InvoiceItemComponent implements OnInit {
               this.venditeService.getConfigParameters(res.dataEmissione).subscribe(
                 response => this.salesDocumentForm.patchValue({ pcRitenutaEnasarco: response[2].value })
               );
+              this.venditeService.getBills(`${res.cliFor.id}`).subscribe(
+                response => this.billDetails = response
+              )
             },
             error => console.log(error)
           )
@@ -253,13 +257,19 @@ export class InvoiceItemComponent implements OnInit {
       this.salesDocumentForm.patchValue({ totDocumento: this.totaleImponible +
        this.totaleImposte + this.salesDocumentForm.value.rivalsa });
     }, 200);
+  }
 
-    
+  pagaMentiArray = new Object();
 
+  checkConto(pagamentiGroup: FormGroup, i: number){
+    let contoId = pagamentiGroup.value['contoId'];
+    let bill = this.billDetails.find((val) => val.id == contoId);
+    this.pagaMentiArray[i] = bill;
+    return bill.tipoConto != "CONTO_CASSA"
   }
 
   test() {
-    console.log("totDocumento", this.salesDocumentForm.value["totDocumento"]);
+    console.log(this.billDetails);
   }
 
   editForm() {

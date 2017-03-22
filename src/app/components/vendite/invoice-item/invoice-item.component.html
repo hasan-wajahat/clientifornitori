@@ -275,6 +275,18 @@
                 <label class="control-label">Data</label>
                 <input class="form-control" formControlName="data">
               </div>
+              <div *ngIf="billDetails">
+                <div *ngIf="checkConto(pagamentiGroup, i)">
+                  <div class="col-md-2">
+                    <label class="control-label">Conto</label>
+                    <input class="form-control" value="pagaMentiArray[i].nomeBanca">
+                  </div>
+                  <div class="col-md-2">
+                    <label class="control-label">DETTAGLI</label>
+                    <input class="form-control" formControlName="pagaMentiArray[i]?.scdId">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -282,7 +294,7 @@
     </div>
 
 
-<button (click)="test()" class="btn btn-default"> Test </button>
+    <button (click)="test()" class="btn btn-default"> Test </button>
 
-</form>
+  </form>
 </div>
