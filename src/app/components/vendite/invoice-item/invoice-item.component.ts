@@ -37,8 +37,9 @@ export class InvoiceItemComponent implements OnInit {
     this.route.params.subscribe(
       params => {
         if (params['id'] == 'new') {
-          this.createVATDropDown();
+          console.log("new form called");
           this.salesDocumentForm = this.salesFormCreator.createEmptyForm();
+          this.createVATDropDown();          
           this.createNewList();
         } else {
           this.venditeService.getSale(params['id']).subscribe(
@@ -248,12 +249,17 @@ export class InvoiceItemComponent implements OnInit {
           sum += (yearlyTax / 100 * item.totNetto)
         }
       }
-      this.salesDocumentForm.patchValue({ ritenutaEnasarco: sum })
+      this.salesDocumentForm.patchValue({ ritenutaEnasarco: sum });
+      this.salesDocumentForm.patchValue({ totDocumento: this.totaleImponible +
+       this.totaleImposte + this.salesDocumentForm.value.rivalsa });
     }, 200);
+
+    
 
   }
 
   test() {
+    console.log("totDocumento", this.salesDocumentForm.value["totDocumento"]);
   }
 
   editForm() {

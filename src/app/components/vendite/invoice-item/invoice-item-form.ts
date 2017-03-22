@@ -239,6 +239,8 @@ export class SalesFormCreator {
       pcRitenutaEnasarco: [''],
       ritenutaAcconto: [],
       ritenutaEnasarco: [],
+      numeroDocumento: [],
+      rivalsa: [null],
       // scadenze: [salesDocument.scadenze],
       scadenze: this.fb.array([
         this.fb.group({

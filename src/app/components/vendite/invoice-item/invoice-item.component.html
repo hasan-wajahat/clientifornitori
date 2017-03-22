@@ -1,15 +1,15 @@
 <div *ngIf="salesDocumentForm" class="page-content">
 
-  <div class="page-toolbar">
-    <button type="button" data-hover="tooltip" title="Lista Clienti" class="btn btn-orange" data-toggle="modal" [routerLink]="['/home/vendite']">
+    <div class="page-toolbar">
+        <button type="button" data-hover="tooltip" title="Lista Clienti" class="btn btn-orange" data-toggle="modal" [routerLink]="['/home/vendite']">
       <i class="fa fa-arrow-left" aria-hidden="true"></i>
       <i>Lista Vendite</i>
     </button>
-    <button type="button" data-hover="tooltip" title="Salva" class="btn btn-orange" data-toggle="modal" (click)="editForm()">
+        <button type="button" data-hover="tooltip" title="Salva" class="btn btn-orange" data-toggle="modal" (click)="editForm()">
       <i class="fa fa-save" aria-hidden="true"></i>
       <i>Riemetti Fattura</i>
     </button>
-    <!--  <button type="button" data-hover="tooltip" title="Elimina" class="btn btn-orange" data-toggle="modal" (click)="eliminaConfirm()" [style.display]="cliForDTO.id != undefined ? 'inline' : 'none'">
+        <!--  <button type="button" data-hover="tooltip" title="Elimina" class="btn btn-orange" data-toggle="modal" (click)="eliminaConfirm()" [style.display]="cliForDTO.id != undefined ? 'inline' : 'none'">
       <i class="fa fa-trash-o" aria-hidden="true"></i>
       <i>Elimina</i>
     </button>
@@ -25,261 +25,277 @@
       <i class="fa fa-search" aria-hidden="true"></i>
       <i> IPA</i>
     </button>-->
-  </div>
-
-  <br/>
-
-  <form [formGroup]="salesDocumentForm">
-
-    <!-- INTESTAZIONE FATTURA -->
-    <div class="panel">
-      <div class="panel-heading">INTESTAZIONE FATTURA</div>
-      <div class="panel-body pan">
-        <div class="form-body pal">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="inputIndirizzo" class="control-label">N. FATTURA*</label>
-                <input class="form-control" formControlName="numeroDocumento">
-              </div>
-            </div>
-            <div formGroupName="cliFor" class="col-md-6">
-              <div class="form-group">
-                <label for="inputIndirizzo" class="control-label">RAGINOE SOCIALE*</label>
-                <input class="form-control" formControlName="cognome">
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <label class="control-label">DATA EMISSIONE*</label>
-              <div>
-                <p-calendar id="endDate" name="endDate" (ngModelChange)="issueDateSet()" [locale]="it" [(ngModel)]="issueDate" [ngModelOptions]="{standalone: true}"
-                  showAnim="slideDown" [showIcon]="true" [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true"
-                  [yearRange]="yearRange" [maxDate]="today"></p-calendar>
-              </div>
-            </div>
-            <div formGroupName="cliFor" class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">INDRIZZO</label>
-                <input class="form-control" formControlName="indirizzo">
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <h3> Codice unico to be added after confirmed by Simone </h3>
-            </div>
-            <div class="col-md-6" formGroupName="cliFor">
-              <div class="form-group">
-                <label class="control-label">CITTA</label>
-                <input class="form-control" formControlName="citta">
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-            </div>
-            <div class="col-md-6" formGroupName="cliFor">
-              <div class="form-group">
-                <label class="control-label">PATRITA IVA*</label>
-                <input class="form-control" formControlName="partitaIVA">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <!-- DETTAGLIO ARTICOLI -->
-    <div class="panel articoli-panel">
-      <div class="panel-heading">DETTAGLIO ARTICOLI</div>
-      <div class="panel-body pan">
-        <div class="form-body pal">
-          <div class="row" *ngFor="let articoliGroup of salesDocumentForm.controls.articoli.controls; let i = index">
-            <div [formGroup]=articoliGroup>
-              <div class="col-md-1">
-                <div class="form-group">
-                  <label class="control-label">TIPO VENDITA</label>
-                  <select formControlName="tipoVendita">
-                    <option *ngFor="let opt of tipoVenditaDropDown"
-                     [value]="opt.value">{{opt.value}}</option>
-                  </select>
+    <br/>
+
+    <form [formGroup]="salesDocumentForm">
+
+        <!-- INTESTAZIONE FATTURA -->
+        <div class="panel">
+            <div class="panel-heading">INTESTAZIONE FATTURA</div>
+            <div class="panel-body pan">
+                <div class="form-body pal">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputIndirizzo" class="control-label">N. FATTURA*</label>
+                                <input class="form-control" formControlName="numeroDocumento">
+                            </div>
+                        </div>
+                        <div formGroupName="cliFor" class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputIndirizzo" class="control-label">RAGINOE SOCIALE*</label>
+                                <input class="form-control" formControlName="cognome">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label">DATA EMISSIONE*</label>
+                            <div>
+                                <p-calendar id="endDate" name="endDate" (ngModelChange)="issueDateSet()" [locale]="it" [(ngModel)]="issueDate" [ngModelOptions]="{standalone: true}" showAnim="slideDown" [showIcon]="true" [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true"
+                                    [yearRange]="yearRange" [maxDate]="today"></p-calendar>
+                            </div>
+                        </div>
+                        <div formGroupName="cliFor" class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">INDRIZZO</label>
+                                <input class="form-control" formControlName="indirizzo">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3> Codice unico to be added after confirmed by Simone </h3>
+                        </div>
+                        <div class="col-md-6" formGroupName="cliFor">
+                            <div class="form-group">
+                                <label class="control-label">CITTA</label>
+                                <input class="form-control" formControlName="citta">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6" formGroupName="cliFor">
+                            <div class="form-group">
+                                <label class="control-label">PATRITA IVA*</label>
+                                <input class="form-control" formControlName="partitaIVA">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <label class="control-label">DESCRIZIONE ART.*</label>
-                  <input class="form-control" formControlName="descrizioneArticolo">
-                </div>
-              </div>
-              <div class="col-md-1">
-                <div class="form-group">
-                  <label class="control-label">QUANTITA*</label>
-                  <input class="form-control" formControlName="quantita" (ngModelChange)="calculateTotaleNetto($event,i, 'quantita')">
-                </div>
-              </div>
-              <div class="col-md-1">
-                <div class="form-group">
-                  <label class="control-label">UNITA MISURA*</label>
-                  <select formControlName="unitaMisura">
+            </div>
+        </div>
+
+        <!-- DETTAGLIO ARTICOLI -->
+        <div class="panel articoli-panel">
+            <div class="panel-heading">DETTAGLIO ARTICOLI</div>
+            <div class="panel-body pan">
+                <div class="form-body pal">
+                    <div class="row" *ngFor="let articoliGroup of salesDocumentForm.controls.articoli.controls; let i = index">
+                        <div [formGroup]=articoliGroup>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label class="control-label">TIPO VENDITA</label>
+                                    <select formControlName="tipoVendita">
+                                      <option *ngFor="let opt of tipoVenditaDropDown" [value]="opt.value">{{opt.value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="control-label">DESCRIZIONE ART.*</label>
+                                    <input class="form-control" formControlName="descrizioneArticolo">
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label class="control-label">QUANTITA*</label>
+                                    <input class="form-control" formControlName="quantita" (ngModelChange)="calculateTotaleNetto($event,i, 'quantita')">
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label class="control-label">UNITA MISURA*</label>
+                                    <select formControlName="unitaMisura">
                     <option *ngFor="let opt of unitaMisuraDropDown"
                      [value]="opt.value">{{opt.value}}</option>
                   </select>
-                </div>
-              </div>
-              <div class="col-md-1">
-                <div class="form-group">
-                  <label class="control-label">IMPORTO UNIT*</label>
-                  <input class="form-control" formControlName="importoUnitario" (ngModelChange)="calculateTotaleNetto($event,i, 'unit')">
-                </div>
-              </div>
-              <div class="col-md-1">
-                <div class="form-group">
-                  <label class="control-label">%SCONTI</label>
-                  <input class="form-control" formControlName="pcSconto" (ngModelChange)="calculateTotaleNetto($event,i, 'discount')">
-                </div>
-              </div>
-              <div class="col-md-1">
-                <div class="form-group">
-                  <label class="control-label">TOTALE NETTO*</label>
-                  <input class="form-control" formControlName="totNetto" disabled>
-                </div>
-              </div>
-              <div class="col-md-1">
-                <div formGroupName="codiceIVA" class="form-group">
-                  <label class="control-label">% ALIO.IVA*</label>
-                  <select formControlName="pcAliquota" (ngModelChange)="updateModels($event, i)">
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label class="control-label">IMPORTO UNIT*</label>
+                                    <input class="form-control" formControlName="importoUnitario" (ngModelChange)="calculateTotaleNetto($event,i, 'unit')">
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label class="control-label">%SCONTI</label>
+                                    <input class="form-control" formControlName="pcSconto" (ngModelChange)="calculateTotaleNetto($event,i, 'discount')">
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label class="control-label">TOTALE NETTO*</label>
+                                    <input class="form-control" formControlName="totNetto" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div formGroupName="codiceIVA" class="form-group">
+                                    <label class="control-label">% ALIO.IVA*</label>
+                                    <select formControlName="pcAliquota" (ngModelChange)="updateModels($event, i)">
                     <option *ngFor="let opt of codesVATDropDown"
                      [value]="opt.value">{{opt.value}}</option>
                   </select>
-                </div>
-              </div>
-              <div class="col-md-1">
-                <div class="form-group">
-                  <label class="control-label">TOT LORDO*</label>
-                  <input class="form-control" [(ngModel)]="totLordo[i]" (ngModelChange)="totLordoChange($event, i)" [ngModelOptions]="{standalone: true}">
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <label class="control-label">SOGGETTO A TIRENUTA*</label>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <input type="checkbox" class="form-control" formControlName="soggettoRitenuta" (ngModelChange)="calculateRitenutaEnasarco()">
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label class="control-label">TOT LORDO*</label>
+                                    <input class="form-control" [(ngModel)]="totLordo[i]" (ngModelChange)="totLordoChange($event, i)" [ngModelOptions]="{standalone: true}">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="control-label">SOGGETTO A TIRENUTA*</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="checkbox" class="form-control" formControlName="soggettoRitenuta" (ngModelChange)="calculateRitenutaEnasarco()">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button (click)="deleteArticle(i)" class="btn btn-default">x</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                      <button (click)="deleteArticle(i)" class="btn btn-default">x</button>
+                    <button (click)="addArticle()" class="btn btn-default">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tutto Coretto-->
+        <div class="panel">
+            <div class="panel-heading">TUTTO CORRETTO</div>
+            <div class="panel-body pan">
+                <div class="form-body pal">
+                    <div [hidden]="(userData.regimeForfettario==true)">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="control-label"> RIEPILOGO IVA</label>
+                            </div>
+                        </div>
+                        <div class="row" *ngFor="let articoliGroup of salesDocumentForm.controls.articoli.controls; let i = index">
+                            <div [formGroup]=articoliGroup class="form-group">
+                                <div class="col-md-1">
+                                    <label class="control-label"></label>
+                                    <input class="form-control" formControlName="totNetto" (ngModelChange)="calculateTotals($event)" disabled>
+                                </div>
+                                <div class="col-md-1" formGroupName="codiceIVA">
+                                    <label class="control-label"></label>
+                                    <input class="form-control" disabled [value]="codesVAT[i]">
+                                </div>
+                                <div class="col-md-1" formGroupName="codiceIVA">
+                                    <label class="control-label"></label>
+                                    <input class="form-control" [value]="articoliGroup.value.totNetto * (codesVAT[i]/100)" disabled>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label"> TOTALE IMPONIBLE:</label>
+                        </div>
+                        <div class="col-md-1">
+                            <input class="form-control" [ngModel]="totaleImponible" [ngModelOptions]="{standalone: true}" disabled>
+                        </div>
+                        <div *ngIf="userData.formaGiuridica == 'LIBERO_PROFESSIONISTA' && userData.agenteCommercio== 'MONOMANDATARIO'">
+                            <div class="col-md-2">
+                                <label class="control-label"> RITENUTA ENASARCO:</label>
+                            </div>
+                            <div class="col-md-1">
+                                <input class="form-control" formControlName="ritenutaEnasarco" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="conrol-label">TOTALE IMPOSTE:</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="control-label"></label>
+                            <input class="form-control" [ngModel]="totaleImposte" [ngModelOptions]="{standalone: true}" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="conrol-label">TOTALE FATTURA:</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="control-label"></label>
+                            <input class="form-control" formControlName="totDocumento" [value]="totaleImponible + totaleImposte + salesDocumentForm.value.rivalsa" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="conrol-label">TOTALE DA PAGARE: {{salesDocumentForm.value.totDocumento}}</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="control-label"></label>
+                            <input class="form-control" formControlName="totDaPagare" [value]="
+                            salesDocumentForm.value.totDocumento - 
+                             salesDocumentForm.value.ritenutaEnasarco - 
+                             salesDocumentForm.value.ritenutaAcconto + 
+                             salesDocumentForm.value.marcaDaBollo" disabled>
+                        </div>
+                    </div>
                 </div>
-              </div>
-
             </div>
-          </div>
-          <button (click)="addArticle()" class="btn btn-default">+</button>
+            <div class="col-md-2">
+                <label class="conrol-label">TOTALE FATTURA:</label>
+            </div>
+            <div class="col-md-1">
+                <label class="control-label"></label>
+                <input class="form-control" formControlName="totDocumento" [value]="totaleImponible + totaleImposte + salesDocumentForm.value.rivalsa" disabled>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Tutto Coretto-->
-    <div class="panel">
-      <div class="panel-heading">TUTTO CORRETTO</div>
-      <div class="panel-body pan">
+        <div class="row">
+            <div class="col-md-2">
+                <label class="conrol-label">TOTALE DA PAGARE:</label>
+            </div>
+            <div class="col-md-1">
+                <label class="control-label"></label>
+                <input class="form-control" formControlName="totDaPagare" [value]="salesDocumentForm.value.totDocumento - salesDocumentForm.value.ritenutaEnasarco - salesDocumentForm.value.ritenutaAcconto + salesDocumentForm.value.marcaDaBollo" disabled>
+            </div>
+        </div>
+</div>
+<!-- Pagamenti-->
+<div class="panel">
+    <div class="panel-heading">Pagamenti</div>
+    <div class="panel-body pan">
         <div class="form-body pal">
-          <div [hidden]="(userData.regimeForfettario==true)">
-            <div class="row">
-              <div class="col-md-2">
-                <label class="control-label"> RIEPILOGO IVA</label>
-              </div>
-            </div>
-            <div class="row" *ngFor="let articoliGroup of salesDocumentForm.controls.articoli.controls; let i = index">
-              <div [formGroup]=articoliGroup class="form-group">
-                <div class="col-md-1">
-                  <label class="control-label"></label>
-                  <input class="form-control" formControlName="totNetto" (ngModelChange)="calculateTotals($event)" disabled>
+            <div class="row" *ngFor="let pagamentiGroup of salesDocumentForm.controls.pagamenti.controls; let i = index">
+                <div [formGroup]=pagamentiGroup class="form-group">
+                    <div class="col-md-2">
+                        <label class="control-label">Importo</label>
+                        <input class="form-control" formControlName="importo">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="control-label">Data</label>
+                        <input class="form-control" formControlName="data">
+                    </div>
                 </div>
-                <div class="col-md-1" formGroupName="codiceIVA">
-                  <label class="control-label"></label>
-                  <input class="form-control" disabled [value]="codesVAT[i]">
-                </div>
-                <div class="col-md-1" formGroupName="codiceIVA">
-                  <label class="control-label"></label>
-                  <input class="form-control" [value]="articoliGroup.value.totNetto * (codesVAT[i]/100)" disabled>
-                </div>
-              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-2">
-              <label class="control-label"> TOTALE IMPONIBLE:</label>
-            </div>
-            <div class="col-md-1">
-              <input class="form-control" [ngModel]="totaleImponible" [ngModelOptions]="{standalone: true}" disabled>
-            </div>
-            <div *ngIf="userData.formaGiuridica == 'LIBERO_PROFESSIONISTA' && userData.agenteCommercio== 'MONOMANDATARIO'">
-              <div class="col-md-2">
-                <label class="control-label"> RITENUTA ENASARCO:</label>
-              </div>
-              <div class="col-md-1">
-                <input class="form-control" formControlName="ritenutaEnasarco" disabled>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-2">
-              <label class="conrol-label">TOTALE IMPOSTE:</label>
-            </div>
-            <div class="col-md-1">
-              <label class="control-label"></label>
-              <input class="form-control" [ngModel]="totaleImposte" [ngModelOptions]="{standalone: true}" disabled>
-            </div>
-            <div class="col-md-2">
-              <label class="conrol-label">TOTALE FATTURA:</label>
-            </div>
-            <div class="col-md-1">
-              <label class="control-label"></label>
-              <input class="form-control" formControlName="totDocumento" [value]="totaleImponible + totaleImposte + salesDocumentForm.value.rivalsa"
-                disabled>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-2">
-              <label class="conrol-label">TOTALE DA PAGARE:</label>
-            </div>
-            <div class="col-md-1">
-              <label class="control-label"></label>
-              <input class="form-control" formControlName="totDaPagare" [value]="salesDocumentForm.value.totDocumento - salesDocumentForm.value.ritenutaEnasarco - salesDocumentForm.value.ritenutaAcconto + salesDocumentForm.value.marcaDaBollo"
-                disabled>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-
-    <!-- Pagamenti-->
-    <div class="panel">
-      <div class="panel-heading">Pagamenti</div>
-      <div class="panel-body pan">
-        <div class="form-body pal">
-          <div class="row" *ngFor="let pagamentiGroup of salesDocumentForm.controls.pagamenti.controls; let i = index">
-            <div [formGroup]=pagamentiGroup class="form-group">
-              <div class="col-md-2">
-                <label class="control-label">Importo</label>
-                <input class="form-control" formControlName="importo">
-              </div>
-              <div class="col-md-2">
-                <label class="control-label">Data</label>
-                <input class="form-control" formControlName="data">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+</div>
 
 
 <button (click)="test()" class="btn btn-default"> Test </button>
