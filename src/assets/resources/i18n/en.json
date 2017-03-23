@@ -45,4 +45,12 @@
   "MOVIMENTI":{
     "TITLE" : "Movimenti"
   }
+
+  "CORRISPETTIVI":{
+    "TITLE" : "Corrispettivi"
+  },
+
+  "ACQUISTI":{
+    "TITLE" : "Acquisti"
+  }
 }

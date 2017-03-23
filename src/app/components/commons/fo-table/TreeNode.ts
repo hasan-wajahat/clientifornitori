@@ -1,0 +1,17 @@
+/**
+ * Created by Rocco on 13/03/2017.
+ */
+export class TreeNode {
+  label?: string;
+  data?: any;
+  icon?: any;
+  expandedIcon?: any;
+  collapsedIcon?: any;
+  children?: TreeNode[];
+  leaf?: boolean;
+  expanded?: boolean;
+  type?: string;
+  parent?: TreeNode;
+  partialSelected?: boolean;
+  styleClass?: string;
+}

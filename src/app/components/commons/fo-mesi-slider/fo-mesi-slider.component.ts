@@ -22,14 +22,13 @@ export class FoMesiSliderComponent implements OnInit {
   @Input() disabledMoveStyleRight:boolean;
   @Input() hideConfirmedLock:string;
 
+  @Input() detailMode:boolean = false;
+  @Input() selMese:number;
+  @Input() selAnno:number;
 
-  selMese:number;
-  selAnno:number;
   istTempo=new Date();
   annoOra=this.istTempo.getFullYear();
   meseOra=this.istTempo.getMonth();
-
-
 
 
   constructor(private route:ActivatedRoute,private _commonService:CommonService,){ }
@@ -37,17 +36,18 @@ export class FoMesiSliderComponent implements OnInit {
   ngOnInit(){
 
     this.route.params.subscribe(params => {
-      CommonService.logDebug("PARAMS: " + JSON.stringify(params));
+      CommonService.logDebug("PARAMS TO MESI-SLIDER: " + JSON.stringify(params));
 
       if(params.hasOwnProperty('selMese') && params.hasOwnProperty('selAnno')){
-        this.selMese = +params['selMese'];
-        this.selAnno = +params['selAnno'];
-
+        this.selMese = Number(params['selMese']);
+        this.selAnno = Number(params['selAnno']);
       }
-
+      else{
+        let d:Date = new Date();
+        this.selMese = d.getMonth()+1;
+        this.selAnno = d.getFullYear();
+      }
     });
-
-
 
   }
 
@@ -56,20 +56,14 @@ export class FoMesiSliderComponent implements OnInit {
     this.backClick.emit(null);
   }
 
-  annoDopo(){
-    this.forwClick.emit(null);
-  }
-
-
   getCurrMese(mese:number,clickable:boolean,locked:string){
     if(clickable==true){
-      this.selezioneAnno.emit({mese:mese,lockd:locked});
+      this.selezioneAnno.emit({mese:mese, lockd:locked});
     }
   }
 
-
-
-
-
+  annoDopo(){
+    this.forwClick.emit(null);
+  }
 
 }

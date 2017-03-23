@@ -5,4 +5,5 @@ export class CodeVAT {
   dateFrom:string;
   dateTo:string;
   defaultVAT:boolean;
+  checked:boolean;
 }

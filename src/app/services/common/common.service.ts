@@ -33,15 +33,19 @@ export class CommonService {
     }
   }
 
-
   public showGrowlMessage( msgs: Message[] ){
     let showGrowlMessageEvent = new CustomEvent('showGrowlMessageEvent', { bubbles: true, detail:msgs });
     this.el.nativeElement.dispatchEvent(showGrowlMessageEvent);
   }
 
-  public static getValidationErrors(errorDetail:ErrorDetail, formErrors:any){
+  public static getValidationErrors(errorDetail:ErrorDetail, formErrors:any) : any{
     for (let prop in errorDetail.validationErrors){
-      formErrors[prop] += this.getFieldValidationMessages(errorDetail, prop);
+      let errMsg = this.getFieldValidationMessages(errorDetail, prop);
+      if(errMsg != null && errMsg != '' && !formErrors.hasOwnProperty(prop)){
+        return errMsg;
+      }
+      formErrors[prop] += errMsg;
+      return null;
     }
   }
 
@@ -84,7 +88,10 @@ export class CommonService {
 
       if(errorDetail.type == 'VALIDATION'){
         if(formErrors != null) {
-          CommonService.getValidationErrors(errorDetail, formErrors);
+          let checkFieldErrorNotExist = CommonService.getValidationErrors(errorDetail, formErrors);
+          if(checkFieldErrorNotExist != null){
+            return CommonService.generateWarningMessage(checkFieldErrorNotExist);
+          }
         }
         if(errorDetail.validationErrors.hasOwnProperty('_global_')){
           globalMessage = CommonService.getFieldValidationMessages(errorDetail, '_global_');
@@ -128,12 +135,66 @@ export class CommonService {
     return msgs;
   }
 
-  public static onValueChangedFormArray(data: any, formArray:FormArray, formErrors:any, validationMessages:any, submitted:boolean) {
+  /**
+   * Genera dinamicamente gli oggetti che serviranno come segnaposto per gli errori generati nella form
+   * Questa verrà chiamata prima di una validazione su un FormArray (lista dinamica di FormGroup)
+   * @param formArray
+   * @returns {Array}
+   */
+  public static buildFormArrayErrors(formArray:FormArray):any[]{
+    let errors = [];
+
+    formArray.controls.forEach(item => {
+      let curFormGroup:FormGroup = <FormGroup> item;
+      let errorObj:any = new Object();
+      let arrayOfKeys = Object.keys(curFormGroup.controls);
+      arrayOfKeys.forEach(key => {errorObj[key] = ''});
+      errors.push(errorObj);
+    });
+
+    return errors;
+  }
+
+  public static buildFormGroupErrors(formGroup:FormGroup):any{
+
+    let errorObj:any = new Object();
+    let arrayOfKeys = Object.keys(formGroup.controls);
+    arrayOfKeys.forEach(key => {errorObj[key] = ''});
+
+    return errorObj;
+  }
+
+  public static onValueChangedFormArray(data: any, formArray:FormArray, formErrorsArray:any[], validationMessages:any, submitted:boolean) {
 
     for(let i=0;i<formArray.length;i++){
 
-      let fb:FormGroup = <FormGroup>formArray.at(i);
-      this.onValueChanged(data, fb, formErrors, validationMessages, submitted);
+      let formDati:FormGroup = <FormGroup>formArray.at(i);
+
+      if (!formDati) { return; }
+      const form = formDati;
+      let formErrors:any = formErrorsArray[i];
+
+      // Presuppone che le chiavi dell'array formErrors siano uguali a quelle dei controls
+      for (const field in formDati.controls) {
+        // clear previous error message (if any)
+        formErrors[field] = '';
+        const control = form.get(field);
+        if(control != null) {
+          if (control && control.dirty && control.invalid) {
+
+            if(!validationMessages.hasOwnProperty(field)){
+              console.log("VALIDATION MESSAGE NOT CONTAIN PROPERTY: '" + field + "'");
+            }
+            const messages = validationMessages[field];
+
+            for (const key in control.errors) {
+              formErrors[field] += messages[key] + ' ';
+              console.log('ERROR IN FIELD ' + field + ' - MSG KEY: ' + key + " - " + formErrors[field]);
+            }
+          }
+        }
+
+      }
 
     }
 
@@ -168,7 +229,7 @@ export class CommonService {
       //console.log('CONTROL ' + field + ' : ' + control);
 
       if(control != null) {
-        if (control && control.dirty && !control.valid || submitted) {
+        if (control && control.dirty && control.invalid) {
           const messages = validationMessages[field];
           for (const key in control.errors) {
             formErrors[field] += messages[key] + ' ';

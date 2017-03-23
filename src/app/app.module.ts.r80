@@ -7,13 +7,12 @@ import {UserService} from "./services/authentication/user.service";
 import {LoggedInGuard} from "./services/authentication/logged-in.guard";
 import {LoginComponent} from "./components/login/login.component";
 import {HomeComponent} from "./components/home/home.component";
-// import {DashboardComponent} from "./components/dashboard/dashboard.component";
-// import {AcquistiComponent} from "./components/acquisti/acquisti.component";
-// import {VenditeComponent} from "./components/vendite/vendite.component";
-// import {ContiComponent} from "./components/conti/conti.component";
-// import {F24Component} from "./components/f24/f24.component";
-// import {CostidipendentiComponent} from "./components/costidipendenti/costidipendenti.component";
-// import {ProfilepageComponent} from "./components/profilepage/profilepage.component";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {AcquistiComponent} from "./components/acquisti/acquisti.component";
+import {ContiComponent} from "./components/conti/conti.component";
+import {F24Component} from "./components/f24/f24.component";
+import {CostidipendentiComponent} from "./components/costidipendenti/costidipendenti.component";
+import {ProfilepageComponent} from "./components/profilepage/profilepage.component";
 import {SidebarmenuComponent} from "./components/sidebarmenu/sidebarmenu.component";
 import {HeaderComponent} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";
@@ -23,18 +22,20 @@ import {GlobalUtilsComponent} from "./components/commons/global-utils/global-uti
 import {ClientifornitoriModule} from "./components/clientifornitori/clientifornitori.module";
 import {SharedModule} from "./shared/shared.module";
 import {VenditeModule} from "./components/vendite/vendite.module";
-// import {RegistrazioneUtenteComponent} from "./components/registrazione-utente/registrazione-utente.component";
-// import {RegistrazioneSuccessComponent} from "./components/registrazione-utente/registrazione-success/registrazione-success.component";
-// import {RegistrazioneFailedComponent} from "./components/registrazione-utente/registrazione-failed/registrazione-failed.component";
-// import {RegistrazioneComponent} from "./components/registrazione-utente/registrazione/registrazione.component";
-// import {CorrispettiviModule} from "./components/corrispettivi/corrispettivi.module";
-// import {ScadenziarioModule} from "./components/scadenziario/scadenziario.module";
+import {RegistrazioneUtenteComponent} from "./components/registrazione-utente/registrazione-utente.component";
+import {RegistrazioneSuccessComponent} from "./components/registrazione-utente/registrazione-success/registrazione-success.component";
+import {RegistrazioneFailedComponent} from "./components/registrazione-utente/registrazione-failed/registrazione-failed.component";
+import {RegistrazioneComponent} from "./components/registrazione-utente/registrazione/registrazione.component";
+import {CorrispettiviModule} from "./components/corrispettivi/corrispettivi.module";
+import {ScadenziarioModule} from "./components/scadenziario/scadenziario.module";
+import {ContiModule} from "./components/conti/conti.module";
+import {MovimentiModule} from "./components/movimenti/movimenti.module";
 import {AcquistiModule} from "./components/acquisti/acquisti.module";
 
 /**
  * #######   FOR EXTERNAL DEVELOPERS   #######
  * README:
- * Uncomment rows relative to your component
+ * Comment rows relative to missing components
  */
 
 @NgModule({
@@ -42,48 +43,28 @@ import {AcquistiModule} from "./components/acquisti/acquisti.module";
     AppComponent,
     HeaderComponent,
     SidebarmenuComponent,
-    //DashboardComponent,
+    DashboardComponent,
     FooterComponent,
     ChatformComponent,
-<<<<<<< .mine
-    // AcquistiComponent,
-    // VenditeComponent,
-    // ContiComponent,
-    // F24Component,
-    // CostidipendentiComponent,
-    // ProfilepageComponent,
-||||||| .r42
-    AcquistiComponent,
     F24Component,
     CostidipendentiComponent,
     ProfilepageComponent,
-=======
-    F24Component,
-    CostidipendentiComponent,
-    ProfilepageComponent,
->>>>>>> .r80
     LoginComponent,
-    // RegistrazioneUtenteComponent,
-    // RegistrazioneComponent,
+    RegistrazioneUtenteComponent,
+    RegistrazioneComponent,
     HomeComponent,
-    GlobalUtilsComponent
-    // RegistrazioneSuccessComponent,
-    // RegistrazioneFailedComponent
+    GlobalUtilsComponent,
+    RegistrazioneSuccessComponent,
+    RegistrazioneFailedComponent
   ],
   imports: [
     routing,
-<<<<<<< .mine
-||||||| .r42
-    ContiModule,
-    MovimentiModule,
-=======
     AcquistiModule,
     ContiModule,
     MovimentiModule,
->>>>>>> .r80
     ClientifornitoriModule,
-    // CorrispettiviModule,
-    // ScadenziarioModule,
+    CorrispettiviModule,
+    ScadenziarioModule,
     VenditeModule,
     SharedModule
   ],

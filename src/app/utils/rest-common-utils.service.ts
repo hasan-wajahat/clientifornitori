@@ -324,10 +324,23 @@ export class RestCommonUtilsService {
     return url;
   }
 
-  public retriveResourcePath(resourceId){
+  public retriveResourcePath(resourceId,tipoContDisp?){
     let basePath = this.getBaseUrl() + this.baseContext;
     let urlDownloadFile = this.retrieveUrlWithPathVariables({'docId':resourceId}, ServicesEndpoint.operationDownloadFile);
-    return basePath + urlDownloadFile + "?X-AUTH-TOKEN=" + sessionStorage.getItem('auth_token') + "&contentDisposition=INLINE";
+    if(tipoContDisp){
+      let content:string='';
+      switch(tipoContDisp){
+        case 1:
+          content='ATTACHMENT';
+          break;
+        case 2:
+          content='INLINE';
+          break;
+      }
+      return basePath + urlDownloadFile + "?X-AUTH-TOKEN=" + sessionStorage.getItem('auth_token') + "&contentDisposition="+content;
+    }else{
+      return basePath + urlDownloadFile + "?X-AUTH-TOKEN=" + sessionStorage.getItem('auth_token') + "&contentDisposition=INLINE";
+    }
   }
 
 

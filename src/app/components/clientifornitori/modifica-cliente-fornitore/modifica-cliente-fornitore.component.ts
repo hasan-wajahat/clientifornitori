@@ -4,7 +4,7 @@ import {CliFor} from "../../../model/clientifornitori/CliFor";
 import {ClientiFornitoriService} from "../../../services/clientifornitori/clientifornitori.service";
 import {CommonService} from "../../../services/common/common.service";
 import {Message, ConfirmationService} from "primeng/primeng";
-import {CodeVAT} from "../../../model/clientifornitori/CodeVAT";
+import {CodeVAT} from "../../../model/commons/CodeVAT";
 import {URLSearchParams} from "@angular/http";
 import {User} from "../../../model/user/User";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
@@ -44,12 +44,22 @@ export class ModificaClienteFornitoreComponent implements OnInit {
 
   submitted:boolean = false;
 
+  sessionAcquistiSet:boolean=false;
+  acquistiId:string;
+
 
   ngOnInit() {
     this.today = new Date();
     CommonService.logDebug("Inizializzo con dati default!");
 
     this.userData = <User> JSON.parse(sessionStorage.getItem("UserData"));
+    if(sessionStorage.getItem("datiAcquisti")){
+      let sessionVals=JSON.parse(sessionStorage.getItem("datiAcquisti"));
+      console.log("Questa è la parte della session storage degli acquisti");
+      console.log(sessionVals);
+      this.sessionAcquistiSet=true;
+      this.acquistiId = sessionVals.id;
+    }
     this.inizializzaCalendar();
 
     // TODO: Per tutte le costanti creare ed usare ENUMERATO come da BACK-END
@@ -70,7 +80,6 @@ export class ModificaClienteFornitoreComponent implements OnInit {
         CommonService.logDebug("TIPO CF: " + params['tipoCf']);
       }
     });
-
 
     this.route.params.forEach((params: Params) => {
       // Passaggio parametri vecchio modo
@@ -186,6 +195,14 @@ export class ModificaClienteFornitoreComponent implements OnInit {
     this._router.navigate(['/home/clientifornitori/lista-clientifornitori']);
   }
 
+  backToModificaAcquisti(){
+    if(this.acquistiId!=null){
+      this._router.navigate(['/home/acquisti/modifica-acquisti',{id:this.acquistiId,backFornitore:true}]);
+    }else{
+      this._router.navigate(['/home/acquisti/modifica-acquisti',{backFornitore:true}]);
+    }
+  }
+
   checkFormsValidity() : boolean {
 
     this.submitted = true;
@@ -211,7 +228,6 @@ export class ModificaClienteFornitoreComponent implements OnInit {
   }
 
   saveConfirm() {
-
     if(!this.checkFormsValidity()){
       this.displayWarning("Alcuni campi non sono valorizzati correttamente.");
       return;
@@ -227,7 +243,6 @@ export class ModificaClienteFornitoreComponent implements OnInit {
         this.salvaClienteFornitore();
       }
     });
-
   }
 
   salvaClienteFornitore(){
@@ -251,8 +266,41 @@ export class ModificaClienteFornitoreComponent implements OnInit {
       () => {
         CommonService.logInfo("_clientiFornitoriService.insertClienteFornitore() - FINISHED! " );
               this._commonService.hideBusy();
-              this.backToListaClientiFornitori();
-              this.displayInfo("Inserimento effettuatuato con successo.");
+        this.route.params.subscribe(params => {
+
+          if(sessionStorage.getItem("datiAcquisti")!=null){
+
+            let sessionVals=JSON.parse(sessionStorage.getItem("datiAcquisti"));
+
+            if(this.cliForDTO.tipo=='PERSONA_FISICA'){
+              let intCogNome=this.formDatiClienteFornitore.controls['nome'].value+' '+this.formDatiClienteFornitore.controls['cognome'].value;
+              sessionVals.cliFor.intestazioneCognomeNome=intCogNome;
+              sessionVals.cliFor.indirizzo=this.formDatiClienteFornitore.controls['indirizzo'].value;
+              sessionVals.cliFor.citta=this.formDatiClienteFornitore.controls['citta'].value;
+              sessionVals.cliFor.pIvaCf=this.formDatiClienteFornitore.controls['codiceFiscale'].value;
+              sessionStorage.setItem('datiAcquisti',JSON.stringify(sessionVals));
+            }else if(this.cliForDTO.tipo=='PERSONA_GIURIDICA'){
+              sessionVals.cliFor.intestazioneCognomeNome=this.formDatiClienteFornitore.controls['ragioneSociale'].value;
+              sessionVals.cliFor.indirizzo=this.formDatiClienteFornitore.controls['indirizzo'].value;
+              sessionVals.cliFor.citta=this.formDatiClienteFornitore.controls['citta'].value;
+              if(this.formDatiClienteFornitore.controls['partitaIVA'].value){
+                sessionVals.cliFor.pIvaCf=this.formDatiClienteFornitore.controls['partitaIVA'].value;
+              }else{
+                sessionVals.cliFor.pIvaCf=this.formDatiClienteFornitore.controls['codiceFiscale'].value;
+              }
+              sessionStorage.setItem('datiAcquisti',JSON.stringify(sessionVals));
+            }else{
+              this.displayWarning("Devi seleziona Persona Fisica o Persona Giuridica per poter proseguire!");
+              return;
+            }
+            this.backToModificaAcquisti();
+          }else{
+            this.backToListaClientiFornitori();
+            this.displayInfo("Inserimento effettuatuato con successo.");
+          }
+
+        });
+
       }
     );
 

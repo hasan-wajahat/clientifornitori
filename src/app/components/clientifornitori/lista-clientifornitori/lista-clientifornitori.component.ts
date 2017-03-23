@@ -153,7 +153,7 @@ export class ListaClientifornitoriComponent implements OnInit {
     ];
   }
 
-  initPageFilters() {
+  initPageFilters(){
 
   }
 

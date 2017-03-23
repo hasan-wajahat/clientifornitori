@@ -1,0 +1,38 @@
+<section id="fo-tables" style="">
+
+  <table class="hoverHand table-striped table-condensed cf">
+    <thead class="cf">
+      <tr>
+        <th></th>
+        <th *ngFor="let col of columns" [ngStyle]="col.header_style" (click)="sortDataset(col.field)">
+          {{col['header']}}
+          <span class="{{getClassIconSortDirection(col.field)}}"></span>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody *ngFor="let rowData of value ; let i = index">
+
+      <tr class="rows-root-style">
+        <td class="col-icon collapse-button" style="width: 30px;" (click)="toggleRow(rowData, $event)">
+          <a class="fa fa-caret-right" style="margin-left: 0px; visibility: visible;" ></a>
+        </td>
+        <td *ngFor="let col of columns" attr.data-title="{{col.header}}" style="height: 28px;" [ngStyle]="col.style" (click)="onRowSelect(rowData)">
+          {{col.value_type == 'currency' ? (rowData.data[col.field] | myCurrency) : rowData.data[col.field]}}
+        </td>
+        <td class="col-icon resp-collapse-button" style="width: 100%;" (click)="toggleRow(rowData, $event)">
+          <a class="fa fa-caret-right" style="margin-left: 0px; visibility: visible;"></a>
+        </td>
+      </tr>
+
+      <tr *ngFor="let dataChildren of rowData.children ; let i = index" [style.display]="dataChildren.expanded ? '' : 'none'" (click)="onRowSelect(rowData)" [class.evenOddClass]="i % 2 != 0" class="rows-child-style">
+        <td class="col-icon td_child_style collapse-button-responsive" style="width: 30px;border: none;"></td>
+        <td *ngFor="let col of columns ; let i = index" attr.data-title="{{col.header_responsive}}" attr.data-prefix="{{col.value_prefix}}" style="height: 28px;" class="td_child_style" [ngStyle]="col.subtree_style" [class.subtreepad]="i == 0">{{col.value_type == 'currency' ? (dataChildren.data[col.field] | myCurrency) : dataChildren.data[col.field]}}</td>
+      </tr>
+
+    </tbody>
+
+
+  </table>
+
+</section>

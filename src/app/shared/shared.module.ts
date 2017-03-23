@@ -9,7 +9,11 @@ import {
   ConfirmDialogModule,
   DialogModule,
   CalendarModule,
-  InputSwitchModule, InputMaskModule, CheckboxModule, DataListModule, ChartModule, ProgressBarModule
+  InputSwitchModule,
+  InputMaskModule,
+  DataListModule,
+  ChartModule,
+  ProgressBarModule
 } from "primeng/primeng";
 import {BrowserModule} from "@angular/platform-browser";
 import {TitlepageComponent} from "../components/titlepage/titlepage.component";
@@ -17,6 +21,9 @@ import {FoCollapsibleBarComponent} from "../components/commons/fo-collapsible-ba
 import {FoDataTableComponent} from "../components/commons/fo-data-table/fo-data-table.component";
 import {LoadingIndicatorComponent} from "../components/commons/loading-indicator/loading-indicator.component";
 import {FoSwitchComponent} from "../components/commons/fo-switch/fo-switch.component";
+import {MyCurrencyFormatterDirective} from "../directives/my-currency-formatter.directive";
+import {MyCurrencyPipe} from "../pipes/my-currency.pipe";
+import {FoTableComponent} from "../components/commons/fo-table/fo-table.component";
 
 @NgModule({
   imports: [
@@ -33,7 +40,6 @@ import {FoSwitchComponent} from "../components/commons/fo-switch/fo-switch.compo
     CalendarModule,
     InputSwitchModule,
     InputMaskModule,
-    CheckboxModule,
     DataListModule,
     ChartModule,
     ProgressBarModule,
@@ -49,8 +55,11 @@ import {FoSwitchComponent} from "../components/commons/fo-switch/fo-switch.compo
     TitlepageComponent,
     FoCollapsibleBarComponent,
     FoDataTableComponent,
+    FoTableComponent,
     LoadingIndicatorComponent,
-    FoSwitchComponent
+    FoSwitchComponent,
+    MyCurrencyFormatterDirective,
+    MyCurrencyPipe
   ],
   exports: [
     BrowserModule,
@@ -68,11 +77,16 @@ import {FoSwitchComponent} from "../components/commons/fo-switch/fo-switch.compo
     FoSwitchComponent,
     TranslateModule,
     InputMaskModule,
-    CheckboxModule,
     DataTableModule,
     DataListModule,
     ChartModule,
-    ProgressBarModule
+    ProgressBarModule,
+    MyCurrencyFormatterDirective,
+    MyCurrencyPipe,
+    FoTableComponent,
+  ],
+  providers: [
+    MyCurrencyPipe
   ]
 
 
