@@ -25,6 +25,7 @@ export class InvoiceItemComponent implements OnInit {
   unitaMisuraDropDown: any;
   codesVATDropDown: any = [];
   codesVAT: number[] = [];
+  codesVATResult: any = [];
   totaleImponible: number;
   totLordo: number[] = [];
   totaleImposte: number;
@@ -113,6 +114,8 @@ export class InvoiceItemComponent implements OnInit {
   }
 
   createVATDropDown() {
+
+    console.log("service called");
     this.venditeService.getcodesVAT().subscribe(
       res => {
         res.map(val => {
@@ -120,6 +123,7 @@ export class InvoiceItemComponent implements OnInit {
           let endVatDate = this.convertToDate(val.dateTo);
           if (startVatDate < this.issueDate && endVatDate > this.issueDate) {
             if (!hasVat(this.codesVATDropDown, val.pcAliquota)) {
+              this.codesVATResult.push(val);
               this.codesVATDropDown.push({ value: val.pcAliquota });
             }
           }
@@ -174,8 +178,19 @@ export class InvoiceItemComponent implements OnInit {
   }
 
   updateModels(val: number, index: number) {
+
+    console.log("val : ", val);
+        console.log("index : ", index);
     let item = this.salesDocumentForm.value.articoli[index];
     this.codesVAT[index] = val;
+    
+    let codeValueSelected = this.codesVATResult.find((value) => value.pcAliquota == val);
+    console.log("codeValueSelected : ", codeValueSelected);
+
+    const articoliControl = <FormArray>this.salesDocumentForm.controls['articoli'];
+    articoliControl.controls[index].patchValue({ codiceIVA: this.codesVATResult[index] });
+    console.log("articoliControl : ", articoliControl.controls[index].value);
+
     this.totLordo[index] = item.totNetto + item.totNetto * (val / 100);
     this.calculateTotals(1);
   }
