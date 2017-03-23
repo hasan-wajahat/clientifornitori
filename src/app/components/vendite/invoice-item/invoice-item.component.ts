@@ -276,7 +276,11 @@ export class InvoiceItemComponent implements OnInit {
   }
 
   test() {
-    console.log(this.billDetails);
+    console.log(this.salesDocumentForm.value);
+    this.venditeService.postSale(this.salesDocumentForm.value).subscribe(
+      res => console.log(res),
+      error => console.log(error)
+    )
   }
 
   editForm() {

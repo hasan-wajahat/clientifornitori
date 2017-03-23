@@ -27,6 +27,11 @@ export class VenditeService {
      return this.restCommonUtil.putJson(`/api/v1/sales/`, sales, new URLSearchParams());
   }
 
+  postSale(sales:any){
+    console.log("posting data : ", sales);
+     return this.restCommonUtil.postJson(`/api/v1/sales/`, sales);
+  }
+
   getConfigParameters(date: string){
     return this.restCommonUtil.jsonGet(`/api/v1/configParameter/?date=${date}`)
   }
