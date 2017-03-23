@@ -25,11 +25,12 @@
   height:80px;
   align-items:center;
   text-align:center;
-  background-color:#FF9800;
-  border:2px solid #FF9800;
+  /*background-color:#FF9800;*/
+  border:none;
   transition:0.2s;
   opacity:1;
   transform:scale(1,1);
+  font-weight: bold;
 }
 
 #bs-mesi .mese .confermato{
@@ -40,8 +41,9 @@
   font-size:20px;
   text-align:center;
   padding:5px;
-  color:#FFFFFF;
+  color:#000000;
   transition:0.2s;
+  display: none;
 }
 
 #bs-mesi .mese .nonconfermato{
@@ -52,20 +54,20 @@
   font-size:20px;
   text-align:center;
   padding:5px;
-  color:#FFFFFF;
+  color:#000000;
   animation:vibrate linear 0.5s 3;
   transition:0.2s;
 }
 
 .noValori{
-  color:#7986CB !important;
-  background-color:#01579B !important;
-  border:2px solid #01579B !important;
-  -webkit-transform:scale(1,1) !important;
-  -moz-transform:scale(1,1) !important;
-  -ms-transform:scale(1,1) !important;
-  -o-transform:scale(1,1) !important;
-  transform:scale(1,1) !important;
+  /*color:#7986CB !important;*/
+  /*background-color:#01579B !important;*/
+  /*border:1px solid #FFFFFF !important;*/
+  /*-webkit-transform:scale(1,1) !important;*/
+  /*-moz-transform:scale(1,1) !important;*/
+  /*-ms-transform:scale(1,1) !important;*/
+  /*-o-transform:scale(1,1) !important;*/
+  /*transform:scale(1,1) !important;*/
 }
 
 #bs-mesi .mese .dettagliMese{
@@ -78,34 +80,35 @@
   z-index:30;
   width:20px;
   height:20px;
-  top:0px;
-  left:0px;
+  top:2px;
+  left:2px;
   font-size:10px;
+  font-weight: bold;
   text-align:center;
   padding:2.0px;
   border-radius:50%;
   background-color:#F57C00;
-  animation:notification-effect 1.2s;
-  transition:0.2s;
+  /*animation:notification-effect 1.2s;*/
+  /*transition:0.2s;*/
 }
 
 #bs-mesi .mese .nCorr:hover{
-  -webkit-transform:scale(1.5, 1.5);
-  -moz-transform:scale(1.5,1.5);
-  -ms-transform:scale(1.5, 1.5);
-  -o-transform:scale(1.5, 1.5);
-  transform:scale(1.5,1.5);
+  /*-webkit-transform:scale(1.5, 1.5);*/
+  /*-moz-transform:scale(1.5,1.5);*/
+  /*-ms-transform:scale(1.5, 1.5);*/
+  /*-o-transform:scale(1.5, 1.5);*/
+  /*transform:scale(1.5,1.5);*/
 }
 
 #bs-mesi .mese:hover{
   z-index:30;
-  background-color:#FF9800;
+  background-color:#e9662c;
   cursor:pointer;
-  -webkit-transform:scale(1.1, 1.1);
-  -moz-transform:scale(1.1,1.1);
-  -ms-transform:scale(1.1, 1.1);
-  -o-transform:scale(1.1, 1.1);
-  transform:scale(1.1,1.1);
+  /*-webkit-transform:scale(1.1, 1.1);*/
+  /*-moz-transform:scale(1.1,1.1);*/
+  /*-ms-transform:scale(1.1, 1.1);*/
+  /*-o-transform:scale(1.1, 1.1);*/
+  /*transform:scale(1.1,1.1);*/
   /*box-shadow:1px 1px 4px 0px black;*/
 }
 
@@ -141,11 +144,32 @@
 }
 
 .meseSel{
-  background-color:#0a819c !important;
-  border:2px solid #0a819c !important;
+  background-color:#e9662c !important;
+  /*border:2px solid #0a819c !important;*/
   color:#FFFFFF !important;
+  /*-webkit-transform:scale(1.1, 1.1) !important;*/
+  /*-moz-transform:scale(1.1,1.1) !important;*/
+  /*-ms-transform:scale(1.1, 1.1) !important;*/
+  /*-o-transform:scale(1.1, 1.1) !important;*/
+  /*transform:scale(1.1,1.1) !important;*/
+  z-index:31 !important;
 }
 
+.meseDisabled {
+  opacity: 0.5 !important;
+}
+
+.meseDisabled:hover{
+  z-index:30;
+  background-color:#e9662c;
+  cursor:pointer;
+  /*-webkit-transform:scale(1.0, 1.0) !important;*/
+  /*-moz-transform:scale(1.0,1.0) !important;*/
+  /*-ms-transform:scale(1.0, 1.0) !important;*/
+  /*-o-transform:scale(1.0, 1.0) !important;*/
+  /*transform:scale(1.0,1.0) !important;*/
+  /*box-shadow:1px 1px 4px 0px black;*/
+}
 
 @-webkit-keyframes anni-slide-effect{
   0%{

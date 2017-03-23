@@ -1,9 +1,13 @@
 <div class="page-content">
 
   <div class="page-toolbar">
-    <button type="button" data-hover="tooltip" title="Lista Clienti" class="btn btn-orange" data-toggle="modal" (click)="backToListaClientiFornitori()">
+    <button type="button" data-hover="tooltip" title="Lista Clienti" class="btn btn-orange" data-toggle="modal" (click)="backToListaClientiFornitori()" *ngIf="sessionAcquistiSet==false">
       <i class="fa fa-arrow-left" aria-hidden="true"></i>
       <i>Lista Clienti/Fornitori</i>
+    </button>
+    <button type="button" data-hover="tooltip" title="Annulla" class="btn btn-orange" data-toggle="modal" (click)="backToModificaAcquisti()" *ngIf="sessionAcquistiSet!=false">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      <i>Annulla</i>
     </button>
     <button type="button" data-hover="tooltip" title="Salva" class="btn btn-orange" data-toggle="modal" (click)="saveConfirm()">
       <i class="fa fa-save" aria-hidden="true"></i>
@@ -41,7 +45,7 @@
               <div>
                 <label><input class="big-radio" id="optionsPF" type="radio" name="tipo" [checked]="cliForDTO.tipo=='PERSONA_FISICA'"           value="PERSONA_FISICA"           (click)="changeFormaGiuridica($event)"/>&nbsp;Persona Fisica&nbsp;&nbsp;</label>
                 <label><input class="big-radio" id="optionsPG" type="radio" name="tipo" [checked]="cliForDTO.tipo=='PERSONA_GIURIDICA'"        value="PERSONA_GIURIDICA"        (click)="changeFormaGiuridica($event)"/>&nbsp;Persona Giuridica&nbsp;&nbsp;</label>
-                <label><input class="big-radio" id="optionsPA" type="radio" name="tipo" [checked]="cliForDTO.tipo=='PUBBLICA_AMMINISTRAZIONE'" value="PUBBLICA_AMMINISTRAZIONE" (click)="changeFormaGiuridica($event)"/>&nbsp;Pubblica Amministrazione&nbsp;</label>
+                <label *ngIf="sessionAcquistiSet==false"><input class="big-radio" id="optionsPA" type="radio" name="tipo" [checked]="cliForDTO.tipo=='PUBBLICA_AMMINISTRAZIONE'" value="PUBBLICA_AMMINISTRAZIONE" (click)="changeFormaGiuridica($event)"/>&nbsp;Pubblica Amministrazione&nbsp;</label>
               </div>
               <br>
             </div>

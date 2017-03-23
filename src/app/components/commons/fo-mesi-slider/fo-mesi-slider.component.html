@@ -1,10 +1,13 @@
-<div id="base-slider">
+<div id="base-slider" *ngIf="!detailMode">
   <div id="bs-arr-left" (click)="annoPrima();"><i class="fa fa-caret-left" [class.normalMove]="normalMoveStyle" [class.disabledMove]="disabledMoveStyleLeft" aria-hidden="true"></i></div>
   <div id="bs-mesi" >
-    <div class="mese" *ngFor="let mese of mesi;let i = index;" [ngClass]="{'anim-anni': true}" [class.noValori]="countmesi[i] == 0" [class.meseSel]="(i+1) == selMese && mese.anno == selAnno"  [style.animation-delay]="(i*0.05)+'s'" (click)="getCurrMese(mese['mese'],!(!(annoOra > mese.anno)&&!(meseOra>=i)),mese.norlockd,selAnno)">
-      <span class="nCorr" [style.animation-delay]="(i*0.10)+'s'" *ngIf="!(!(annoOra > mese.anno)&&!(meseOra>=i))">{{countmesi[i]}}</span><i class="fa fa-lock confermato" aria-hidden="true" [style.display]="mese.lockd" data-hover="tooltip" title="Confermato"></i><!--<i class="fa fa-unlock-alt nonconfermato" aria-hidden="true" [style.display]="mese.norlockd" data-hover="tooltip" title="Non Confermato"></i>-->
+    <div class="mese" *ngFor="let mese of mesi;let i = index;" [ngClass]="{'anim-anni': true}" [class.meseDisabled]="(!(annoOra > mese.anno)&&!(meseOra>=i))" [class.noValori]="countmesi[i] == 0" [class.meseSel]="(i+1) == selMese && mese.anno == selAnno"  [style.animation-delay]="(i*0.05)+'s'" (click)="getCurrMese(mese['mese'],!(!(annoOra > mese.anno)&&!(meseOra>=i)),mese.norlockd,selAnno)">
+      <span class="nCorr" *ngIf="countmesi[i] > 0">{{countmesi[i]}}</span><i class="fa fa-lock confermato" aria-hidden="true" [style.display]="mese.lockd" data-hover="tooltip" title="Confermato"></i>
       <span class="dettagliMese" >{{mese.mese}}<br>{{mese.anno}}</span>
     </div>
   </div>
   <div id="bs-arr-right" (click)="annoDopo();"><i class="fa fa-caret-right" [class.normalMove]="normalMoveStyle" [class.disabledMove]="disabledMoveStyleRight" aria-hidden="true"></i></div>
 </div>
+<!--<div style="padding-left: 30px;" *ngIf="detailMode">-->
+  <!--<h3>{{mesi[selMese-1].mese}} {{selAnno}}</h3>-->
+<!--</div>-->

@@ -65,7 +65,6 @@ const appRoutes: Routes = [
   //     {  path: 'profiloutente', component: ProfilepageComponent, canActivate: [LoggedInGuard] },
   //   ]
   // },
-
   { path: 'login', component: LoginComponent},
   // { path: 'registrazione-utente', component: RegistrazioneUtenteComponent },
   // { path: 'registrazione-success', component: RegistrazioneSuccessComponent},

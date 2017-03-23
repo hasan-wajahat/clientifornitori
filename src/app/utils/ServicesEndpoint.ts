@@ -3,6 +3,13 @@
  */
 
 export class ServicesEndpoint {
+  /**
+   * path servici COMMON Corrispettivi - Acquisti
+   */
+  public static operationListaCodiciVAT:string = '/api/public/v1/codesVAT';
+  public static operationGetBills = '/api/v1/bills/listOfValues/';
+  public static operationGetBillsCli = '/api/v1/bills/listOfValues/';
+  public static operationGetVociAcquisto = '/api/v1/purchaseItems/';
 
   /**
    * path servizi rest Clienti/Fornitori
@@ -15,6 +22,14 @@ export class ServicesEndpoint {
   public static operationUpdateStatusClienteFornitore = '/api/v1/cliFor/status';
 
   /**
+   * path servizi rest Acquisti
+   */
+
+  public static operationAcquistiList = '/api/v1/purchases/';
+  public static operationGetAcquisti = '/api/v1/purchases/{id}';
+  public static operationGetFornitore = '/api/v1/purchases/cliFor/find';
+
+  /**
    * path servizi rest Corrispettivi
    */
   public static operationCorrispettiviList = '/api/v1/corrispettivo/';
@@ -23,8 +38,7 @@ export class ServicesEndpoint {
   public static operationCountCorrispettivi = '/api/v1/corrispettivo/countCorrispettiviPerMese/';
   public static operationUpdateAndCheckCorrispettivi = '/api/v1/corrispettivo/';
   public static operationDeleteCorrispettivi = '/api/v1/corrispettivo/{id}';
-  public static operationUpdateStatusCorrispettivi = '/api/v1/corrispettivo/status';
-  public static operationGetBills = '/api/v1/bills/listOfValues/';
+  public static operationCorrispettiviConfirm = '/api/v1/corrispettivo/confirmFullMonth';
   public static operationGetUltimoConfermato = '/api/v1/corrispettivo/lastConfirmed';
 
   /**
@@ -32,7 +46,6 @@ export class ServicesEndpoint {
    */
   public static operationLogin:string = '/api/login';
   public static operationRegistrazioneUtente:string = '/api/public/v1/users/registration';
-  public static operationListaCodiciVAT:string = '/api/public/v1/codesVAT';
   public static operationUpdateUser:string = '/api/v1/users';
   public static operationDownloadFile:string = '/api/v1/download/{docId}';
   public static operationListaCassePrevidenza:string = '/api/public/v1/FE/tipoCassa';

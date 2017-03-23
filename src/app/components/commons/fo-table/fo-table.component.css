@@ -1,0 +1,159 @@
+
+table {
+  width: 100%;
+  color: black;
+  border-bottom: 1px solid;
+}
+
+thead {
+  background-color: transparent;
+  border-bottom: 2px solid #4e4e4e;
+}
+
+section {
+  font-size: 13px;
+}
+
+.evenOddClass{
+  /*background: rgba(255, 255, 255, 0.08) !important;*/
+}
+
+.hoverHand tr:hover {
+  cursor: pointer;
+}
+
+.subtreepad{
+  padding-left: 30px;
+  /*border-left: 1px solid black;*/
+}
+.subtreepad:before{
+  content: attr(data-prefix);
+  font-weight: bold;
+}
+
+.resp-collapse-button{
+  display: none;
+}
+.collapse-button{
+  display: contents;
+}
+
+.table-column-style{
+
+}
+
+.fa-chevron-circle-right:before {
+  color: black;
+}
+.fa-chevron-circle-down:before{
+  color: black;
+}
+
+/*.table-striped>tbody>tr:nth-of-type(odd) {*/
+  /*background-color: transparent;*/
+/*}*/
+
+.table-condensed>tbody>tr>td {
+  border-top: 1px gray solid;
+  border-bottom: 1px gray solid;
+  line-height: 30px;
+}
+
+.table-striped>tbody>tr {
+  background-color: transparent;
+}
+
+.td_child_style {
+  border: none !important;
+  background-color: rgba(0, 255, 127, 0.1);
+}
+
+.rows-root-style:hover {
+  background-color: rgba(0, 152, 73, 0.28) !important;
+}
+
+@media only screen and (max-width: 900px) {
+
+  /* Force table to not be like tables anymore */
+  #fo-tables table,
+  #fo-tables thead,
+  #fo-tables tbody,
+  #fo-tables th,
+  #fo-tables td,
+  #fo-tables tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  #fo-tables thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  #fo-tables tr {
+    border: 1px solid gray;
+    border-bottom: none !important;
+  }
+
+  #fo-tables td {
+    /* Behave  like a "row" */
+    border: none;
+    /*border-bottom: 1px solid #eee;*/
+    position: relative;
+    padding-left: 50%;
+    white-space: normal;
+    text-align:left !important;
+  }
+
+  #fo-tables td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align:left;
+    font-weight: bold;
+  }
+
+  /*
+    Label the data
+    */
+  #fo-tables td:before {
+    content: attr(data-title);
+    text-align: right;
+  }
+
+  .subtreepad{
+    padding-left: 0;
+  }
+  .resp-collapse-button{
+    display: block;
+    border-bottom: 2px solid !important;
+    border-top: 1px solid !important;
+  }
+  .collapse-button{
+    display: none !important;
+  }
+
+  .rows-child-style {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
+  .rows-root-style {
+    background-color: rgba(57, 88, 103, 0.28) !important;
+    /*border-top: 2px solid !important;*/
+  }
+
+  .table-condensed > tbody > tr > td {
+    line-height: 15px;
+  }
+
+  .collapse-button-responsive {
+    display: none !important;
+  }
+}
