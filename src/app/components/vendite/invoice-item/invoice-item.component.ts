@@ -40,7 +40,7 @@ export class InvoiceItemComponent implements OnInit {
         if (params['id'] == 'new') {
           console.log("new form called");
           this.salesDocumentForm = this.salesFormCreator.createEmptyForm();
-          this.createVATDropDown();          
+          this.createVATDropDown();
           this.createNewList();
         } else {
           this.venditeService.getSale(params['id']).subscribe(
@@ -254,25 +254,46 @@ export class InvoiceItemComponent implements OnInit {
         }
       }
       this.salesDocumentForm.patchValue({ ritenutaEnasarco: sum });
-      this.salesDocumentForm.patchValue({ totDocumento: this.totaleImponible +
-       this.totaleImposte + this.salesDocumentForm.value.rivalsa });
+      this.salesDocumentForm.patchValue({
+        totDocumento: this.totaleImponible +
+        this.totaleImposte + this.salesDocumentForm.value.rivalsa
+      });
     }, 200);
   }
 
   pagaMentiArray = new Object();
 
-  checkConto(pagamentiGroup: FormGroup, i: number){
+  checkConto(pagamentiGroup: FormGroup, i: number) {
     let contoId = pagamentiGroup.value['contoId'];
     let bill = this.billDetails.find((val) => val.id == contoId);
     this.pagaMentiArray[i] = bill;
     return bill.tipoConto != "CONTO_CASSA"
   }
 
-  deletePagementi(pagamentiGroup: FormGroup){
+  deletePagementi(pagamentiGroup: FormGroup) {
     this.venditeService.deletePagamenti(pagamentiGroup.value['id']).subscribe(
       results => console.log,
       error => console.log(error)
     )
+  }
+
+  scadenzeCheck(scadenzeGroup: FormGroup) {
+    return scadenzeGroup.value['importo'] - scadenzeGroup.value['importoDaSaldare'];
+  }
+
+  deleteScadenze(index: number) {
+    const control = <FormArray>this.salesDocumentForm.controls['scadenze'];
+    control.removeAt(index);
+  }
+
+  addScadenze() {
+    const control = <FormArray>this.salesDocumentForm.controls['scadenze'];
+    control.push(this.fb.group({
+      id: [],
+      importo: [],
+      importoDaSaldare: [],
+      dataScadenza: []
+    }))
   }
 
   test() {

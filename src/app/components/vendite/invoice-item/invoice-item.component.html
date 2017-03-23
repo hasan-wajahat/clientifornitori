@@ -295,6 +295,35 @@
     </div>
 
 
+    <div class="panel">
+      <div class="panel-heading">SCANDEZE</div>
+      <div class="panel-body pan">
+        <div class="form-body pal">
+          <div class="row" *ngFor="let scadenzeGroup of salesDocumentForm.controls.scadenze.controls; let i = index">
+            <div [formGroup]=scadenzeGroup class="form-group">
+              <div class="col-md-2">
+                <label class="control-label">Importo</label>
+                <input class="form-control" formControlName="importo">
+              </div>
+              <div class="col-md-2">
+                <label class="control-label">Data</label>
+                <input class="form-control" formControlName="dataScadenza">
+              </div>
+                <div *ngIf="scadenzeCheck(scadenzeGroup)">
+                  <div class="col-md-2">
+                    <label class="control-label">Di Cui Pagato</label>
+                    <input class="form-control" disabled [value]="scadenzeGroup.value.importo - scadenzeGroup.value.importoDaSaldare">
+                  </div>
+                </div>
+              <button *ngIf="!scadenzeCheck(scadenzeGroup)" (click)="deleteScadenze(i)" class="btn btn-default">x</button>
+            </div>
+          </div>
+          <button (click)="addScadenze()" class="btn btn-default">+</button>
+        </div>
+      </div>
+    </div>
+
+
     <button (click)="test()" class="btn btn-default"> Test </button>
 
   </form>
