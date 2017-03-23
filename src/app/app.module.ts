@@ -29,7 +29,7 @@ import {VenditeModule} from "./components/vendite/vendite.module";
 // import {RegistrazioneComponent} from "./components/registrazione-utente/registrazione/registrazione.component";
 // import {CorrispettiviModule} from "./components/corrispettivi/corrispettivi.module";
 // import {ScadenziarioModule} from "./components/scadenziario/scadenziario.module";
-import {AcquistiModule} from "./components/acquisti/acquisti.module";
+// import {AcquistiModule} from "./components/acquisti/acquisti.module";
 
 /**
  * #######   FOR EXTERNAL DEVELOPERS   #######
@@ -45,23 +45,14 @@ import {AcquistiModule} from "./components/acquisti/acquisti.module";
     //DashboardComponent,
     FooterComponent,
     ChatformComponent,
-<<<<<<< .mine
+
     // AcquistiComponent,
     // VenditeComponent,
     // ContiComponent,
     // F24Component,
     // CostidipendentiComponent,
     // ProfilepageComponent,
-||||||| .r42
-    AcquistiComponent,
-    F24Component,
-    CostidipendentiComponent,
-    ProfilepageComponent,
-=======
-    F24Component,
-    CostidipendentiComponent,
-    ProfilepageComponent,
->>>>>>> .r80
+
     LoginComponent,
     // RegistrazioneUtenteComponent,
     // RegistrazioneComponent,
@@ -72,15 +63,7 @@ import {AcquistiModule} from "./components/acquisti/acquisti.module";
   ],
   imports: [
     routing,
-<<<<<<< .mine
-||||||| .r42
-    ContiModule,
-    MovimentiModule,
-=======
-    AcquistiModule,
-    ContiModule,
-    MovimentiModule,
->>>>>>> .r80
+
     ClientifornitoriModule,
     // CorrispettiviModule,
     // ScadenziarioModule,

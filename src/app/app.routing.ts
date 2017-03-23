@@ -38,7 +38,6 @@ const appRoutes: Routes = [
     redirectTo: '/home/clientifornitori/lista-clientifornitori',
     pathMatch: 'full'
   },
-<<<<<<< .mine
   // -----------------------------------------------------------
 
   
@@ -66,43 +65,7 @@ const appRoutes: Routes = [
   //     {  path: 'profiloutente', component: ProfilepageComponent, canActivate: [LoggedInGuard] },
   //   ]
   // },
-||||||| .r42
-  { path: 'home', component: HomeComponent, canActivate: [LoggedInGuard],
-    children: [
-      // routing left menu
-      {
-        path: '',
-        redirectTo: '/home/dashboard',
-        pathMatch: 'full'
-      },
-      { path: 'dashboard', component: DashboardComponent, canActivate: [LoggedInGuard] },
-      { path: 'acquisti', component: AcquistiComponent, canActivate: [LoggedInGuard] },
-      { path: 'vendite', component: VenditeComponent, canActivate: [LoggedInGuard] },
-      { path: 'corrispettivi', component: CorrispettiviComponent, canActivate: [LoggedInGuard] },
-      { path: 'f24', component: F24Component, canActivate: [LoggedInGuard] },
-      { path: 'costidipendenti', component: CostidipendentiComponent, canActivate: [LoggedInGuard] },
-      // routing menu utente
-      {  path: 'profiloutente', component: ProfilepageComponent, canActivate: [LoggedInGuard] },
-    ]
-  },
-=======
-  { path: 'home', component: HomeComponent, canActivate: [LoggedInGuard],
-    children: [
-      // routing left menu
-      {
-        path: '',
-        redirectTo: '/home/dashboard',
-        pathMatch: 'full'
-      },
-      { path: 'dashboard', component: DashboardComponent, canActivate: [LoggedInGuard] },
-      { path: 'vendite', component: VenditeComponent, canActivate: [LoggedInGuard] },
-      { path: 'f24', component: F24Component, canActivate: [LoggedInGuard] },
-      { path: 'costidipendenti', component: CostidipendentiComponent, canActivate: [LoggedInGuard] },
-      // routing menu utente
-      {  path: 'profiloutente', component: ProfilepageComponent, canActivate: [LoggedInGuard] },
-    ]
-  },
->>>>>>> .r80
+
   { path: 'login', component: LoginComponent},
   // { path: 'registrazione-utente', component: RegistrazioneUtenteComponent },
   // { path: 'registrazione-success', component: RegistrazioneSuccessComponent},

@@ -34,16 +34,8 @@
     "zone.js": "^0.7.6"
   },
   "devDependencies": {
-<<<<<<< .mine
     "@types/jasmine": "2.5.41",
     "@types/jquery": "^2.0.34",
-||||||| .r42
-    "@types/jasmine": "^2.5.38",
-    "@types/jquery": "^2.0.34",
-=======
-    "@types/jasmine": "2.5.38",
-    "@types/jquery": "2.0.34",
->>>>>>> .r80
     "angular-cli": "1.0.0-beta.15",
     "codelyzer": "~0.0.26",
     "jasmine-core": "2.4.1",
