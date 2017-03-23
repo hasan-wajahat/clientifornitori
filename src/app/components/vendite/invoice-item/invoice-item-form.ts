@@ -84,16 +84,7 @@ export class SalesFormCreator {
       ritenutaAcconto: [salesDocument.ritenutaAcconto],
       ritenutaEnasarco: [salesDocument.ritenutaEnasarco],
       rivalsa: [null],
-      // scadenze: [salesDocument.scadenze],
-      scadenze: this.fb.array([
-        this.fb.group({
-          id: salesDocument.scadenze[0].id,
-          vendita: salesDocument.scadenze[0].vendita,
-          importo: salesDocument.scadenze[0].importo,
-          importoDaSaldare: salesDocument.scadenze[0].importoDaSaldare,
-          dataScadenza: salesDocument.scadenze[0].dataScadenza
-        })
-      ]),
+      scadenze: this.fb.array([]),
       statoDocumento: [salesDocument.statoDocumento],
       statoInviato: [salesDocument.statoInviato],
       statoInviatoSDI: [salesDocument.statoInviato],
@@ -150,6 +141,17 @@ export class SalesFormCreator {
         stato: [pagamentiItem.stato],
         tipo: [pagamentiItem.tipo],
         tipoOperazaione: [pagamentiItem.tipoOperazaione],
+      }))
+    }
+
+    const scadenzeControl = <FormArray>salesDocumentForm.controls['scadenze'];
+    for (let scadenzeItem of salesDocument.scadenze) {
+      scadenzeControl.push(this.fb.group({
+        id: [scadenzeItem.id],
+        vendita: [scadenzeItem.vendita],
+        importo: [scadenzeItem.importo],
+        importoDaSaldare: [scadenzeItem.importoDaSaldare],
+        dataScadenza: [scadenzeItem.dataScadenza]
       }))
     }
 
